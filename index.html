@@ -1,406 +1,659 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Trust Savings Calculator</title>
+<div id="tscRoot" style="max-width:1040px;margin:0 auto;padding:18px 14px;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
 
-  <style>
-    :root{
-      --bg:#2f3642; --panel:rgba(201,215,216,.92);
-      --ink:#1f2937; --muted:#475569;
-      --field:#3f4654; --fieldText:#fff;
-      --accent:#17a2a0; --accent2:#12b3b1;
-      --danger:#ef4444; --ok:#22c55e;
-      --shadow:0 30px 70px rgba(0,0,0,.38);
-      --radius:24px; --radius2:16px;
-      --ring:0 0 0 3px rgba(23,162,160,.25);
-      --font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:var(--font); color:var(--ink); overflow-x:hidden;
-      background:
-        radial-gradient(1100px 800px at 15% 10%, rgba(23,162,160,.28), transparent 60%),
-        radial-gradient(1000px 700px at 90% 20%, rgba(255,255,255,.08), transparent 55%),
-        linear-gradient(180deg, #232a34 0%, var(--bg) 100%);
-    }
-    .grain{position:fixed; inset:0; pointer-events:none; opacity:.07; mix-blend-mode:overlay;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-    }
-    .wrap{min-height:100%; display:flex; align-items:center; justify-content:center; padding:56px 16px;}
-    .card{
-      width:min(960px,100%); background:var(--panel); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:34px; position:relative; overflow:hidden;
-      border:1px solid rgba(255,255,255,.35); backdrop-filter: blur(10px);
-    }
-    .card:before{content:""; position:absolute; inset:-2px; pointer-events:none; opacity:.65;
-      background:
-        radial-gradient(700px 300px at 20% 0%, rgba(23,162,160,.35), transparent 55%),
-        radial-gradient(700px 350px at 90% 10%, rgba(255,255,255,.22), transparent 55%);
-    }
-    .inner{position:relative; z-index:1;}
+<style>
+#tscRoot, #tscRoot *{ box-sizing:border-box; }
+#tscRoot{ color:#0f2b2a; font-size:16px; }
 
-    /* Top contact header (like your screenshot) */
-    .contactHeader{
-      text-align:center;
-      padding: 10px 0 18px;
-      border-bottom: 1px solid rgba(15,23,42,.10);
-      margin-bottom: 18px;
-    }
-    .contactHeader .name{
-      font-size: 34px;
-      font-weight: 300;
-      color: rgba(15,23,42,.92);
-      margin: 0;
-      letter-spacing:.2px;
-    }
-    .contactHeader a{
-      display:inline-block;
-      margin-top: 6px;
-      color: #0e7490;
-      font-size: 22px;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-    .contactHeader .phone{
-      margin-top: 8px;
-      font-size: 28px;
-      font-weight: 300;
-      color: #0f766e;
-      letter-spacing: 1px;
-    }
+:root{
+  --right:340px;
+  --accent:#0b8f8f;
+  --accent2:#11b5b5;
+  --danger:#c0392b;
+  --bandA:#d9efed;
+  --bandB:#cfe8e6;
+  --border:rgba(15,43,42,.18);
+  --ink:rgba(15,43,42,.92);
+  --muted:rgba(15,43,42,.72);
+}
 
-    .top{display:flex; justify-content:space-between; gap:18px; margin-bottom:18px; flex-wrap:wrap;}
-    h1{margin:0; font-size:30px;}
-    .sub{margin:8px 0 0; color:var(--muted); font-size:14px; line-height:1.4;}
-    .badge{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:999px;
-      background:rgba(23,162,160,.12); border:1px solid rgba(23,162,160,.25); color:#0f766e;
-      font-weight:700; font-size:13px;
-    }
-    .dot{width:10px; height:10px; border-radius:999px; background:var(--accent);
-      box-shadow:0 0 0 4px rgba(23,162,160,.18);
-    }
-    .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;}
-    @media(max-width:860px){.grid{grid-template-columns:1fr}.card{padding:22px}.contactHeader .name{font-size:28px}}
-    label{display:block; font-weight:800; margin:0 0 8px; color:#1e293b; font-size:13px;}
-    .req:after{content:" *"; color:var(--danger);}
-    .field{
-      width:100%; height:52px; border-radius:var(--radius2);
-      border:1px solid rgba(255,255,255,.35); background:var(--field);
-      color:var(--fieldText); padding:14px 16px; font-size:15px; outline:none;
-      transition: box-shadow .15s ease, border-color .15s ease;
-    }
-    .field:focus{box-shadow:var(--ring); border-color:rgba(23,162,160,.45);}
-    .field::placeholder{color:rgba(255,255,255,.6)}
-    select.field{background:#fff; color:#0b1220; border:1px solid rgba(15,23,42,.12);}
-    .hint{margin-top:8px; font-size:12px; color:rgba(30,41,59,.75);}
-    .actions{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:18px;}
-    .btn{
-      height:54px; border-radius:var(--radius2); border:none; cursor:pointer;
-      font-weight:850; padding:0 18px; display:inline-flex; gap:10px; align-items:center;
-      transition: transform .08s ease, filter .15s ease;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btnPrimary{
-      background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; min-width:260px;
-      box-shadow:0 16px 30px rgba(23,162,160,.22);
-    }
-    .btnPrimary:hover{filter:brightness(1.03)}
-    .btnGhost{background:rgba(255,255,255,.55); color:#0b1220; border:1px solid rgba(15,23,42,.12);}
-    .btn[disabled]{opacity:.55; cursor:not-allowed;}
-    .total{
-      margin-top:18px; padding:18px; border-radius:18px; background:rgba(231,236,236,.85);
-      border:1px solid rgba(15,23,42,.08); display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-    }
-    .total .label{color:rgba(30,41,59,.85); font-weight:750;}
-    .total .val{font-size:30px; font-weight:900; color:var(--accent);}
-    .statusRow{margin-top:12px; display:flex; gap:10px; align-items:center; font-size:13px; min-height:18px;}
-    .spinner{width:14px; height:14px; border-radius:999px; border:2px solid rgba(30,41,59,.25);
-      border-top-color:rgba(23,162,160,.95); animation:spin .9s linear infinite; display:none;}
-    .spinner.on{display:inline-block}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .toast{
-      position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
-      background:rgba(15,23,42,.92); color:#fff; border:1px solid rgba(255,255,255,.14);
-      border-radius:999px; padding:10px 14px; box-shadow:0 18px 40px rgba(0,0,0,.35);
-      display:none; gap:10px; align-items:center; font-size:13px; z-index:50; max-width:calc(100% - 24px);
-    }
-    .toast.show{display:flex}
-    .toast .pill{width:10px; height:10px; border-radius:999px; background:var(--ok);
-      box-shadow:0 0 0 4px rgba(34,197,94,.2);}
-    .toast.bad .pill{background:var(--danger); box-shadow:0 0 0 4px rgba(239,68,68,.2);}
-    .error{border-color:rgba(239,68,68,.6)!important; box-shadow:0 0 0 3px rgba(239,68,68,.18)!important;}
+#tscRoot .tsc-card{
+  border-radius:20px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#e9f7f6,#d7efed);
+  border:1px solid var(--border);
+  box-shadow:0 18px 40px rgba(0,0,0,.14);
+}
+#tscRoot .tsc-accentbar{height:12px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+#tscRoot .tsc-inner{padding:18px}
 
-    /* Friendly success panel (no mention of Power Automate) */
-    .successPanel{
-      display:none;
-      margin-top: 16px;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(34,197,94,.12);
-      border: 1px solid rgba(34,197,94,.25);
-      color: rgba(15,23,42,.92);
-    }
-    .successPanel h3{margin:0 0 6px; font-size:16px;}
-    .successPanel p{margin:0; color: rgba(15,23,42,.75); font-size:13px; line-height:1.4;}
-    .successPanel .meetBtn{
-      margin-top: 12px;
-      display:inline-flex;
-      text-decoration:none;
-    }
-  </style>
-</head>
+#tscRoot .tsc-head{
+  text-align:center;
+  padding:8px 6px 14px;
+}
+#tscRoot .tsc-title{
+  margin:0;
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:.2px;
+  color:var(--ink);
+}
+#tscRoot .tsc-sub{
+  margin:8px auto 0;
+  max-width:760px;
+  font-size:14px;
+  font-weight:800;
+  color:var(--muted);
+  line-height:1.35;
+}
 
-<body>
-  <div class="grain"></div>
+#tscRoot .tsc-band{
+  border-radius:18px;
+  padding:14px 16px;
+  margin-top:14px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0px,
+      rgba(255,255,255,0) 44px,
+      rgba(0,0,0,.03) 44px,
+      rgba(0,0,0,.03) 88px
+    ),
+    linear-gradient(180deg,var(--bandA),var(--bandB));
+  border:1px solid var(--border);
+}
+#tscRoot .tsc-band:first-child{margin-top:0}
 
-  <div class="wrap">
-    <main class="card">
-      <div class="inner">
+#tscRoot .tsc-grid{
+  display:grid;
+  grid-template-columns:1fr var(--right);
+  gap:10px 14px;
+  align-items:center;
+}
 
-        <!-- Contact header (as requested) -->
-        <div class="contactHeader">
-          <div class="name">Brad Wells</div>
-          <a href="https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16" target="_blank" rel="noopener">My-Calendar-Link</a>
-          <div class="phone">(619) 356-5288</div>
-        </div>
+#tscRoot .tsc-label{font-weight:1100}
+#tscRoot .tsc-req{color:var(--danger)}
+#tscRoot .tsc-hint{display:block;font-size:13px;font-weight:800;margin-top:3px;color:rgba(15,43,42,.72)}
 
-        <div class="top">
-          <div>
-            <h1>Trust Savings Calculator</h1>
-            <div class="sub">Calculate estimated annual trust savings, then submit to get next steps.</div>
-          </div>
-          <div class="badge"><span class="dot"></span>Secure Submit</div>
-        </div>
+#tscRoot .company-block{text-align:center}
+#tscRoot .company-label{display:block;font-weight:1200;margin-bottom:8px}
+#tscRoot .company-input{
+  width:min(640px,100%) !important;
+  height:52px !important;
+  border-radius:16px !important;
+  border:1px solid var(--border) !important;
+  padding:12px 16px !important;
+  font-size:17px !important;
+  background:#fff !important;
+  text-align:center !important;
+  outline:none !important;
+  -webkit-appearance:none !important;
+  appearance:none !important;
+}
 
-        <section class="grid">
-          <div>
-            <label class="req" for="company">Company Name</label>
-            <input id="company" class="field" placeholder="e.g., Acme Construction" />
-          </div>
+#tscRoot .tsc-input{
+  width:var(--right) !important;
+  height:46px !important;
+  border-radius:14px !important;
+  border:1px solid var(--border) !important;
+  padding:10px 14px !important;
+  font-size:16px !important;
+  background:#fff !important;
+  outline:none !important;
+  -webkit-appearance:none !important;
+  appearance:none !important;
+  text-align:center !important;
+}
 
-          <div>
-            <label class="req" for="email">Email</label>
-            <input id="email" type="email" class="field" placeholder="name@company.com" />
-          </div>
+#tscRoot input[type="number"]::-webkit-outer-spin-button,
+#tscRoot input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+#tscRoot input[type="number"]{ -moz-appearance:textfield; appearance:textfield; }
 
-          <div>
-            <label class="req" for="totalCompanyEEs">Total Company Employees</label>
-            <input id="totalCompanyEEs" type="number" class="field" min="0" placeholder="e.g., 120" />
-          </div>
+#tscRoot .tsc-wrapin{
+  position:relative;
+  width:var(--right);
+  justify-self:start !important; /* alignment lock */
+}
+#tscRoot .tsc-prefix,
+#tscRoot .tsc-suffix{
+  position:absolute;top:50%;transform:translateY(-50%);
+  font-weight:1100;opacity:.8;pointer-events:none;
+}
+#tscRoot .tsc-prefix{left:12px}
+#tscRoot .tsc-suffix{right:12px}
+#tscRoot .pad-prefix{padding-left:36px!important}
+#tscRoot .pad-suffix{padding-right:52px!important}
 
-          <div>
-            <label class="req" for="fieldEEs">Total Field Employees</label>
-            <input id="fieldEEs" type="number" class="field" min="0" placeholder="e.g., 75" />
-          </div>
+#tscRoot .tsc-box{
+  width:var(--right);
+  background:#fff;
+  border-radius:16px;
+  padding:12px;
+  border:1px solid var(--border);
+}
+#tscRoot .tsc-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+#tscRoot .tsc-radio{position:absolute;opacity:0;width:1px;height:1px}
+#tscRoot .tsc-seg{
+  height:46px;min-width:110px;
+  border-radius:999px;
+  border:2px solid rgba(15,43,42,.25);
+  background:#fff;
+  font-size:16px;font-weight:1400;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;user-select:none;
+}
+#tscRoot .tsc-radio:checked + .tsc-seg{
+  background:linear-gradient(180deg,rgba(17,181,181,.28),rgba(11,143,143,.18));
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(26,166,166,.22);
+}
 
-          <div>
-            <label class="req" for="pwFieldEEs">PW Field Employees</label>
-            <input id="pwFieldEEs" type="number" class="field" min="0" placeholder="e.g., 40" />
-          </div>
+#tscRoot .tsc-instructions{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:#fff;
+  border:1px solid var(--border);
+  font-size:14.5px;
+  font-weight:1100;
+  text-align:center;
+  line-height:1.25;
+}
 
-          <div>
-            <label class="req" for="pwPercent">PW Work %</label>
-            <input id="pwPercent" type="number" class="field" min="0" max="100" placeholder="e.g., 60" />
-          </div>
+#tscRoot .tsc-cta{text-align:center;margin-top:16px}
+#tscRoot .tsc-btn{
+  height:60px;padding:0 64px;border-radius:20px;
+  font-weight:1500;font-size:17px;letter-spacing:1.2px;
+  background:linear-gradient(180deg,var(--accent2),var(--accent));
+  color:#fff;border:none;cursor:pointer;
+  box-shadow:0 18px 28px rgba(11,143,143,.32);
+}
+#tscRoot .tsc-btn[disabled]{opacity:.65;cursor:not-allowed}
 
-          <div>
-            <label class="req" for="benefits">Benefits Provided</label>
-            <select id="benefits" class="field">
-              <option value="">Select</option>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
-          </div>
+#tscRoot .tsc-total{
+  margin-top:14px;padding:16px;
+  background:linear-gradient(180deg,#ffffff,#f2fbfa);
+  border-radius:18px;border:1px solid var(--border);
+  text-align:center;
+}
+#tscRoot .tsc-total .val{font-size:32px;font-weight:1500;color:var(--accent)}
 
-          <div>
-            <label class="req" for="netFringe">Average Remaining Fringe ($/Hr.)</label>
-            <input id="netFringe" type="number" step="0.01" class="field" min="0" placeholder="e.g., 8.25" />
-          </div>
+#tscRoot .tsc-resultsAnchor{scroll-margin-top:18px}
 
-          <div>
-            <label for="wcPercent">WC Percent (leave blank for 5%)</label>
-            <input id="wcPercent" type="number" class="field" min="0" max="100" placeholder="default 5" />
-            <div class="hint">If blank, we use 5%.</div>
-          </div>
-        </section>
+#tscRoot .tsc-status{
+  margin-top:10px;
+  text-align:center;
+  font-size:14px;
+  font-weight:1100;
+  min-height:20px;
+  color:rgba(15,43,42,.82);
+}
+#tscRoot .tsc-spin{
+  display:inline-block;width:14px;height:14px;border-radius:999px;
+  border:2px solid rgba(15,43,42,.25); border-top-color:rgba(11,143,143,.95);
+  animation:tscSpin .9s linear infinite; vertical-align:-2px; margin-right:8px;
+}
+@keyframes tscSpin{to{transform:rotate(360deg)}}
 
-        <div class="actions">
-          <button id="calcBtn" class="btn btnPrimary" type="button">Calculate + Submit ↗</button>
-          <button id="resetBtn" class="btn btnGhost" type="button">Reset</button>
-          <div class="statusRow" aria-live="polite">
-            <span class="spinner" id="spinner"></span>
-            <span id="statusText"></span>
-          </div>
-        </div>
+#tscRoot .tsc-footer{
+  display:none;
+  text-align:center;
+  margin-top:14px;
+}
+#tscRoot .tsc-footer.show{display:block}
+#tscRoot .tsc-footer .tag{font-size:14px;font-weight:1100;color:rgba(15,43,42,.72);margin-bottom:10px}
+#tscRoot .tsc-footer .nm{font-size:20px;font-weight:1700;margin-bottom:6px}
+#tscRoot .tsc-footer a{
+  display:block;
+  font-size:19px;
+  font-weight:1700;
+  color:var(--accent);
+  margin-top:6px;
+  text-decoration:none;
+}
+#tscRoot .tsc-footer a.cal{text-decoration:underline}
 
-        <div class="total">
-          <div class="label">Estimated Annual Trust Savings</div>
-          <div class="val" id="trustSavingsValue">$0</div>
-        </div>
+#tscRoot .tsc-hidden{display:none!important}
 
-        <!-- Friendly success message + meeting link (no Power Automate wording) -->
-        <div class="successPanel" id="successPanel">
-          <h3>Submitted successfully ✅</h3>
-          <p>Next step: book a quick 15-minute call to review your estimate and options. Redirecting you now…</p>
-          <a class="btn btnPrimary meetBtn" id="meetBtn" target="_blank" rel="noopener"
-             href="https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16">
-            Book a 15-min meeting ↗
-          </a>
-        </div>
+#tscRoot .tsc-error{
+  outline:3px solid rgba(192,57,43,.22)!important;
+  border-color:rgba(192,57,43,.65)!important;
+}
+#tscRoot .tsc-errtxt{
+  grid-column: 1 / -1;
+  font-size:13px;
+  font-weight:1000;
+  color:var(--danger);
+  margin-top:-4px;
+}
 
+@media(max-width:760px){
+  :root{--right:100%}
+  #tscRoot .tsc-grid{grid-template-columns:1fr}
+  #tscRoot .tsc-input,#tscRoot .tsc-wrapin,#tscRoot .tsc-box{width:100%!important}
+}
+</style>
+
+<div class="tsc-card">
+  <div class="tsc-accentbar"></div>
+  <div class="tsc-inner">
+
+    <!-- TITLE + SUBTEXT -->
+    <div class="tsc-head">
+      <h1 class="tsc-title">Estimated Annual Trust Savings</h1>
+      <div class="tsc-sub">Based on 2,080 hrs/year · (FICA 7.65% + GL + WC)</div>
+    </div>
+
+    <!-- SECTION 1: COMPANY INFO -->
+    <div class="tsc-band" id="secCompany">
+      <div class="company-block">
+        <label class="company-label">Company Name <span class="tsc-req">*</span></label>
+        <input id="company" class="company-input" autocomplete="organization" placeholder="Your company name">
+        <div class="tsc-errtxt tsc-hidden" id="err_company">Company name is required.</div>
       </div>
-    </main>
+    </div>
+
+    <!-- SECTION 2: EMPLOYEE COUNTS -->
+    <div class="tsc-band" id="secCounts">
+      <div class="tsc-grid">
+        <div class="tsc-label">Total # of Employees (Company) <span class="tsc-req">*</span></div>
+        <input id="totalCompanyEEs" class="tsc-input" inputmode="numeric" placeholder="0">
+        <div class="tsc-errtxt tsc-hidden" id="err_totalCompanyEEs">This field is required.</div>
+
+        <div class="tsc-label">Total # of Field Employees <span class="tsc-req">*</span></div>
+        <input id="fieldEEs" class="tsc-input" inputmode="numeric" placeholder="0">
+        <div class="tsc-errtxt tsc-hidden" id="err_fieldEEs">This field is required.</div>
+
+        <div class="tsc-label">Average # of PW Field Employees <span class="tsc-req">*</span>
+          <span class="tsc-hint" id="pwEmpHint">Of your total field employees, how many perform PW work?</span>
+        </div>
+        <input id="pwFieldEEs" class="tsc-input" inputmode="numeric" placeholder="0">
+        <div class="tsc-errtxt tsc-hidden" id="err_pwFieldEEs">This field is required.</div>
+
+        <div class="tsc-label">PW Work % <span class="tsc-req">*</span>
+          <span class="tsc-hint">Example: 30% PW vs 70% Private</span>
+        </div>
+        <div class="tsc-wrapin">
+          <span class="tsc-suffix">%</span>
+          <input id="pwPercent" class="tsc-input pad-suffix" inputmode="numeric" placeholder="0">
+        </div>
+        <div class="tsc-errtxt tsc-hidden" id="err_pwPercent">PW Work % is required (0–100).</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: BENEFITS LOGIC (CONDITIONAL) -->
+    <div class="tsc-band" id="secBenefits">
+      <div class="tsc-grid">
+        <div class="tsc-label">Do you provide field employees a 401(k), PTO, or Health? <span class="tsc-req">*</span></div>
+        <div class="tsc-box" id="providesBenefitsBox">
+          <div class="tsc-btns">
+            <label><input class="tsc-radio" type="radio" name="providesBenefits" value="Yes"><span class="tsc-seg">Yes</span></label>
+            <label><input class="tsc-radio" type="radio" name="providesBenefits" value="No"><span class="tsc-seg">No</span></label>
+          </div>
+        </div>
+        <div class="tsc-errtxt tsc-hidden" id="err_providesBenefits">Please select Yes or No.</div>
+      </div>
+
+      <!-- Message shown after Q1 -->
+      <div id="benefitsMsgWrap" class="tsc-hidden">
+        <div class="tsc-instructions" id="benefitsMsg"></div>
+      </div>
+
+      <!-- Question 2 revealed ONLY if Q1 = Yes -->
+      <div id="creditsWrap" class="tsc-hidden" style="margin-top:12px;">
+        <div class="tsc-grid">
+          <div class="tsc-label">Are you taking any fringe credits for these benefits? <span class="tsc-req">*</span></div>
+          <div class="tsc-box" id="takesCreditsBox">
+            <div class="tsc-btns">
+              <label><input class="tsc-radio" type="radio" name="takesCredits" value="Yes"><span class="tsc-seg">Yes</span></label>
+              <label><input class="tsc-radio" type="radio" name="takesCredits" value="No"><span class="tsc-seg">No</span></label>
+            </div>
+          </div>
+          <div class="tsc-errtxt tsc-hidden" id="err_takesCredits">Please select Yes or No.</div>
+        </div>
+
+        <div id="creditsMsgWrap" class="tsc-hidden">
+          <div class="tsc-instructions" id="creditsMsg"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: FRINGE & WC -->
+    <div class="tsc-band" id="secFringe">
+      <div class="tsc-grid">
+        <div class="tsc-label">Average Remaining Fringes (Per Hour) <span class="tsc-req">*</span></div>
+        <div class="tsc-wrapin">
+          <span class="tsc-prefix">$</span><span class="tsc-suffix">/Hr.</span>
+          <input id="netFringe" class="tsc-input pad-prefix pad-suffix" inputmode="decimal" placeholder="0.00">
+        </div>
+        <div class="tsc-errtxt tsc-hidden" id="err_netFringe">This field is required.</div>
+
+        <div class="tsc-label">Average WC Rate (Laborers Only)
+          <span class="tsc-hint">If unknown, leave blank — a default rate of 5% will be used.</span>
+        </div>
+        <div class="tsc-wrapin">
+          <span class="tsc-suffix">%</span>
+          <input id="wcPercent" class="tsc-input pad-suffix" inputmode="numeric" placeholder="(default 5)">
+        </div>
+      </div>
+
+      <div class="tsc-cta">
+        <button class="tsc-btn" id="calcBtn" type="button">Calculate Trust Savings</button>
+      </div>
+
+      <div class="tsc-status" id="statusLine"></div>
+
+      <div class="tsc-total tsc-resultsAnchor" id="resultsCard">
+        <div style="font-weight:1100;color:rgba(15,43,42,.78)">Estimated Annual Trust Savings</div>
+        <div class="val" id="trustSavingsValue">$0</div>
+      </div>
+
+      <!-- CONTACT REVEAL POST-CALC ONLY -->
+      <div class="tsc-footer" id="contactFooter">
+        <div class="tag">Please reach out with any questions you may have.</div>
+        <div class="nm">Brad Wells</div>
+        <a class="cal" id="calendarLink" href="https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16" target="_blank" rel="noopener">My-Calendar-Link</a>
+        <a href="tel:16193565288">(619) 356-5288</a>
+      </div>
+    </div>
+
   </div>
+</div>
 
-  <div class="toast" id="toast">
-    <span class="pill"></span>
-    <span id="toastText">Saved!</span>
-  </div>
+<script>
+(function(){
+  // === CONFIG ===
+  const FLOW_URL =
+    "https://defaultfc1a548c114048fc8a0fe3a638dc83.27.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/6844d2b987e545d2b2a16a8cc761da37/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8Izivl2cwWyr9J_uDNEjNGapsIEOpvGS5xZwO3daFY0";
 
-  <script>
-    (function () {
-      // ⚠️ NOTE: This URL contains a signature. Anyone viewing source can reuse it.
-      // If you want this public, use a proxy (Azure Function / Worker) to hide the sig.
-      const FLOW_URL =
-        "https://9e44ec6cf803e40cabf4a32bc17720.03.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2a2a236af9d741f89b24a90b9074460c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0QSrr9-Xy4BVcf-uJmeW8nFwHLlp65tJrHNbzPyEfIE";
+  const MEETING_URL =
+    "https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16";
 
-      const MEETING_URL =
-        "https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16";
+  const $ = (id) => document.getElementById(id);
 
-      const $ = (id) => document.getElementById(id);
-      const n = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
-      const int0 = (v) => (Number.isFinite(parseInt(v, 10)) ? parseInt(v, 10) : 0);
+  // === Helpers ===
+  function cleanNum(raw){
+    return String(raw ?? "").replace(/[^0-9.]/g,"");
+  }
+  function toMoney2(raw){
+    const cleaned = cleanNum(raw);
+    if (!cleaned) return "";
+    const n = Number(cleaned);
+    if (!Number.isFinite(n)) return "";
+    return n.toFixed(2);
+  }
+  function toInt(raw){
+    const cleaned = String(raw ?? "").replace(/[^\d]/g,"");
+    if (!cleaned) return NaN;
+    const n = Number(cleaned);
+    return Number.isFinite(n) ? n : NaN;
+  }
+  function toFloat(raw){
+    const cleaned = cleanNum(raw);
+    if (!cleaned) return NaN;
+    const n = Number(cleaned);
+    return Number.isFinite(n) ? n : NaN;
+  }
+  function fmtMoneyWhole(n){
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+  function scrollFocus(el){
+    try{
+      el.scrollIntoView({behavior:"smooth", block:"center"});
+      setTimeout(()=> el.focus?.(), 250);
+    }catch(e){}
+  }
+  function setStatus(text, spinning){
+    const s = $("statusLine");
+    if (!s) return;
+    if (spinning){
+      s.innerHTML = '<span class="tsc-spin"></span>' + text;
+    } else {
+      s.textContent = text || "";
+    }
+  }
+  function showErr(id, on){
+    const e = $(id);
+    if (!e) return;
+    e.classList.toggle("tsc-hidden", !on);
+  }
+  function markField(el, bad){
+    el.classList.toggle("tsc-error", !!bad);
+  }
 
-      function formatMoney(x) { return "$" + Math.round(x).toLocaleString("en-US"); }
+  // === Dynamic helper text ===
+  function updatePwHint(){
+    const n = toInt($("fieldEEs").value);
+    const hint = $("pwEmpHint");
+    hint.textContent = (Number.isFinite(n) && n>0)
+      ? `Of your (${n}) field employees, how many perform PW work?`
+      : "Of your field employees, how many perform PW work?";
+  }
+  $("fieldEEs").addEventListener("input", updatePwHint);
+  updatePwHint();
 
-      function showToast(msg, ok = true) {
-        const t = $("toast");
-        $("toastText").textContent = msg;
-        t.classList.toggle("bad", !ok);
-        t.classList.add("show");
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(() => t.classList.remove("show"), 2600);
+  // === Money formatting on blur ===
+  $("netFringe").addEventListener("blur", ()=>{
+    const v = toMoney2($("netFringe").value);
+    if (v !== "") $("netFringe").value = v;
+  });
+
+  // === Benefits logic ===
+  const benefitsMsgWrap = $("benefitsMsgWrap");
+  const benefitsMsg = $("benefitsMsg");
+  const creditsWrap = $("creditsWrap");
+  const creditsMsgWrap = $("creditsMsgWrap");
+  const creditsMsg = $("creditsMsg");
+
+  function getRadioVal(name){
+    const el = document.querySelector(`#tscRoot input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  function resetCredits(){
+    document.querySelectorAll('#tscRoot input[name="takesCredits"]').forEach(x=>x.checked=false);
+    creditsMsgWrap.classList.add("tsc-hidden");
+    creditsMsg.textContent = "";
+    showErr("err_takesCredits", false);
+    $("takesCreditsBox").classList.remove("tsc-error");
+  }
+
+  function onProvidesBenefitsChange(val){
+    benefitsMsgWrap.classList.remove("tsc-hidden");
+
+    if (val === "No"){
+      benefitsMsg.innerHTML = "Great! Please provide the <b>Average Fringe per hour</b> you pay field employees.";
+      creditsWrap.classList.add("tsc-hidden");
+      resetCredits();
+      return;
+    }
+
+    // Yes: reveal Q2
+    benefitsMsg.innerHTML = "Thanks. One more question so we can guide your estimate correctly.";
+    creditsWrap.classList.remove("tsc-hidden");
+  }
+
+  document.querySelectorAll('#tscRoot input[name="providesBenefits"]').forEach(r=>{
+    r.addEventListener("change", ()=>{
+      showErr("err_providesBenefits", false);
+      $("providesBenefitsBox").classList.remove("tsc-error");
+      onProvidesBenefitsChange(r.value);
+    });
+  });
+
+  document.querySelectorAll('#tscRoot input[name="takesCredits"]').forEach(r=>{
+    r.addEventListener("change", ()=>{
+      showErr("err_takesCredits", false);
+      $("takesCreditsBox").classList.remove("tsc-error");
+
+      creditsMsgWrap.classList.remove("tsc-hidden");
+      creditsMsg.innerHTML =
+        (r.value === "Yes")
+          ? "Great! Please provide any <b>remaining</b> <i>Average Fringe $ per hour</i> you pay field employees."
+          : "You may be eligible for fringe credits. Please provide the <b>Average Fringe $ per hour</b> you pay field employees.";
+    });
+  });
+
+  // === Validation ===
+  function validateAll(){
+    // clear previous
+    ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe"].forEach(id=>{
+      markField($(id), false);
+      showErr("err_"+id, false);
+    });
+    showErr("err_providesBenefits", false);
+    $("providesBenefitsBox").classList.remove("tsc-error");
+    showErr("err_takesCredits", false);
+    $("takesCreditsBox").classList.remove("tsc-error");
+
+    // company
+    const company = ($("company").value || "").trim();
+    if (!company){
+      markField($("company"), true);
+      showErr("err_company", true);
+      scrollFocus($("company"));
+      return false;
+    }
+
+    // integers required
+    const reqInts = [
+      {id:"totalCompanyEEs"},
+      {id:"fieldEEs"},
+      {id:"pwFieldEEs"}
+    ];
+    for (const f of reqInts){
+      const v = toInt($(f.id).value);
+      if (!Number.isFinite(v)){
+        markField($(f.id), true);
+        showErr("err_"+f.id, true);
+        scrollFocus($(f.id));
+        return false;
       }
+    }
 
-      function setBusy(b, msg) {
-        $("spinner").classList.toggle("on", !!b);
-        $("calcBtn").disabled = !!b;
-        $("resetBtn").disabled = !!b;
-        $("statusText").textContent = msg || "";
-      }
+    // pwPercent required 0-100
+    const pwPctRaw = toFloat($("pwPercent").value);
+    if (!Number.isFinite(pwPctRaw) || pwPctRaw < 0 || pwPctRaw > 100){
+      markField($("pwPercent"), true);
+      showErr("err_pwPercent", true);
+      scrollFocus($("pwPercent"));
+      return false;
+    }
 
-      function markError(el, on) { el.classList.toggle("error", !!on); }
+    // providesBenefits required
+    const pb = getRadioVal("providesBenefits");
+    if (!pb){
+      $("providesBenefitsBox").classList.add("tsc-error");
+      showErr("err_providesBenefits", true);
+      scrollFocus($("providesBenefitsBox"));
+      return false;
+    }
 
-      function validateRequired() {
-        const req = ["company","email","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","benefits","netFringe"];
-        let ok = true;
+    // takingCredits required only if providesBenefits == Yes
+    const tc = getRadioVal("takesCredits");
+    if (pb === "Yes" && !tc){
+      $("takesCreditsBox").classList.add("tsc-error");
+      showErr("err_takesCredits", true);
+      scrollFocus($("takesCreditsBox"));
+      return false;
+    }
 
-        req.forEach(id => {
-          const el = $(id);
-          const v = (el.value || "").trim();
-          const empty = v === "";
-          markError(el, empty);
-          if (empty) ok = false;
-        });
+    // fringe required
+    const fringe = toFloat($("netFringe").value);
+    if (!Number.isFinite(fringe)){
+      markField($("netFringe"), true);
+      showErr("err_netFringe", true);
+      scrollFocus($("netFringe"));
+      return false;
+    }
 
-        const email = $("email").value.trim();
-        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        markError($("email"), !emailOk);
-        if (!emailOk) ok = false;
+    return true;
+  }
 
-        return ok;
-      }
+  // === Calculate + Submit ===
+  async function postToFlow(payload){
+    const res = await fetch(FLOW_URL, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok){
+      const txt = await res.text().catch(()=> "");
+      throw new Error(txt || ("HTTP " + res.status));
+    }
+    return true;
+  }
 
-      async function submitPayload(payload) {
-        const res = await fetch(FLOW_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+  $("calcBtn").addEventListener("click", async ()=>{
+    if (!validateAll()) return;
 
-        if (!res.ok) {
-          const txt = await res.text().catch(() => "");
-          throw new Error(txt || ("HTTP " + res.status));
-        }
+    $("calcBtn").disabled = true;
+    setStatus("Calculating…", true);
 
-        // Flow might return 200/202 with no body
-        return true;
-      }
+    // WC: blank => default 5%, and auto-fill field with 5
+    const wcField = $("wcPercent");
+    const wcRaw = (wcField.value || "").trim();
+    const wcPct = (wcRaw === "" ? 5 : toFloat(wcRaw));
+    const wc = (Number.isFinite(wcPct) ? wcPct : 5);
+    if (wcRaw === "") wcField.value = "5";
 
-      $("calcBtn").addEventListener("click", async () => {
-        if (!validateRequired()) {
-          showToast("Please fill all required fields.", false);
-          $("statusText").textContent = "Missing required fields.";
-          return;
-        }
+    // Calculation (critical)
+    const pwField = toInt($("pwFieldEEs").value);
+    const pwPct = toFloat($("pwPercent").value) / 100;
+    const fringe = toFloat($("netFringe").value);
+    const savings = pwField * 2080 * pwPct * fringe * (0.0965 + (wc/100));
 
-        // Calculate
-        const pwField = n($("pwFieldEEs").value);
-        const pwPct = n($("pwPercent").value) / 100;
-        const fringe = n($("netFringe").value);
-        const wc = ($("wcPercent").value.trim() === "") ? 0.05 : (n($("wcPercent").value) / 100);
+    const savingsFmt = fmtMoneyWhole(savings);
+    $("trustSavingsValue").textContent = savingsFmt;
 
-        const savings = pwField * 2080 * pwPct * fringe * (0.0965 + wc);
-        $("trustSavingsValue").textContent = formatMoney(savings);
+    // Reveal footer + update meeting link
+    $("calendarLink").href = MEETING_URL;
+    $("contactFooter").classList.add("show");
 
-        // Payload
-        const payload = {
-          bw_CompanyName: $("company").value.trim(),
-          bw_Email: $("email").value.trim(),
-          bw_TotalCompanyEmployees: int0($("totalCompanyEEs").value),
-          bw_TotalFieldEmployees: int0($("fieldEEs").value),
-          bw_PWFieldEmployees: int0($("pwFieldEEs").value),
-          bw_PWWorkPercent: n($("pwPercent").value),
-          bw_BenefitsProvided: $("benefits").value === "true",
-          bw_AverageRemainingFringe: n($("netFringe").value),
-          bw_WCPercent: ($("wcPercent").value.trim() === "" ? 5 : n($("wcPercent").value)),
-          bw_EstimatedAnnualSavings: savings
-        };
+    // Smooth scroll to results
+    $("resultsCard").scrollIntoView({behavior:"smooth", block:"center"});
 
-        setBusy(true, "Submitting…");
+    // Build payload (your previous bw_* naming, plus extra context fields)
+    const payload = {
+      bw_CompanyName: ($("company").value || "").trim(),
+      bw_TotalCompanyEmployees: toInt($("totalCompanyEEs").value),
+      bw_TotalFieldEmployees: toInt($("fieldEEs").value),
+      bw_PWFieldEmployees: toInt($("pwFieldEEs").value),
+      bw_PWWorkPercent: toFloat($("pwPercent").value),
+      bw_BenefitsProvided: (getRadioVal("providesBenefits") === "Yes"),
+      bw_TakingFringeCredits: (getRadioVal("takesCredits") === "Yes"),   // add in Flow if you want
+      bw_AverageRemainingFringe: fringe,
+      bw_WCPercent: wc,
+      bw_WCRateUsed: wc, // explicit: “rate used”
+      bw_EstimatedAnnualSavings: Math.round(savings) // whole dollar
+    };
 
-        try {
-          await submitPayload(payload);
+    // Submit in background (no mention of platform)
+    try{
+      setStatus("Submitting…", true);
+      await postToFlow(payload);
 
-          setBusy(false, "Submitted.");
-          showToast("Submitted successfully!", true);
+      setStatus("Submitted. Redirecting to schedule your call…", false);
 
-          // Show user-friendly panel + redirect
-          $("successPanel").style.display = "block";
-          $("meetBtn").href = MEETING_URL;
+      // Redirect to HubSpot meeting link after successful submit
+      setTimeout(()=>{ window.location.href = MEETING_URL; }, 900);
 
-          // Redirect after a short moment
-          setTimeout(() => {
-            window.location.href = MEETING_URL;
-          }, 900);
+    } catch(e){
+      console.error(e);
+      setStatus("Something went wrong. Please try again.", false);
+      $("calcBtn").disabled = false;
+      return;
+    }
+  });
 
-        } catch (e) {
-          console.error("Submit error:", e);
-          setBusy(false, "Error submitting. Please try again.");
-          showToast("Error submitting. Please try again.", false);
-        }
-      });
+  // Remove error state as user types
+  ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe","wcPercent"].forEach(id=>{
+    $(id).addEventListener("input", ()=>{
+      markField($(id), false);
+      showErr("err_"+id, false);
+    });
+  });
 
-      $("resetBtn").addEventListener("click", () => {
-        ["company","email","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","benefits","netFringe","wcPercent"]
-          .forEach(id => { $(id).value = ""; markError($(id), false); });
-        $("trustSavingsValue").textContent = "$0";
-        $("statusText").textContent = "";
-        $("successPanel").style.display = "none";
-        showToast("Reset.", true);
-      });
+})();
+</script>
 
-      ["company","email","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","benefits","netFringe","wcPercent"]
-        .forEach(id => {
-          const el = $(id);
-          el.addEventListener("input", () => markError(el,false));
-          el.addEventListener("change", () => markError(el,false));
-        });
-
-    })();
-  </script>
-</body>
-</html>
+</div>
