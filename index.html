@@ -1,40 +1,29 @@
-<!-- ✅ FULL UPDATED CODE (adds a professional background + keeps fonts clean) -->
 <div id="tscRoot" style="max-width:1140px;margin:0 auto;padding:18px 14px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
 
   <style>
-    /* =========================
-       GLOBAL PAGE BACKGROUND
-       (soft, professional, not flashy)
-       ========================= */
+    /* ========= Page background (premium, professional) ========= */
     html, body{
       height:100%;
       background:
-        radial-gradient(900px 500px at 12% 10%, rgba(17,181,181,.10), rgba(17,181,181,0) 60%),
-        radial-gradient(900px 500px at 88% 18%, rgba(0,0,0,.06), rgba(0,0,0,0) 55%),
+        radial-gradient(900px 520px at 12% 10%, rgba(17,181,181,.10), rgba(17,181,181,0) 60%),
+        radial-gradient(900px 520px at 88% 18%, rgba(0,0,0,.06), rgba(0,0,0,0) 55%),
         linear-gradient(180deg,#f4f7f9,#eef4f6 40%, #f7fbfb);
       background-attachment: fixed;
     }
-
-    /* If your platform wraps content, this helps ensure the page color shows */
     body{ margin:0; }
 
-    /* =========================
-       DESIGN SYSTEM (scoped)
-       ========================= */
-    #tscRoot, #tscRoot * { box-sizing: border-box; }
-    #tscRoot { color:#0f2b2a; font-size:16px; }
+    /* ========= Design system (scoped) ========= */
+    #tscRoot, #tscRoot *{ box-sizing:border-box; }
+    #tscRoot{ color:#0f2b2a; font-size:16px; }
 
     #tscRoot{
       --right: 360px;
 
-      --accent: #0b8f8f;
+      --accent:#0b8f8f;
       --accent2:#11b5b5;
       --accent3:#0a6f6f;
 
       --danger:#c0392b;
-
-      --bg0:#061b1a;
-      --bg1:#0a2d2c;
 
       --ink: rgba(15,43,42,.94);
       --muted: rgba(15,43,42,.72);
@@ -42,7 +31,6 @@
 
       --shadow: 0 18px 45px rgba(0,0,0,.16);
       --shadowSoft: 0 10px 25px rgba(0,0,0,.10);
-
       --ring: 0 0 0 4px rgba(17,181,181,.18);
 
       --radiusXL: 26px;
@@ -50,19 +38,18 @@
       --radiusMD: 16px;
     }
 
-    /* Main glossy wrapper */
+    /* ========= Dark glossy shell like a premium site ========= */
     #tscRoot .tsc-page{
       border-radius: calc(var(--radiusXL) + 8px);
-      overflow: hidden;
-      border: 1px solid rgba(0,0,0,.08);
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.08);
       box-shadow: var(--shadow);
       background:
         radial-gradient(900px 520px at 14% 12%, rgba(17,181,181,.14), rgba(17,181,181,0) 60%),
-        radial-gradient(900px 520px at 86% 16%, rgba(0,0,0,.05), rgba(0,0,0,0) 58%),
+        radial-gradient(900px 520px at 86% 16%, rgba(0,0,0,.06), rgba(0,0,0,0) 58%),
         linear-gradient(180deg,#0b2f2e,#071c1b);
       position:relative;
     }
-
     #tscRoot .tsc-page::before{
       content:"";
       position:absolute; inset:-2px;
@@ -72,20 +59,20 @@
       mix-blend-mode: screen;
     }
 
-    /* Top bar */
-    #tscRoot .tsc-top{ padding: 18px 18px 0; position:relative; z-index:1; }
+    /* ========= Top nav ========= */
+    #tscRoot .tsc-top{ padding:18px 18px 0; position:relative; z-index:1; }
     #tscRoot .tsc-nav{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
       padding:12px 14px;
       border-radius:18px;
       background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
-      border: 1px solid rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.14);
       box-shadow: 0 14px 28px rgba(0,0,0,.18);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
     #tscRoot .tsc-brand{ display:flex; align-items:center; gap:10px; min-width:240px; }
-    #tscRoot .tsc-logo{ width:44px; height:44px; border-radius:14px; overflow:hidden; box-shadow: 0 14px 26px rgba(0,0,0,.22); flex:0 0 auto; }
+    #tscRoot .tsc-logo{ width:44px;height:44px;border-radius:14px;overflow:hidden; box-shadow:0 14px 26px rgba(0,0,0,.22); flex:0 0 auto; }
     #tscRoot .tsc-brandTxt{ display:flex; flex-direction:column; line-height:1.05; }
     #tscRoot .tsc-brandName{ font-weight:800; letter-spacing:.2px; color: rgba(255,255,255,.96); font-size:16px; }
     #tscRoot .tsc-brandTag{ margin-top:4px; font-size:12px; font-weight:600; color: rgba(255,255,255,.70); }
@@ -136,13 +123,13 @@
     #tscRoot .tsc-navBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
     #tscRoot .tsc-navBtn:active{ transform: translateY(0px); filter: brightness(.98); }
 
-    /* Hero */
+    /* ========= Hero ========= */
     #tscRoot .tsc-hero{
-      margin: 14px 18px 18px;
+      margin:14px 18px 18px;
       border-radius: var(--radiusXL);
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 18px 34px rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 18px 34px rgba(0,0,0,.22);
       background:
         radial-gradient(1200px 520px at 15% 20%, rgba(17,181,181,.25), rgba(17,181,181,0) 60%),
         radial-gradient(800px 420px at 78% 28%, rgba(255,255,255,.15), rgba(255,255,255,0) 55%),
@@ -153,44 +140,44 @@
     #tscRoot .tsc-heroInner{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      padding: 22px;
-      align-items: center;
+      gap:14px;
+      padding:22px;
+      align-items:center;
       position:relative;
       z-index:1;
     }
     #tscRoot .tsc-heroH{
       margin:0;
-      font-size: 34px;
-      font-weight: 800;
+      font-size:34px;
+      font-weight:800;
       color: rgba(255,255,255,.96);
-      letter-spacing: .2px;
-      line-height: 1.08;
+      letter-spacing:.2px;
+      line-height:1.08;
     }
     #tscRoot .tsc-heroP{
-      margin: 10px 0 0;
-      font-size: 14.5px;
-      font-weight: 600;
+      margin:10px 0 0;
+      font-size:14.5px;
+      font-weight:600;
       color: rgba(255,255,255,.78);
-      max-width: 640px;
-      line-height: 1.45;
+      max-width:640px;
+      line-height:1.45;
     }
 
     #tscRoot .tsc-heroCard{
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.14);
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
       background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-      box-shadow: 0 16px 26px rgba(0,0,0,.20);
-      padding: 14px;
+      box-shadow:0 16px 26px rgba(0,0,0,.20);
+      padding:14px;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
     #tscRoot .tsc-miniGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     #tscRoot .tsc-mini{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
       background: rgba(0,0,0,.16);
-      padding: 12px;
+      padding:12px;
     }
     #tscRoot .tsc-mini .k{ font-size:12px; font-weight:700; color: rgba(255,255,255,.72); letter-spacing:.25px; }
     #tscRoot .tsc-mini .v{ margin-top:6px; font-size:18px; font-weight:800; color: rgba(255,255,255,.95); line-height:1.15; }
@@ -198,8 +185,8 @@
 
     #tscRoot .tsc-heroCtaRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
     #tscRoot .tsc-heroBtn{
-      height: 42px; padding: 0 14px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.16);
+      height:42px; padding:0 14px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.16);
       cursor:pointer;
       font-weight:700;
       letter-spacing:.2px;
@@ -209,7 +196,7 @@
     #tscRoot .tsc-heroBtn.primary{
       background: linear-gradient(180deg, var(--accent2), var(--accent));
       color:#fff;
-      box-shadow: 0 16px 22px rgba(11,143,143,.28);
+      box-shadow:0 16px 22px rgba(11,143,143,.28);
     }
     #tscRoot .tsc-heroBtn.ghost{
       background: rgba(0,0,0,.18);
@@ -218,7 +205,66 @@
     #tscRoot .tsc-heroBtn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
     #tscRoot .tsc-heroBtn:active{ transform: translateY(0px); filter: brightness(.98); }
 
-    /* Calculator card (inside dark wrapper) */
+    /* ========= Premium “template-like” feature tiles ========= */
+    #tscRoot .tsc-sections{ padding: 0 18px 18px; position:relative; z-index:1; }
+    #tscRoot .tsc-sectionTitle{
+      color: rgba(255,255,255,.92);
+      font-weight:800;
+      font-size: 18px;
+      margin: 0 0 10px;
+      letter-spacing:.2px;
+    }
+    #tscRoot .tsc-sectionSub{
+      color: rgba(255,255,255,.70);
+      font-weight:600;
+      font-size: 13px;
+      margin: 0 0 14px;
+      line-height:1.35;
+      max-width: 880px;
+    }
+    #tscRoot .tsc-tiles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    #tscRoot .tsc-tile{
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      box-shadow: 0 16px 26px rgba(0,0,0,.18);
+      padding: 14px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      min-height: 132px;
+    }
+    #tscRoot .tsc-tileTop{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom: 8px;
+    }
+    #tscRoot .tsc-ico{
+      width: 40px; height: 40px; border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(17,181,181,.35), rgba(11,143,143,.18));
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 14px 20px rgba(0,0,0,.18);
+      flex:0 0 auto;
+    }
+    #tscRoot .tsc-tileH{
+      color: rgba(255,255,255,.94);
+      font-weight:800;
+      font-size: 14px;
+      margin:0;
+      letter-spacing:.2px;
+    }
+    #tscRoot .tsc-tileP{
+      color: rgba(255,255,255,.72);
+      font-weight:600;
+      font-size: 13px;
+      margin:0;
+      line-height:1.35;
+    }
+
+    /* ========= Calculator card ========= */
     #tscRoot .tsc-shell{ padding: 0 18px 18px; position:relative; z-index:1; }
 
     #tscRoot .tsc-card{
@@ -391,7 +437,12 @@
     #tscRoot .tsc-total .val{font-size:34px;font-weight:900;color:var(--accent)}
 
     #tscRoot .tsc-status{margin-top:10px;text-align:center;font-size:14px;font-weight:600;min-height:20px;color:rgba(15,43,42,.82)}
-    #tscRoot .tsc-spin{display:inline-block;width:14px;height:14px;border-radius:999px;border:2px solid rgba(15,43,42,.25);border-top-color:rgba(11,143,143,.95);animation:tscSpin .9s linear infinite;vertical-align:-2px;margin-right:8px}
+    #tscRoot .tsc-spin{
+      display:inline-block;width:14px;height:14px;border-radius:999px;
+      border:2px solid rgba(15,43,42,.25);
+      border-top-color:rgba(11,143,143,.95);
+      animation:tscSpin .9s linear infinite;vertical-align:-2px;margin-right:8px
+    }
     @keyframes tscSpin{to{transform:rotate(360deg)}}
 
     #tscRoot .tsc-footer{
@@ -424,6 +475,115 @@
       margin-top:-4px;
     }
 
+    /* ========= Modal: email copy prompt ========= */
+    #tscRoot .tsc-modalBackdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(2,10,10,.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 99999;
+      padding: 18px;
+    }
+    #tscRoot .tsc-modalBackdrop.show{ display:flex; }
+
+    #tscRoot .tsc-modal{
+      width: min(560px, 100%);
+      border-radius: 24px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.16);
+      background:
+        radial-gradient(700px 260px at 10% 10%, rgba(17,181,181,.18), rgba(17,181,181,0) 60%),
+        linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      box-shadow: 0 30px 70px rgba(0,0,0,.35);
+      color: rgba(255,255,255,.92);
+    }
+    #tscRoot .tsc-modalTop{
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    #tscRoot .tsc-modalTitle{
+      margin:0;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+    #tscRoot .tsc-modalSub{
+      margin: 8px 0 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.74);
+      line-height:1.35;
+    }
+    #tscRoot .tsc-modalBody{
+      padding: 14px 16px 16px;
+    }
+    #tscRoot .tsc-modalRow{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    #tscRoot .tsc-modalLabel{
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,.86);
+    }
+    #tscRoot .tsc-modalInput{
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      outline:none;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    #tscRoot .tsc-modalInput:focus{
+      border-color: rgba(17,181,181,.55);
+      box-shadow: 0 0 0 4px rgba(17,181,181,.18);
+    }
+    #tscRoot .tsc-modalErr{
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffb6ae;
+      display:none;
+    }
+    #tscRoot .tsc-modalErr.show{ display:block; }
+
+    #tscRoot .tsc-modalBtns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      margin-top: 14px;
+    }
+    #tscRoot .tsc-modalBtn{
+      height: 42px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing:.2px;
+      user-select:none;
+      transition: transform .12s ease, filter .12s ease;
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.18);
+    }
+    #tscRoot .tsc-modalBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    #tscRoot .tsc-modalBtn:active{ transform: translateY(0px); filter: brightness(.98); }
+    #tscRoot .tsc-modalBtn.primary{
+      background: linear-gradient(180deg, var(--accent2), var(--accent));
+      border-color: rgba(255,255,255,.14);
+    }
+
+    /* ========= Footer ========= */
     #tscRoot .tsc-pageFooter{
       padding: 16px 18px 18px;
       border-top: 1px solid rgba(255,255,255,.10);
@@ -444,23 +604,26 @@
       border-bottom: 1px solid rgba(255,255,255,.22);
     }
 
+    @media (max-width: 980px){
+      #tscRoot .tsc-tiles{ grid-template-columns: 1fr; }
+    }
     @media (max-width: 920px){
       #tscRoot .tsc-heroInner{ grid-template-columns: 1fr; }
-      #tscRoot .tsc-brand{ min-width: auto; }
-      #tscRoot .tsc-navCtas{ min-width: auto; }
+      #tscRoot .tsc-brand{ min-width:auto; }
+      #tscRoot .tsc-navCtas{ min-width:auto; }
     }
     @media (max-width: 760px){
       #tscRoot{ --right: 100%; }
       #tscRoot .tsc-grid{ grid-template-columns: 1fr; }
-      #tscRoot .tsc-input, #tscRoot .tsc-wrapin, #tscRoot .tsc-box{ width: 100%!important; }
+      #tscRoot .tsc-input, #tscRoot .tsc-wrapin, #tscRoot .tsc-box{ width:100%!important; }
       #tscRoot .tsc-links{ display:none; }
-      #tscRoot .tsc-heroH{ font-size: 28px; }
+      #tscRoot .tsc-heroH{ font-size:28px; }
     }
   </style>
 
   <div class="tsc-page">
 
-    <!-- TOP NAV -->
+    <!-- NAV -->
     <div class="tsc-top">
       <div class="tsc-nav" role="navigation" aria-label="Primary">
         <div class="tsc-brand">
@@ -486,6 +649,7 @@
                     fill="rgba(255,255,255,.92)"/>
             </svg>
           </div>
+
           <div class="tsc-brandTxt">
             <div class="tsc-brandName">Trust Savings Estimator</div>
             <div class="tsc-brandTag">Professional estimate in under 60 seconds</div>
@@ -493,6 +657,7 @@
         </div>
 
         <div class="tsc-links" aria-label="Quick links">
+          <a class="tsc-link" href="#features">Overview</a>
           <a class="tsc-link" href="#calculator">Calculator</a>
           <a class="tsc-link" href="#results">Results</a>
         </div>
@@ -510,7 +675,7 @@
         <div>
           <h2 class="tsc-heroH">Estimate your annual trust savings with an executive-grade calculator.</h2>
           <p class="tsc-heroP">
-            Enter your workforce mix, PW %, fringe, and WC rate. We’ll calculate a clean estimate and submit your details for follow-up.
+            Enter workforce mix, PW %, fringe, and WC rate. We’ll calculate a clean estimate and submit your details for follow-up.
           </p>
         </div>
 
@@ -536,6 +701,53 @@
       </div>
     </section>
 
+    <!-- TEMPLATE-LIKE FEATURES -->
+    <section class="tsc-sections" id="features" aria-label="Overview sections">
+      <h3 class="tsc-sectionTitle">Getting Started</h3>
+      <p class="tsc-sectionSub">
+        Use this estimator to generate a quick, credible savings range and book a follow-up call.
+      </p>
+
+      <div class="tsc-tiles" aria-label="Feature tiles">
+        <div class="tsc-tile">
+          <div class="tsc-tileTop">
+            <div class="tsc-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M7 7h10M7 12h10M7 17h7" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="tsc-tileH">Simple Inputs</p>
+          </div>
+          <p class="tsc-tileP">Only the essentials, formatted and validated to reduce errors.</p>
+        </div>
+
+        <div class="tsc-tile">
+          <div class="tsc-tileTop">
+            <div class="tsc-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M4 19V5M4 19H20" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 15l3-4 3 2 4-6" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="tsc-tileH">Clear Output</p>
+          </div>
+          <p class="tsc-tileP">A professional result card suitable for executive conversations.</p>
+        </div>
+
+        <div class="tsc-tile">
+          <div class="tsc-tileTop">
+            <div class="tsc-ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="tsc-tileH">Consent-based Email Copy</p>
+          </div>
+          <p class="tsc-tileP">Ask the user if they want a copy sent to their email, then pass it to Flow.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CALCULATOR -->
     <div class="tsc-shell" id="calculator">
       <div class="tsc-card">
@@ -547,6 +759,7 @@
             <div class="tsc-sub">Based on 2,080 hrs/year · (FICA 7.65% + GL + WC)</div>
           </div>
 
+          <!-- COMPANY -->
           <div class="tsc-band" id="secCompany">
             <div class="company-block">
               <label class="company-label">Company Name <span class="tsc-req">*</span></label>
@@ -555,6 +768,7 @@
             </div>
           </div>
 
+          <!-- COUNTS -->
           <div class="tsc-band" id="secCounts">
             <div class="tsc-grid">
               <div class="tsc-label">Total # of Employees (Company) <span class="tsc-req">*</span></div>
@@ -582,6 +796,7 @@
             </div>
           </div>
 
+          <!-- BENEFITS -->
           <div class="tsc-band" id="secBenefits">
             <div class="tsc-grid">
               <div class="tsc-label">Do you provide field employees a 401(k), PTO, or Health? <span class="tsc-req">*</span></div>
@@ -616,6 +831,7 @@
             </div>
           </div>
 
+          <!-- FRINGE -->
           <div class="tsc-band" id="secFringe">
             <div class="tsc-grid">
               <div class="tsc-label">Average Remaining Fringes (Per Hour) <span class="tsc-req">*</span></div>
@@ -664,11 +880,52 @@
 
   </div>
 
+  <!-- ========= EMAIL COPY MODAL ========= -->
+  <div class="tsc-modalBackdrop" id="emailModalBackdrop" aria-hidden="true">
+    <div class="tsc-modal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+      <div class="tsc-modalTop">
+        <h3 class="tsc-modalTitle" id="emailModalTitle">Send a copy to your email?</h3>
+        <p class="tsc-modalSub">
+          If you choose “Yes”, we’ll include your email in this submission so a copy can be sent to you.
+        </p>
+      </div>
+      <div class="tsc-modalBody">
+        <div class="tsc-modalRow">
+          <div class="tsc-modalLabel">Do you want a copy of your answers sent to your email?</div>
+          <div class="tsc-btns" style="justify-content:flex-start;">
+            <label>
+              <input class="tsc-radio" type="radio" name="sendCopyChoice" value="Yes">
+              <span class="tsc-seg">Yes</span>
+            </label>
+            <label>
+              <input class="tsc-radio" type="radio" name="sendCopyChoice" value="No">
+              <span class="tsc-seg">No</span>
+            </label>
+          </div>
+          <div class="tsc-modalErr" id="err_sendCopyChoice">Please select Yes or No.</div>
+        </div>
+
+        <div class="tsc-modalRow tsc-hidden" id="emailRow">
+          <div class="tsc-modalLabel">Email address</div>
+          <input id="copyEmail" class="tsc-modalInput" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com">
+          <div class="tsc-modalErr" id="err_copyEmail">Please enter a valid email address.</div>
+        </div>
+
+        <div class="tsc-modalBtns">
+          <button class="tsc-modalBtn" type="button" id="emailModalCancelBtn">Cancel</button>
+          <button class="tsc-modalBtn primary" type="button" id="emailModalContinueBtn">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function(){
+      // Year
       var y = document.getElementById("tscYear");
       if (y) y.textContent = String(new Date().getFullYear());
 
+      // Jump to calculator
       function jumpToCalc(){
         var el = document.getElementById("calculator");
         if (!el) return;
@@ -678,12 +935,12 @@
           try { c && c.focus && c.focus(); } catch(e){}
         }, 250);
       }
-
       var navBtn = document.getElementById("navJumpBtn");
       var heroBtn = document.getElementById("heroStartBtn");
       if (navBtn) navBtn.addEventListener("click", jumpToCalc);
       if (heroBtn) heroBtn.addEventListener("click", jumpToCalc);
 
+      // Demo fill
       var demoBtn = document.getElementById("heroDemoBtn");
       if (demoBtn){
         demoBtn.addEventListener("click", function(){
@@ -717,6 +974,7 @@
 
     const $ = (id) => document.getElementById(id);
 
+    // === Helpers ===
     function cleanNum(raw){ return String(raw ?? "").replace(/[^0-9.]/g,""); }
     function toMoney2(raw){
       const cleaned = cleanNum(raw);
@@ -752,8 +1010,89 @@
       if (!e) return;
       e.classList.toggle("tsc-hidden", !on);
     }
-    function markField(el, bad){ el.classList.toggle("tsc-error", !!bad); }
+    function markField(el, bad){
+      if (!el) return;
+      el.classList.toggle("tsc-error", !!bad);
+    }
 
+    // === Email modal helpers ===
+    const modalBackdrop = $("emailModalBackdrop");
+    const emailRow = $("emailRow");
+    const copyEmail = $("copyEmail");
+    const errChoice = $("err_sendCopyChoice");
+    const errEmail = $("err_copyEmail");
+    const btnCancel = $("emailModalCancelBtn");
+    const btnContinue = $("emailModalContinueBtn");
+
+    function getRadioVal(name){
+      const el = document.querySelector(`#tscRoot input[name="${name}"]:checked`);
+      return el ? el.value : "";
+    }
+    function setModalErr(el, on){
+      if (!el) return;
+      el.classList.toggle("show", !!on);
+    }
+    function openModal(){
+      // reset
+      document.querySelectorAll('#tscRoot input[name="sendCopyChoice"]').forEach(x=>x.checked=false);
+      if (copyEmail) copyEmail.value = "";
+      if (emailRow) emailRow.classList.add("tsc-hidden");
+      setModalErr(errChoice, false);
+      setModalErr(errEmail, false);
+
+      if (modalBackdrop){
+        modalBackdrop.classList.add("show");
+        modalBackdrop.setAttribute("aria-hidden","false");
+      }
+      // focus
+      setTimeout(()=> {
+        const first = document.querySelector('#tscRoot input[name="sendCopyChoice"]');
+        try { first && first.focus && first.focus(); } catch(e){}
+      }, 50);
+    }
+    function closeModal(){
+      if (modalBackdrop){
+        modalBackdrop.classList.remove("show");
+        modalBackdrop.setAttribute("aria-hidden","true");
+      }
+    }
+    function isValidEmail(v){
+      const s = String(v||"").trim();
+      // simple reliable check
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+    }
+
+    // show/hide email input depending on Yes/No
+    document.querySelectorAll('#tscRoot input[name="sendCopyChoice"]').forEach(r=>{
+      r.addEventListener("change", ()=>{
+        setModalErr(errChoice, false);
+        const val = getRadioVal("sendCopyChoice");
+        if (val === "Yes"){
+          emailRow.classList.remove("tsc-hidden");
+          setTimeout(()=> { try{ copyEmail.focus(); }catch(e){} }, 50);
+        } else {
+          emailRow.classList.add("tsc-hidden");
+          setModalErr(errEmail, false);
+        }
+      });
+    });
+
+    // close on backdrop click (but not on modal click)
+    if (modalBackdrop){
+      modalBackdrop.addEventListener("click", (e)=>{
+        if (e.target === modalBackdrop) closeModal();
+      });
+    }
+    if (btnCancel){
+      btnCancel.addEventListener("click", ()=>{
+        closeModal();
+        // allow user to click Calculate again
+        $("calcBtn").disabled = false;
+        setStatus("", false);
+      });
+    }
+
+    // === Dynamic helper text ===
     function updatePwHint(){
       const n = toInt($("fieldEEs").value);
       const hint = $("pwEmpHint");
@@ -764,21 +1103,19 @@
     $("fieldEEs").addEventListener("input", updatePwHint);
     updatePwHint();
 
+    // === Money formatting on blur ===
     $("netFringe").addEventListener("blur", ()=>{
       const v = toMoney2($("netFringe").value);
       if (v !== "") $("netFringe").value = v;
     });
 
+    // === Benefits logic ===
     const benefitsMsgWrap = $("benefitsMsgWrap");
     const benefitsMsg = $("benefitsMsg");
     const creditsWrap = $("creditsWrap");
     const creditsMsgWrap = $("creditsMsgWrap");
     const creditsMsg = $("creditsMsg");
 
-    function getRadioVal(name){
-      const el = document.querySelector(`#tscRoot input[name="${name}"]:checked`);
-      return el ? el.value : "";
-    }
     function resetCredits(){
       document.querySelectorAll('#tscRoot input[name="takesCredits"]').forEach(x=>x.checked=false);
       creditsMsgWrap.classList.add("tsc-hidden");
@@ -818,6 +1155,7 @@
       });
     });
 
+    // === Validation ===
     function validateAll(){
       ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe"].forEach(id=>{
         markField($(id), false);
@@ -829,11 +1167,21 @@
       $("takesCreditsBox").classList.remove("tsc-error");
 
       const company = ($("company").value || "").trim();
-      if (!company){ markField($("company"), true); showErr("err_company", true); scrollFocus($("company")); return false; }
+      if (!company){
+        markField($("company"), true);
+        showErr("err_company", true);
+        scrollFocus($("company"));
+        return false;
+      }
 
       for (const f of [{id:"totalCompanyEEs"},{id:"fieldEEs"},{id:"pwFieldEEs"}]){
         const v = toInt($(f.id).value);
-        if (!Number.isFinite(v)){ markField($(f.id), true); showErr("err_"+f.id, true); scrollFocus($(f.id)); return false; }
+        if (!Number.isFinite(v)){
+          markField($(f.id), true);
+          showErr("err_"+f.id, true);
+          scrollFocus($(f.id));
+          return false;
+        }
       }
 
       const pwPctRaw = toFloat($("pwPercent").value);
@@ -845,17 +1193,33 @@
       }
 
       const pb = getRadioVal("providesBenefits");
-      if (!pb){ $("providesBenefitsBox").classList.add("tsc-error"); showErr("err_providesBenefits", true); scrollFocus($("providesBenefitsBox")); return false; }
+      if (!pb){
+        $("providesBenefitsBox").classList.add("tsc-error");
+        showErr("err_providesBenefits", true);
+        scrollFocus($("providesBenefitsBox"));
+        return false;
+      }
 
       const tc = getRadioVal("takesCredits");
-      if (pb === "Yes" && !tc){ $("takesCreditsBox").classList.add("tsc-error"); showErr("err_takesCredits", true); scrollFocus($("takesCreditsBox")); return false; }
+      if (pb === "Yes" && !tc){
+        $("takesCreditsBox").classList.add("tsc-error");
+        showErr("err_takesCredits", true);
+        scrollFocus($("takesCreditsBox"));
+        return false;
+      }
 
       const fringe = toFloat($("netFringe").value);
-      if (!Number.isFinite(fringe)){ markField($("netFringe"), true); showErr("err_netFringe", true); scrollFocus($("netFringe")); return false; }
+      if (!Number.isFinite(fringe)){
+        markField($("netFringe"), true);
+        showErr("err_netFringe", true);
+        scrollFocus($("netFringe"));
+        return false;
+      }
 
       return true;
     }
 
+    // === Calculate + Submit ===
     async function postToFlow(payload){
       const res = await fetch(FLOW_URL, {
         method:"POST",
@@ -869,18 +1233,23 @@
       return true;
     }
 
+    // Keep last calculated payload in memory until modal completes
+    let pendingPayload = null;
+
     $("calcBtn").addEventListener("click", async ()=>{
       if (!validateAll()) return;
 
       $("calcBtn").disabled = true;
       setStatus("Calculating…", true);
 
+      // WC default 5
       const wcField = $("wcPercent");
       const wcRaw = (wcField.value || "").trim();
       const wcPct = (wcRaw === "" ? 5 : toFloat(wcRaw));
       const wc = (Number.isFinite(wcPct) ? wcPct : 5);
       if (wcRaw === "") wcField.value = "5";
 
+      // Calculation
       const pwField = toInt($("pwFieldEEs").value);
       const pwPct = toFloat($("pwPercent").value) / 100;
       const fringe = toFloat($("netFringe").value);
@@ -888,11 +1257,15 @@
 
       $("trustSavingsValue").textContent = fmtMoneyWhole(savings);
 
+      // Reveal footer + update meeting link
       $("calendarLink").href = MEETING_URL;
       $("contactFooter").classList.add("show");
+
+      // Scroll results
       $("resultsCard").scrollIntoView({behavior:"smooth", block:"center"});
 
-      const payload = {
+      // Build base payload
+      pendingPayload = {
         bw_CompanyName: ($("company").value || "").trim(),
         bw_TotalCompanyEmployees: toInt($("totalCompanyEEs").value),
         bw_TotalFieldEmployees: toInt($("fieldEEs").value),
@@ -903,27 +1276,79 @@
         bw_AverageRemainingFringe: fringe,
         bw_WCPercent: wc,
         bw_WCRateUsed: wc,
-        bw_EstimatedAnnualSavings: Math.round(savings)
+        bw_EstimatedAnnualSavings: Math.round(savings),
+
+        // NEW fields (filled by modal)
+        bw_SendCopy: false,
+        bw_Email: ""
       };
 
-      try{
-        setStatus("Submitting…", true);
-        await postToFlow(payload);
-        setStatus("Submitted. Redirecting to schedule your call…", false);
-        setTimeout(()=>{ window.location.href = MEETING_URL; }, 900);
-      }catch(e){
-        console.error(e);
-        setStatus("Something went wrong. Please try again.", false);
-        $("calcBtn").disabled = false;
-      }
+      // Ask consent + collect email
+      setStatus("", false);
+      openModal();
     });
 
+    // Continue from modal -> add email details -> submit -> redirect
+    if (btnContinue){
+      btnContinue.addEventListener("click", async ()=>{
+        if (!pendingPayload){
+          closeModal();
+          $("calcBtn").disabled = false;
+          return;
+        }
+
+        const choice = getRadioVal("sendCopyChoice");
+        if (!choice){
+          setModalErr(errChoice, true);
+          return;
+        }
+        setModalErr(errChoice, false);
+
+        if (choice === "Yes"){
+          const em = String(copyEmail.value || "").trim();
+          if (!isValidEmail(em)){
+            setModalErr(errEmail, true);
+            return;
+          }
+          setModalErr(errEmail, false);
+          pendingPayload.bw_SendCopy = true;
+          pendingPayload.bw_Email = em;
+        } else {
+          pendingPayload.bw_SendCopy = false;
+          pendingPayload.bw_Email = "";
+        }
+
+        closeModal();
+
+        try{
+          setStatus("Submitting…", true);
+          await postToFlow(pendingPayload);
+
+          setStatus("Submitted. Redirecting to schedule your call…", false);
+          setTimeout(()=>{ window.location.href = MEETING_URL; }, 900);
+
+        } catch(e){
+          console.error(e);
+          setStatus("Something went wrong. Please try again.", false);
+          $("calcBtn").disabled = false;
+        } finally {
+          pendingPayload = null;
+        }
+      });
+    }
+
+    // Remove error state as user types
     ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe","wcPercent"].forEach(id=>{
       $(id).addEventListener("input", ()=>{
         markField($(id), false);
         showErr("err_"+id, false);
       });
     });
+
+    // Modal email typing clears error
+    if (copyEmail){
+      copyEmail.addEventListener("input", ()=> setModalErr(errEmail, false));
+    }
 
   })();
   </script>
