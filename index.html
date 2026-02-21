@@ -1,313 +1,332 @@
-<!-- ✅ FULL UPDATED (CALCULATOR LOOKS PREMIUM + CLEAN LIGHT BACKGROUND + OPTIONAL EMAIL COPY MODAL) -->
-<div id="tscRoot" style="max-width:1140px;margin:0 auto;padding:18px 14px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;">
+<div id="tscSite">
 
   <style>
     /* =========================================================
-       LIGHT PAGE BACKGROUND (clean + premium + contrast)
+       PREMIUM THEME (light background + strong contrast)
        ========================================================= */
-    html, body{
-      height:100%;
-      background:
-        radial-gradient(900px 520px at 12% 10%, rgba(11,143,143,.10), rgba(11,143,143,0) 60%),
-        radial-gradient(900px 520px at 88% 18%, rgba(0,0,0,.06), rgba(0,0,0,0) 55%),
-        linear-gradient(180deg,#f7fafc,#f1f5f9 40%, #ffffff);
-      background-attachment: fixed;
-    }
-    body{ margin:0; }
+    #tscSite, #tscSite * { box-sizing: border-box; }
+    #tscSite{
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      color: #081b1a;
 
-    /* =========================================================
-       DESIGN SYSTEM (scoped)
-       ========================================================= */
-    #tscRoot, #tscRoot *{ box-sizing:border-box; }
-    #tscRoot{ color:#0b1f1e; font-size:16px; }
-
-    #tscRoot{
-      --right: 360px;
-
-      /* brand */
       --accent:#0b8f8f;
       --accent2:#11b5b5;
+      --ink: rgba(8,27,26,.94);
+      --muted: rgba(8,27,26,.70);
+      --border: rgba(8,27,26,.12);
 
-      /* neutrals */
-      --ink: rgba(11,31,30,.95);
-      --muted: rgba(11,31,30,.70);
-      --border: rgba(11,31,30,.14);
-
-      /* status */
-      --danger:#c0392b;
-
-      /* surfaces */
-      --surface: #ffffff;
-      --surface2: #f7fbfb;
-      --surface3: #eef7f6;
-
-      /* elevation */
-      --shadow: 0 18px 45px rgba(2,10,10,.12);
-      --shadowSoft: 0 10px 22px rgba(2,10,10,.08);
-      --ring: 0 0 0 4px rgba(17,181,181,.16);
+      --shadow: 0 18px 45px rgba(2,10,10,.14);
+      --shadowSoft: 0 10px 22px rgba(2,10,10,.09);
+      --ring: 0 0 0 4px rgba(17,181,181,.18);
 
       --radiusXL: 26px;
-      --radiusLG: 20px;
+      --radiusLG: 22px;
       --radiusMD: 16px;
 
-      --rowGap: 12px;
-      --fieldH: 48px;
+      --max: 1180px;
+
+      /* ✅ Replace this with YOUR banner image (Power Pages web file URL is fine) */
+      --heroImg: url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=2400&q=80");
     }
 
-    /* =========================================================
-       PAGE WRAPPER
-       ========================================================= */
-    #tscRoot .tsc-page{
-      border-radius: calc(var(--radiusXL) + 8px);
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadow);
+    /* Page background (light, premium) */
+    #tscSite{
       background:
-        radial-gradient(900px 520px at 12% 8%, rgba(17,181,181,.10), rgba(17,181,181,0) 62%),
-        radial-gradient(900px 520px at 88% 10%, rgba(0,0,0,.05), rgba(0,0,0,0) 62%),
-        linear-gradient(180deg,#ffffff,#f8fbfc);
-      position:relative;
+        radial-gradient(1000px 560px at 12% 8%, rgba(17,181,181,.10), rgba(17,181,181,0) 60%),
+        radial-gradient(900px 520px at 88% 14%, rgba(0,0,0,.07), rgba(0,0,0,0) 55%),
+        linear-gradient(180deg,#f8fafc,#f1f5f9 45%, #ffffff);
+      padding-bottom: 44px;
     }
 
     /* =========================================================
-       NAV
+       TOP NAV (frosted like your screenshot)
        ========================================================= */
-    #tscRoot .tsc-top{ padding:18px 18px 0; position:relative; z-index:2; }
-    #tscRoot .tsc-nav{
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-      padding:12px 14px;
-      border-radius:18px;
-      background: rgba(255,255,255,.85);
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadowSoft);
+    .tscNavWrap{
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(255,255,255,.62);
+      border-bottom: 1px solid rgba(255,255,255,.20);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    }
+
+    .tscNav{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 260px;
+    }
+
+    /* Inline logo container */
+    .brandMark{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow: 0 14px 26px rgba(0,0,0,.10);
+    }
+
+    .brandText{
+      font-weight: 1000;
+      font-size: 24px;
+      letter-spacing: .2px;
+      color: rgba(20,20,20,.88);
+      line-height: 1;
+      user-select:none;
+    }
+    .brandText .e{ opacity:.78; font-weight: 950; }
+    .brandText .b{ opacity:.88; font-weight: 1050; }
+
+    .brandTag{
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 750;
+      color: rgba(20,20,20,.68);
+    }
+
+    /* Nav links */
+    .navLinks{
+      display:flex;
+      gap: 16px;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap: wrap;
+    }
+    .navLinks a{
+      text-decoration:none;
+      color: rgba(20,20,20,.82);
+      font-weight: 800;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background .12s ease, transform .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .navLinks a:hover{
+      background: rgba(255,255,255,.65);
+      border-color: rgba(255,255,255,.35);
+      transform: translateY(-1px);
+    }
+
+    /* Start button */
+    .navBtn{
+      height: 44px;
+      padding: 0 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.24);
+      background: linear-gradient(180deg, rgba(17,181,181,.55), rgba(11,143,143,.45));
+      color: #fff;
+      font-weight: 1000;
+      font-size: 18px;
+      cursor:pointer;
+      box-shadow: 0 20px 30px rgba(0,0,0,.18);
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .navBtn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .navBtn .arrow{ margin-left: 8px; font-weight: 1100; }
+
+    /* =========================================================
+       HERO (matches the “image style” you showed)
+       ========================================================= */
+    .hero{
+      width: 100%;
+      min-height: 540px;
+      background-image: var(--heroImg);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow:hidden;
+    }
+
+    /* Dark, cinematic overlay + subtle vertical streak effect */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(900px 520px at 52% 36%, rgba(0,0,0,.52), rgba(0,0,0,.20) 62%, rgba(0,0,0,.18)),
+        linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.22) 55%, rgba(0,0,0,.20));
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,.06) 0px,
+          rgba(255,255,255,.02) 12px,
+          rgba(255,255,255,0) 26px
+        );
+      opacity:.16;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+    }
+
+    .heroInner{
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 88px 16px 80px;
+      min-height: 540px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .heroCopy{
+      max-width: 860px;
+      color: #fff;
+    }
+
+    .heroH{
+      margin:0;
+      font-size: 64px;
+      font-weight: 1050;
+      letter-spacing: .2px;
+      line-height: 1.06;
+      text-shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    .heroP{
+      margin: 16px auto 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.55;
+      max-width: 760px;
+      color: rgba(255,255,255,.86);
+      text-shadow: 0 10px 24px rgba(0,0,0,.25);
+    }
+
+    .heroCtas{
+      margin-top: 24px;
+      display:flex;
+      justify-content:center;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+
+    .heroBtn{
+      height: 58px;
+      padding: 0 22px;
+      border-radius: 20px;
+      font-weight: 1000;
+      font-size: 18px;
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,.22);
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+      box-shadow: 0 22px 30px rgba(0,0,0,.22);
+    }
+
+    .heroBtn.primary{
+      background: linear-gradient(180deg, rgba(17,181,181,.95), rgba(11,143,143,.92));
+      color:#fff;
+    }
+    .heroBtn.secondary{
+      background: linear-gradient(180deg, rgba(255,255,255,.32), rgba(255,255,255,.20));
+      color:#fff;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
-    #tscRoot .tsc-brand{ display:flex; align-items:center; gap:10px; min-width:240px; }
-    #tscRoot .tsc-mark{
-      width:40px;height:40px;border-radius:14px;
-      background: linear-gradient(180deg, rgba(17,181,181,.20), rgba(11,143,143,.10));
-      border:1px solid rgba(11,143,143,.18);
-      display:flex;align-items:center;justify-content:center;
-      box-shadow: 0 10px 18px rgba(2,10,10,.10);
-      flex:0 0 auto;
-    }
-    #tscRoot .tsc-brandTxt{ display:flex; flex-direction:column; line-height:1.05; }
-    #tscRoot .tsc-brandName{ font-weight:900; letter-spacing:.2px; color: var(--ink); font-size:16px; }
-    #tscRoot .tsc-brandTag{ margin-top:4px; font-size:12px; font-weight:650; color: var(--muted); }
-
-    #tscRoot .tsc-links{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center; }
-    #tscRoot .tsc-link{
-      color: rgba(11,31,30,.82);
-      text-decoration:none;
-      font-weight:750;
-      font-size:13px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.9);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-    }
-    #tscRoot .tsc-link:hover{ transform: translateY(-1px); background: #fff; border-color: rgba(11,143,143,.20); }
-
-    #tscRoot .tsc-navCtas{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:flex-end; min-width:240px; }
-    #tscRoot .tsc-pill{
-      display:flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.9);
-      color: rgba(11,31,30,.80);
-      font-weight:750;
-      font-size:12px;
-      white-space: nowrap;
-    }
-    #tscRoot .tsc-pillDot{
-      width:8px;height:8px;border-radius:999px;
-      background: linear-gradient(180deg, var(--accent2), var(--accent));
-      box-shadow: 0 0 0 4px rgba(17,181,181,.12);
-    }
-    #tscRoot .tsc-navBtn{
-      height:38px; padding:0 14px; border-radius:12px;
-      border: 1px solid rgba(11,143,143,.18);
-      background: linear-gradient(180deg, rgba(17,181,181,.22), rgba(11,143,143,.12));
-      color: rgba(11,31,30,.92);
-      font-weight:900;
-      letter-spacing:.2px;
-      cursor:pointer;
-      box-shadow: 0 12px 18px rgba(2,10,10,.10);
-      transition: transform .12s ease, filter .12s ease;
-    }
-    #tscRoot .tsc-navBtn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .heroBtn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
 
     /* =========================================================
-       HERO
+       CONTENT SECTION WRAPPER
        ========================================================= */
-    #tscRoot .tsc-hero{
-      margin:14px 18px 18px;
-      border-radius: var(--radiusXL);
-      overflow:hidden;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: var(--shadowSoft);
-      background:
-        radial-gradient(1200px 520px at 15% 20%, rgba(17,181,181,.14), rgba(17,181,181,0) 60%),
-        radial-gradient(800px 420px at 78% 28%, rgba(0,0,0,.05), rgba(0,0,0,0) 55%),
-        linear-gradient(180deg,#ffffff,#f6fbfb);
-      position:relative;
-      z-index:1;
-    }
-    #tscRoot .tsc-heroInner{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:14px;
-      padding:22px;
-      align-items:center;
-    }
-    #tscRoot .tsc-heroH{
-      margin:0;
-      font-size:32px;
-      font-weight:950;
-      color: var(--ink);
-      letter-spacing:.2px;
-      line-height:1.08;
-    }
-    #tscRoot .tsc-heroP{
-      margin:10px 0 0;
-      font-size:14.5px;
-      font-weight:650;
-      color: var(--muted);
-      max-width:720px;
-      line-height:1.45;
+    .section{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 0;
     }
 
-    #tscRoot .tsc-heroCard{
-      border-radius:22px;
-      border:1px solid rgba(0,0,0,.06);
-      background: linear-gradient(180deg,#ffffff,#f7fbfb);
-      box-shadow: var(--shadowSoft);
-      padding:14px;
+    .sectionTitle{
+      margin: 0;
+      font-size: 26px;
+      font-weight: 1050;
+      letter-spacing: .2px;
+      color: rgba(8,27,26,.92);
     }
-    #tscRoot .tsc-miniGrid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-    #tscRoot .tsc-mini{
-      border-radius: 16px;
-      border: 1px solid rgba(0,0,0,.06);
-      background: linear-gradient(180deg,#fff,#f8fbfb);
-      padding: 12px;
-    }
-    #tscRoot .tsc-mini .k{ font-size:12px; font-weight:900; color: rgba(11,31,30,.70); letter-spacing:.25px; }
-    #tscRoot .tsc-mini .v{ margin-top:6px; font-size:18px; font-weight:950; color: rgba(11,31,30,.92); line-height:1.15; }
-    #tscRoot .tsc-mini .s{ margin-top:6px; font-size:12px; font-weight:650; color: rgba(11,31,30,.70); line-height:1.35; }
 
-    #tscRoot .tsc-heroCtaRow{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
-    #tscRoot .tsc-heroBtn{
-      height: 42px; padding: 0 14px; border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.06);
-      cursor:pointer;
-      font-weight:950;
-      letter-spacing:.2px;
-      transition: transform .12s ease, filter .12s ease;
-      user-select:none;
-    }
-    #tscRoot .tsc-heroBtn.primary{
-      background: linear-gradient(180deg, var(--accent2), var(--accent));
-      color:#fff;
-      border-color: rgba(11,143,143,.20);
-      box-shadow: 0 14px 18px rgba(11,143,143,.18);
-    }
-    #tscRoot .tsc-heroBtn.ghost{
-      background: #ffffff;
-      color: rgba(11,31,30,.92);
-    }
-    #tscRoot .tsc-heroBtn:hover{ transform: translateY(-1px); filter: brightness(1.01); }
-
-    /* =========================================================
-       GETTING STARTED tiles
-       ========================================================= */
-    #tscRoot .tsc-sections{ padding: 0 18px 18px; }
-    #tscRoot .tsc-sectionTitle{
-      color: rgba(11,31,30,.92);
-      font-weight:950;
-      font-size: 18px;
-      margin: 0 0 10px;
-      letter-spacing:.2px;
-    }
-    #tscRoot .tsc-sectionSub{
-      color: rgba(11,31,30,.70);
-      font-weight:650;
-      font-size: 13px;
-      margin: 0 0 14px;
-      line-height:1.35;
+    .sectionSub{
+      margin: 10px 0 0;
+      font-size: 14px;
+      font-weight: 750;
+      color: rgba(8,27,26,.70);
+      line-height: 1.55;
       max-width: 880px;
     }
-    #tscRoot .tsc-tiles{
+
+    /* =========================================================
+       FEATURE TILES (like your attached “Getting started” image)
+       ========================================================= */
+    .tiles{
+      margin-top: 14px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-    #tscRoot .tsc-tile{
-      border-radius: 20px;
+    .tile{
+      border-radius: 22px;
       border: 1px solid rgba(0,0,0,.06);
       background: linear-gradient(180deg,#ffffff,#f7fbfb);
       box-shadow: var(--shadowSoft);
-      padding: 14px;
-      min-height: 120px;
+      padding: 16px;
+      min-height: 122px;
     }
-    #tscRoot .tsc-tileTop{
-      display:flex; align-items:center; gap:10px;
-      margin-bottom: 8px;
-    }
-    #tscRoot .tsc-ico{
-      width: 40px; height: 40px; border-radius: 14px;
+    .tileTop{ display:flex; align-items:center; gap:12px; margin-bottom: 8px; }
+    .ico{
+      width: 44px; height: 44px;
+      border-radius: 16px;
       display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(17,181,181,.18), rgba(11,143,143,.10));
-      border: 1px solid rgba(11,143,143,.18);
+      background: linear-gradient(180deg, rgba(17,181,181,.18), rgba(11,143,143,.08));
+      border: 1px solid rgba(11,143,143,.16);
       box-shadow: 0 10px 16px rgba(2,10,10,.08);
       flex:0 0 auto;
     }
-    #tscRoot .tsc-tileH{
-      color: rgba(11,31,30,.92);
-      font-weight:950;
-      font-size: 14px;
-      margin:0;
-      letter-spacing:.2px;
-    }
-    #tscRoot .tsc-tileP{
-      color: rgba(11,31,30,.72);
-      font-weight:650;
-      font-size: 13px;
-      margin:0;
-      line-height:1.35;
-    }
+    .tileH{ margin:0; font-size: 14px; font-weight: 1000; color: rgba(8,27,26,.92); }
+    .tileP{ margin:0; font-size: 13px; font-weight: 750; color: rgba(8,27,26,.72); line-height: 1.35; }
 
     /* =========================================================
-       CALCULATOR SHELL
+       CALCULATOR CARD
        ========================================================= */
-    #tscRoot .tsc-shell{ padding: 0 18px 18px; }
+    .calcWrap{ padding: 18px 0 0; }
 
-    /* Premium card look */
-    #tscRoot .tsc-card{
+    .calcCard{
       border-radius: var(--radiusXL);
       overflow:hidden;
-      background:
-        radial-gradient(900px 520px at 14% 0%, rgba(17,181,181,.10), rgba(17,181,181,0) 55%),
-        linear-gradient(180deg, #ffffff, #f5fbfb);
       border: 1px solid rgba(0,0,0,.06);
       box-shadow: var(--shadow);
-      position:relative;
+      background:
+        radial-gradient(1000px 520px at 12% 0%, rgba(17,181,181,.10), rgba(17,181,181,0) 58%),
+        linear-gradient(180deg, #ffffff, #f6fbfb);
     }
-    #tscRoot .tsc-accentbar{
-      height:10px;
-      background: linear-gradient(90deg, var(--accent2), var(--accent));
-    }
-    #tscRoot .tsc-inner{ padding:18px; }
+    .accentBar{ height:10px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .calcInner{ padding: 18px; }
 
-    /* Calculator header, more “site-like” */
-    #tscRoot .tsc-head{
-      text-align:left;
-      padding:14px 14px 12px;
+    .calcHead{
+      padding: 14px;
       border-radius: 22px;
-      background: rgba(255,255,255,.70);
+      background: rgba(255,255,255,.78);
       border: 1px solid rgba(0,0,0,.05);
       box-shadow: var(--shadowSoft);
       display:flex;
@@ -315,767 +334,682 @@
       align-items:flex-start;
       margin-bottom: 14px;
     }
-    #tscRoot .tsc-headIcon{
-      width:44px; height:44px; border-radius:16px;
-      display:flex; align-items:center; justify-content:center;
+    .calcHeadIcon{
+      width:46px;height:46px;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
       background: linear-gradient(180deg, rgba(17,181,181,.18), rgba(11,143,143,.08));
       border: 1px solid rgba(11,143,143,.16);
       box-shadow: 0 10px 16px rgba(2,10,10,.08);
       flex: 0 0 auto;
-      margin-top: 2px;
+      margin-top:1px;
     }
-    #tscRoot .tsc-title{
+    .calcTitle{
       margin:0;
-      font-size:26px;
-      font-weight:950;
+      font-size: 26px;
+      font-weight: 1050;
       letter-spacing:.2px;
-      color: var(--ink);
+      color: rgba(8,27,26,.94);
       line-height:1.15;
     }
-    #tscRoot .tsc-sub{
-      margin:8px 0 0;
-      max-width:820px;
-      font-size:13px;
-      font-weight:650;
-      color: rgba(11,31,30,.70);
-      line-height:1.35;
+    .calcSub{
+      margin: 8px 0 0;
+      font-size: 13px;
+      font-weight: 750;
+      color: rgba(8,27,26,.70);
+      line-height: 1.35;
     }
 
-    /* Section bands as “form cards” */
-    #tscRoot .tsc-band{
+    .band{
       border-radius: var(--radiusLG);
-      padding:14px 16px;
-      margin-top:14px;
-      background: linear-gradient(180deg, #ffffff, #f7fbfb);
+      padding: 14px 16px;
+      margin-top: 14px;
+      background: linear-gradient(180deg,#fff,#f7fbfb);
       border: 1px solid rgba(0,0,0,.06);
       box-shadow: var(--shadowSoft);
     }
+    .band:first-of-type{ margin-top: 0; }
 
-    /* Small section header inside each band */
-    #tscRoot .tsc-bandHead{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding-bottom:12px;
+    .bandHead{
+      display:flex; align-items:center; gap:10px;
+      padding-bottom: 12px;
       margin-bottom: 12px;
       border-bottom: 1px solid rgba(0,0,0,.06);
     }
-    #tscRoot .tsc-bandDot{
+    .dot{
       width:10px;height:10px;border-radius:999px;
-      background: linear-gradient(180deg, var(--accent2), var(--accent));
+      background: linear-gradient(180deg,var(--accent2),var(--accent));
       box-shadow: 0 0 0 4px rgba(17,181,181,.10);
-      flex:0 0 auto;
+      flex: 0 0 auto;
     }
-    #tscRoot .tsc-bandTitle{
-      margin:0;
-      font-size: 14px;
-      font-weight:950;
-      letter-spacing:.2px;
-      color: rgba(11,31,30,.92);
-    }
-    #tscRoot .tsc-bandDesc{
-      margin: 2px 0 0;
-      font-size: 12px;
-      font-weight: 650;
-      color: rgba(11,31,30,.70);
-      line-height:1.35;
-    }
+    .bandTitle{ margin:0; font-size: 14px; font-weight: 1000; color: rgba(8,27,26,.92); }
+    .bandDesc{ margin:2px 0 0; font-size: 12px; font-weight: 750; color: rgba(8,27,26,.70); }
 
-    #tscRoot .tsc-grid{
+    .grid{
+      --right: 360px;
       display:grid;
       grid-template-columns: 1fr var(--right);
-      gap: var(--rowGap) 14px;
+      gap: 12px 14px;
       align-items:center;
     }
-
-    #tscRoot .tsc-label{ font-weight:850; color: rgba(11,31,30,.92); }
-    #tscRoot .tsc-req{ color: var(--danger); }
-    #tscRoot .tsc-hint{
+    .label{ font-weight: 900; color: rgba(8,27,26,.92); }
+    .req{ color:#c0392b; }
+    .hint{
       display:block;
-      font-size:13px;
-      font-weight:650;
       margin-top:4px;
-      color: rgba(11,31,30,.68);
-      line-height:1.25;
+      font-size: 13px;
+      font-weight: 750;
+      color: rgba(8,27,26,.68);
+      line-height: 1.25;
     }
 
-    /* Inputs */
-    #tscRoot .company-block{text-align:center}
-    #tscRoot .company-label{display:block;font-weight:850;margin-bottom:8px;color: rgba(11,31,30,.92)}
-    #tscRoot .company-input{
-      width:min(720px,100%) !important;
-      height:54px !important;
-      border-radius:16px !important;
-      border:1px solid rgba(0,0,0,.10) !important;
-      padding:12px 16px !important;
-      font-size:17px !important;
-      background: #fff !important;
-      text-align:center !important;
-      outline:none !important;
-      appearance:none !important;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
-      transition: box-shadow .12s ease, border-color .12s ease, transform .12s ease;
-    }
-    #tscRoot .company-input:focus{
-      border-color: rgba(11,143,143,.45) !important;
-      box-shadow: var(--ring) !important;
-      transform: translateY(-1px);
-    }
+    .companyBlock{ text-align:center; }
+    .companyLabel{ display:block; font-weight:900; margin-bottom: 8px; color: rgba(8,27,26,.92); }
 
-    #tscRoot .tsc-input{
-      width:var(--right) !important;
-      height: var(--fieldH) !important;
-      border-radius:14px !important;
-      border:1px solid rgba(0,0,0,.10) !important;
-      padding:10px 14px !important;
-      font-size:16px !important;
-      background: #fff !important;
-      outline:none !important;
-      appearance:none !important;
-      text-align:center !important;
-      transition: box-shadow .12s ease, border-color .12s ease, transform .12s ease;
-    }
-    #tscRoot .tsc-input:focus{
-      border-color: rgba(11,143,143,.45) !important;
-      box-shadow: var(--ring) !important;
-      transform: translateY(-1px);
-    }
-
-    /* Prefix/Suffix wrappers */
-    #tscRoot .tsc-wrapin{ position:relative; width:var(--right); justify-self:start !important; }
-    #tscRoot .tsc-prefix, #tscRoot .tsc-suffix{
-      position:absolute; top:50%; transform:translateY(-50%);
-      font-weight:900; opacity:.72; pointer-events:none; color: rgba(11,31,30,.78);
-    }
-    #tscRoot .tsc-prefix{left:12px}
-    #tscRoot .tsc-suffix{right:12px}
-    #tscRoot .pad-prefix{padding-left:36px!important}
-    #tscRoot .pad-suffix{padding-right:52px!important}
-
-    /* Segmented buttons */
-    #tscRoot .tsc-box{
-      width:var(--right);
-      background: #fff;
+    .companyInput{
+      width:min(720px,100%);
+      height:54px;
       border-radius:16px;
-      padding:12px;
+      border:1px solid rgba(0,0,0,.10);
+      padding: 12px 16px;
+      font-size: 17px;
+      font-weight: 750;
+      background:#fff;
+      text-align:center;
+      outline:none;
+      transition: box-shadow .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .companyInput:focus{ border-color: rgba(11,143,143,.45); box-shadow: var(--ring); transform: translateY(-1px); }
+
+    .input{
+      width: var(--right);
+      height: 48px;
+      border-radius: 14px;
+      border:1px solid rgba(0,0,0,.10);
+      padding: 10px 14px;
+      font-size: 16px;
+      font-weight: 750;
+      background:#fff;
+      outline:none;
+      text-align:center;
+      transition: box-shadow .12s ease, border-color .12s ease, transform .12s ease;
+    }
+    .input:focus{ border-color: rgba(11,143,143,.45); box-shadow: var(--ring); transform: translateY(-1px); }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+    input[type="number"]{ -moz-appearance:textfield; appearance:textfield; }
+
+    .wrap{
+      position:relative;
+      width: var(--right);
+      justify-self:start;
+    }
+    .prefix,.suffix{
+      position:absolute; top:50%; transform: translateY(-50%);
+      font-weight: 1000; opacity:.72; pointer-events:none; color: rgba(8,27,26,.78);
+    }
+    .prefix{ left: 12px; }
+    .suffix{ right: 12px; }
+    .padPrefix{ padding-left: 36px !important; }
+    .padSuffix{ padding-right: 52px !important; }
+
+    .box{
+      width: var(--right);
+      background:#fff;
+      border-radius: 16px;
+      padding: 12px;
       border:1px solid rgba(0,0,0,.10);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
     }
-    #tscRoot .tsc-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    #tscRoot .tsc-radio{position:absolute;opacity:0;width:1px;height:1px}
-    #tscRoot .tsc-seg{
-      height: var(--fieldH);
-      min-width:112px;
-      border-radius:999px;
+    .btns{ display:flex; justify-content:center; gap: 16px; flex-wrap:wrap; }
+    .radio{ position:absolute; opacity:0; width:1px; height:1px; }
+
+    .seg{
+      height: 48px;
+      min-width: 112px;
+      border-radius: 999px;
       border:2px solid rgba(0,0,0,.14);
-      background: #fff;
-      font-size:16px;
-      font-weight:950;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;user-select:none;
+      background:#fff;
+      font-weight: 1050;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
       box-shadow: 0 10px 14px rgba(2,10,10,.06);
       transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
-      color: rgba(11,31,30,.92);
+      color: rgba(8,27,26,.92);
+      user-select:none;
     }
-    #tscRoot .tsc-seg:hover{ transform: translateY(-1px); }
-    #tscRoot .tsc-radio:checked + .tsc-seg{
+    .seg:hover{ transform: translateY(-1px); }
+    .radio:checked + .seg{
       background: linear-gradient(180deg, rgba(17,181,181,.22), rgba(11,143,143,.12));
       border-color: rgba(11,143,143,.40);
       box-shadow: var(--ring), 0 16px 22px rgba(11,143,143,.08);
     }
 
-    /* Info blocks */
-    #tscRoot .tsc-instructions{
-      margin-top:12px;
-      padding:12px 14px;
-      border-radius:16px;
-      background: #fff;
+    .instructions{
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background:#fff;
       border:1px solid rgba(0,0,0,.08);
-      font-size:14px;
-      font-weight:650;
-      text-align:left;
-      line-height:1.45;
-      color: rgba(11,31,30,.86);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.45;
+      color: rgba(8,27,26,.86);
     }
 
-    /* CTA + results */
-    #tscRoot .tsc-cta{text-align:center;margin-top:16px}
-    #tscRoot .tsc-btn{
-      height:58px;padding:0 56px;border-radius:18px;
-      font-weight:950;font-size:16px;letter-spacing:.6px;
-      background: linear-gradient(180deg,var(--accent2),var(--accent));
-      color:#fff;border:none;cursor:pointer;
-      box-shadow:0 18px 26px rgba(11,143,143,.22);
+    .cta{ text-align:center; margin-top: 16px; }
+    .btn{
+      height: 60px;
+      padding: 0 58px;
+      border-radius: 20px;
+      border: none;
+      cursor:pointer;
+      font-weight: 1050;
+      font-size: 17px;
+      letter-spacing: .4px;
+      background: linear-gradient(180deg, rgba(17,181,181,.98), rgba(11,143,143,.96));
+      color:#fff;
+      box-shadow: 0 22px 30px rgba(11,143,143,.22);
       transition: transform .12s ease, filter .12s ease;
       user-select:none;
     }
-    #tscRoot .tsc-btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
-    #tscRoot .tsc-btn[disabled]{opacity:.65;cursor:not-allowed;transform:none}
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .btn[disabled]{ opacity:.65; cursor:not-allowed; transform:none; }
 
-    /* Results card looks like a premium “output panel” */
-    #tscRoot .tsc-total{
-      margin-top:14px;
-      padding:16px;
+    .status{
+      margin-top: 10px;
+      text-align:center;
+      font-size: 14px;
+      font-weight: 750;
+      min-height: 20px;
+      color: rgba(8,27,26,.78);
+    }
+    .spin{
+      display:inline-block;
+      width:14px;height:14px;
+      border-radius:999px;
+      border:2px solid rgba(8,27,26,.22);
+      border-top-color: rgba(11,143,143,.95);
+      animation: spin .9s linear infinite;
+      vertical-align:-2px;
+      margin-right: 8px;
+    }
+    @keyframes spin { to{ transform: rotate(360deg); } }
+
+    .total{
+      margin-top: 14px;
+      padding: 16px;
       border-radius: 22px;
-      border: 1px solid rgba(0,0,0,.08);
+      border:1px solid rgba(0,0,0,.08);
       background:
-        radial-gradient(800px 320px at 10% 0%, rgba(17,181,181,.12), rgba(17,181,181,0) 55%),
+        radial-gradient(900px 320px at 12% 0%, rgba(17,181,181,.12), rgba(17,181,181,0) 55%),
         linear-gradient(180deg,#ffffff,#f4fbfa);
       box-shadow: 0 18px 30px rgba(2,10,10,.10);
       text-align:center;
     }
-    #tscRoot .tsc-totalTop{
+    .totalTop{
       display:flex;
       justify-content:center;
-      gap:10px;
       align-items:center;
-      color: rgba(11,31,30,.76);
-      font-weight:800;
-      letter-spacing:.2px;
+      gap:10px;
+      color: rgba(8,27,26,.76);
+      font-weight: 900;
     }
-    #tscRoot .tsc-totalTop svg{ opacity:.9 }
-    #tscRoot .tsc-total .val{
-      margin-top:8px;
-      font-size:36px;
-      font-weight:950;
-      color:var(--accent);
-      letter-spacing:.2px;
+    .val{
+      margin-top: 8px;
+      font-size: 40px;
+      font-weight: 1100;
+      color: var(--accent);
+      letter-spacing: .2px;
     }
 
-    #tscRoot .tsc-status{margin-top:10px;text-align:center;font-size:14px;font-weight:650;min-height:20px;color:rgba(11,31,30,.78)}
-    #tscRoot .tsc-spin{
-      display:inline-block;width:14px;height:14px;border-radius:999px;
-      border:2px solid rgba(11,31,30,.22);
-      border-top-color:rgba(11,143,143,.95);
-      animation:tscSpin .9s linear infinite;vertical-align:-2px;margin-right:8px
-    }
-    @keyframes tscSpin{to{transform:rotate(360deg)}}
-
-    #tscRoot .tsc-footer{
+    .footer{
       display:none;
       text-align:center;
-      margin-top:14px;
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,.08);
+      margin-top: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.08);
       background:#fff;
-      padding:14px;
+      padding: 14px;
       box-shadow: var(--shadowSoft);
     }
-    #tscRoot .tsc-footer.show{display:block}
-    #tscRoot .tsc-footer .tag{font-size:13px;font-weight:650;color:rgba(11,31,30,.70);margin-bottom:10px}
-    #tscRoot .tsc-footer .nm{font-size:20px;font-weight:950;margin-bottom:6px;color:rgba(11,31,30,.92)}
-    #tscRoot .tsc-footer a{display:block;font-size:18px;font-weight:950;color:var(--accent);margin-top:6px;text-decoration:none}
-    #tscRoot .tsc-footer a.cal{text-decoration:underline}
+    .footer.show{ display:block; }
+    .footer .tag{ font-size: 13px; font-weight: 750; color: rgba(8,27,26,.70); margin-bottom: 10px; }
+    .footer .nm{ font-size: 20px; font-weight: 1100; margin-bottom: 6px; color: rgba(8,27,26,.92); }
+    .footer a{ display:block; font-size: 18px; font-weight: 1050; color: var(--accent); margin-top:6px; text-decoration:none; }
+    .footer a.cal{ text-decoration: underline; }
 
-    #tscRoot .tsc-hidden{display:none!important}
-
-    #tscRoot .tsc-error{
-      outline:3px solid rgba(192,57,43,.18)!important;
-      border-color:rgba(192,57,43,.55)!important;
+    .hidden{ display:none!important; }
+    .error{
+      outline: 3px solid rgba(192,57,43,.18)!important;
+      border-color: rgba(192,57,43,.55)!important;
     }
-    #tscRoot .tsc-errtxt{
+    .errtxt{
       grid-column: 1 / -1;
-      font-size:13px;
-      font-weight:650;
-      color:var(--danger);
-      margin-top:-6px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #c0392b;
+      margin-top: -6px;
     }
 
     /* =========================================================
-       MODAL: Email copy prompt
+       EMAIL MODAL (consent)
        ========================================================= */
-    #tscRoot .tsc-modalBackdrop{
+    .modalBackdrop{
       position: fixed;
       inset: 0;
       background: rgba(2,10,10,.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display:none;
       align-items:center;
       justify-content:center;
       z-index: 99999;
       padding: 18px;
     }
-    #tscRoot .tsc-modalBackdrop.show{ display:flex; }
-
-    #tscRoot .tsc-modal{
+    .modalBackdrop.show{ display:flex; }
+    .modal{
       width: min(560px, 100%);
       border-radius: 22px;
       overflow:hidden;
       border: 1px solid rgba(0,0,0,.10);
       background: #ffffff;
       box-shadow: 0 30px 70px rgba(0,0,0,.25);
-      color: rgba(11,31,30,.92);
+      color: rgba(8,27,26,.92);
     }
-    #tscRoot .tsc-modalTop{
+    .modalTop{
       padding: 16px 16px 12px;
       border-bottom: 1px solid rgba(0,0,0,.06);
       background: linear-gradient(180deg,#ffffff,#f7fbfb);
     }
-    #tscRoot .tsc-modalTitle{
-      margin:0;
-      font-size: 18px;
-      font-weight: 950;
-      letter-spacing:.2px;
-    }
-    #tscRoot .tsc-modalSub{
-      margin: 8px 0 0;
-      font-size: 13px;
-      font-weight: 650;
-      color: rgba(11,31,30,.70);
-      line-height:1.35;
-    }
-    #tscRoot .tsc-modalBody{ padding: 14px 16px 16px; }
-    #tscRoot .tsc-modalRow{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
-    #tscRoot .tsc-modalLabel{ font-size: 13px; font-weight: 850; color: rgba(11,31,30,.88); }
-    #tscRoot .tsc-modalInput{
+    .modalTitle{ margin:0; font-size: 18px; font-weight: 1100; }
+    .modalSub{ margin: 8px 0 0; font-size: 13px; font-weight: 800; color: rgba(8,27,26,.70); line-height:1.35; }
+    .modalBody{ padding: 14px 16px 16px; }
+    .modalRow{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+    .modalLabel{ font-size: 13px; font-weight: 950; color: rgba(8,27,26,.88); }
+    .modalInput{
       height: 46px;
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,.10);
       background: #ffffff;
-      color: rgba(11,31,30,.92);
+      color: rgba(8,27,26,.92);
       padding: 10px 12px;
       outline:none;
       font-size: 15px;
-      font-weight: 650;
+      font-weight: 800;
     }
-    #tscRoot .tsc-modalInput:focus{
-      border-color: rgba(11,143,143,.45);
-      box-shadow: var(--ring);
-    }
-    #tscRoot .tsc-modalErr{
-      font-size: 12px;
-      font-weight: 650;
-      color: #b42318;
-      display:none;
-    }
-    #tscRoot .tsc-modalErr.show{ display:block; }
-
-    #tscRoot .tsc-modalBtns{
+    .modalInput:focus{ border-color: rgba(11,143,143,.45); box-shadow: var(--ring); }
+    .modalErr{ font-size: 12px; font-weight: 850; color: #b42318; display:none; }
+    .modalErr.show{ display:block; }
+    .modalBtns{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
       margin-top: 14px;
     }
-    #tscRoot .tsc-modalBtn{
-      height: 42px;
-      padding: 0 14px;
+    .modalBtn{
+      height: 44px;
+      padding: 0 16px;
       border-radius: 14px;
       border: 1px solid rgba(0,0,0,.10);
       cursor:pointer;
-      font-weight: 950;
-      letter-spacing:.2px;
-      user-select:none;
+      font-weight: 1100;
+      color: rgba(8,27,26,.92);
+      background:#fff;
       transition: transform .12s ease, filter .12s ease;
-      color: rgba(11,31,30,.92);
-      background: #ffffff;
+      user-select:none;
     }
-    #tscRoot .tsc-modalBtn:hover{ transform: translateY(-1px); filter: brightness(1.01); }
-    #tscRoot .tsc-modalBtn.primary{
-      background: linear-gradient(180deg, var(--accent2), var(--accent));
+    .modalBtn:hover{ transform: translateY(-1px); filter: brightness(1.01); }
+    .modalBtn.primary{
+      background: linear-gradient(180deg, rgba(17,181,181,.98), rgba(11,143,143,.96));
       color:#fff;
       border-color: rgba(11,143,143,.20);
     }
 
-    /* =========================================================
-       Footer
-       ========================================================= */
-    #tscRoot .tsc-pageFooter{
-      padding: 16px 18px 18px;
-      border-top: 1px solid rgba(0,0,0,.06);
-      color: rgba(11,31,30,.65);
-      font-size: 12px;
-      font-weight: 650;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:space-between;
-      align-items:center;
-    }
-    #tscRoot .tsc-pageFooter a{
-      color: rgba(11,31,30,.82);
-      text-decoration:none;
-      border-bottom: 1px solid rgba(11,31,30,.25);
-    }
-
+    /* Responsive */
     @media (max-width: 980px){
-      #tscRoot .tsc-tiles{ grid-template-columns: 1fr; }
+      .tiles{ grid-template-columns: 1fr; }
+      .heroH{ font-size: 48px; }
     }
-    @media (max-width: 920px){
-      #tscRoot .tsc-heroInner{ grid-template-columns: 1fr; }
-      #tscRoot .tsc-brand{ min-width:auto; }
-      #tscRoot .tsc-navCtas{ min-width:auto; }
+    @media (max-width: 820px){
+      .navLinks{ display:none; }
+      .heroInner{ padding-top: 74px; }
+      .heroH{ font-size: 42px; }
     }
     @media (max-width: 760px){
-      #tscRoot{ --right: 100%; }
-      #tscRoot .tsc-grid{ grid-template-columns: 1fr; }
-      #tscRoot .tsc-input, #tscRoot .tsc-wrapin, #tscRoot .tsc-box{ width:100%!important; }
-      #tscRoot .tsc-links{ display:none; }
-      #tscRoot .tsc-heroH{ font-size:28px; }
-      #tscRoot .tsc-head{ text-align:left; }
+      .grid{ grid-template-columns: 1fr; --right: 100%; }
+      .input,.wrap,.box{ width:100%!important; }
+      .hero{ min-height: 460px; }
+      .heroInner{ min-height: 460px; }
+      .brand{ min-width: auto; }
+      .brandMark{ padding: 6px 8px; }
+      .brandText{ font-size: 20px; }
     }
   </style>
 
-  <div class="tsc-page">
+  <!-- TOP NAV -->
+  <div class="tscNavWrap">
+    <div class="tscNav">
 
-    <!-- NAV -->
-    <div class="tsc-top">
-      <div class="tsc-nav" role="navigation" aria-label="Primary">
-        <div class="tsc-brand">
-          <div class="tsc-mark" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M7 12l3 3 7-9" stroke="rgba(11,31,30,.92)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- BRAND (custom, original logo mark + wordmark) -->
+      <div class="brand">
+        <div>
+          <div class="brandMark" aria-label="Brand">
+            <div class="brandText"><span class="e">e</span><span class="b">Bacon</span></div>
+
+            <!-- Original pig + helmet icon (not copied, unique SVG) -->
+            <svg width="54" height="30" viewBox="0 0 54 30" aria-hidden="true">
+              <!-- helmet -->
+              <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z"
+                    fill="#F4C542" stroke="rgba(0,0,0,.35)" stroke-width="1"/>
+              <path d="M33.4 12.5h10.9" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- helmet rim -->
+              <path d="M32.9 10.4c.7-2.9 3.4-5 6.7-5 3.3 0 6.1 2.1 6.7 5"
+                    fill="none" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- pig head -->
+              <path d="M18 8c-6.6 0-12 4.3-12 9.6S11.4 27.2 18 27.2c6.7 0 12-4.3 12-9.6S24.7 8 18 8z"
+                    fill="#F2A7B8" stroke="rgba(0,0,0,.35)" stroke-width="1.2"/>
+              <!-- ears -->
+              <path d="M10.8 10.5c-1.7-.1-3.2 1.4-3.2 3.2 0 .8.3 1.5.8 2.1"
+                    fill="#F2A7B8" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linecap="round"/>
+              <path d="M25.2 10.5c1.7-.1 3.2 1.4 3.2 3.2 0 .8-.3 1.5-.8 2.1"
+                    fill="#F2A7B8" stroke="rgba(0,0,0,.35)" stroke-width="1.2" stroke-linecap="round"/>
+              <!-- eyes -->
+              <circle cx="14.2" cy="16.4" r="1.1" fill="rgba(0,0,0,.55)"/>
+              <circle cx="21.8" cy="16.4" r="1.1" fill="rgba(0,0,0,.55)"/>
+              <!-- snout -->
+              <path d="M18 18.1c-3.1 0-5.6 1.5-5.6 3.4s2.5 3.4 5.6 3.4 5.6-1.5 5.6-3.4-2.5-3.4-5.6-3.4z"
+                    fill="#F7C3CF" stroke="rgba(0,0,0,.30)" stroke-width="1"/>
+              <circle cx="16.2" cy="21.4" r="0.9" fill="rgba(0,0,0,.35)"/>
+              <circle cx="19.8" cy="21.4" r="0.9" fill="rgba(0,0,0,.35)"/>
+              <!-- tiny cheek -->
+              <circle cx="11.8" cy="19.1" r="0.9" fill="rgba(255,255,255,.35)"/>
+              <!-- link pig -> helmet (cute association) -->
+              <path d="M28.8 11.2c2.2-.8 4.8-1.0 7.1-.2" fill="none" stroke="rgba(0,0,0,.20)" stroke-width="1.1" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="tsc-brandTxt">
-            <div class="tsc-brandName">Trust Savings Estimator</div>
-            <div class="tsc-brandTag">Quick estimate and follow-up booking</div>
-          </div>
-        </div>
 
-        <div class="tsc-links" aria-label="Quick links">
-          <a class="tsc-link" href="#features">Getting Started</a>
-          <a class="tsc-link" href="#calculator">Calculator</a>
-          <a class="tsc-link" href="#results">Results</a>
-        </div>
-
-        <div class="tsc-navCtas">
-          <div class="tsc-pill"><span class="tsc-pillDot"></span>Secure submission</div>
-          <button class="tsc-navBtn" type="button" id="navJumpBtn">Start</button>
+          <div class="brandTag">Trust Savings Estimator</div>
         </div>
       </div>
+
+      <div class="navLinks" aria-label="Navigation">
+        <a href="#calcSection">Calculator</a>
+        <a href="#howItWorks">How it works</a>
+        <a href="#resultsAnchor">Results</a>
+      </div>
+
+      <button class="navBtn" type="button" id="navStartBtn">Start <span class="arrow">›</span></button>
     </div>
-
-    <!-- HERO -->
-    <section class="tsc-hero" aria-label="Hero">
-      <div class="tsc-heroInner">
-        <div>
-          <h2 class="tsc-heroH">Estimate annual trust savings in minutes.</h2>
-          <p class="tsc-heroP">
-            Provide workforce counts, PW %, fringe, and WC rate. You’ll get an estimated savings total and the option to request a copy by email.
-          </p>
-        </div>
-
-        <div class="tsc-heroCard" aria-label="Quick facts">
-          <div class="tsc-miniGrid">
-            <div class="tsc-mini">
-              <div class="k">BASIS</div>
-              <div class="v">2,080 hrs</div>
-              <div class="s">Annual hours per employee</div>
-            </div>
-            <div class="tsc-mini">
-              <div class="k">INCLUDES</div>
-              <div class="v">FICA + GL + WC</div>
-              <div class="s">Calculated using your inputs</div>
-            </div>
-          </div>
-
-          <div class="tsc-heroCtaRow">
-            <button class="tsc-heroBtn primary" type="button" id="heroStartBtn">Start estimate</button>
-            <button class="tsc-heroBtn ghost" type="button" id="heroDemoBtn">Use example</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GETTING STARTED -->
-    <section class="tsc-sections" id="features" aria-label="Getting Started">
-      <h3 class="tsc-sectionTitle">Getting Started</h3>
-      <p class="tsc-sectionSub">Use this estimator to generate a quick savings range and book a follow-up call.</p>
-
-      <div class="tsc-tiles" aria-label="Feature tiles">
-        <div class="tsc-tile">
-          <div class="tsc-tileTop">
-            <div class="tsc-ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M7 7h10M7 12h10M7 17h7" stroke="rgba(11,31,30,.92)" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <p class="tsc-tileH">Simple inputs</p>
-          </div>
-          <p class="tsc-tileP">Only essential fields, validated to reduce errors.</p>
-        </div>
-
-        <div class="tsc-tile">
-          <div class="tsc-tileTop">
-            <div class="tsc-ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M4 19V5M4 19H20" stroke="rgba(11,31,30,.92)" stroke-width="2" stroke-linecap="round"/>
-                <path d="M7 15l3-4 3 2 4-6" stroke="rgba(11,31,30,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <p class="tsc-tileH">Clear output</p>
-          </div>
-          <p class="tsc-tileP">A clean results card that’s easy to share internally.</p>
-        </div>
-
-        <div class="tsc-tile">
-          <div class="tsc-tileTop">
-            <div class="tsc-ico" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(11,31,30,.92)" stroke-width="2" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <p class="tsc-tileH">Email copy (optional)</p>
-          </div>
-          <p class="tsc-tileP">Choose whether to receive a copy by email when you submit.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CALCULATOR -->
-    <div class="tsc-shell" id="calculator">
-      <div class="tsc-card">
-        <div class="tsc-accentbar"></div>
-        <div class="tsc-inner">
-
-          <div class="tsc-head">
-            <div class="tsc-headIcon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="rgba(11,31,30,.92)" stroke-width="2"/>
-                <path d="M8 7h8M8 11h8M8 15h6" stroke="rgba(11,31,30,.92)" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div>
-              <h1 class="tsc-title">Estimated Annual Trust Savings</h1>
-              <div class="tsc-sub">Based on 2,080 hrs/year · (FICA 7.65% + GL + WC)</div>
-            </div>
-          </div>
-
-          <!-- COMPANY -->
-          <div class="tsc-band" id="secCompany">
-            <div class="tsc-bandHead">
-              <span class="tsc-bandDot"></span>
-              <div>
-                <p class="tsc-bandTitle">Company</p>
-                <p class="tsc-bandDesc">Enter your company name for the submission record.</p>
-              </div>
-            </div>
-
-            <div class="company-block">
-              <label class="company-label">Company Name <span class="tsc-req">*</span></label>
-              <input id="company" class="company-input" autocomplete="organization" placeholder="Your company name">
-              <div class="tsc-errtxt tsc-hidden" id="err_company">Company name is required.</div>
-            </div>
-          </div>
-
-          <!-- COUNTS -->
-          <div class="tsc-band" id="secCounts">
-            <div class="tsc-bandHead">
-              <span class="tsc-bandDot"></span>
-              <div>
-                <p class="tsc-bandTitle">Workforce</p>
-                <p class="tsc-bandDesc">Provide totals and PW split to calculate the estimate.</p>
-              </div>
-            </div>
-
-            <div class="tsc-grid">
-              <div class="tsc-label">Total # of Employees (Company) <span class="tsc-req">*</span></div>
-              <input id="totalCompanyEEs" class="tsc-input" inputmode="numeric" placeholder="0">
-              <div class="tsc-errtxt tsc-hidden" id="err_totalCompanyEEs">This field is required.</div>
-
-              <div class="tsc-label">Total # of Field Employees <span class="tsc-req">*</span></div>
-              <input id="fieldEEs" class="tsc-input" inputmode="numeric" placeholder="0">
-              <div class="tsc-errtxt tsc-hidden" id="err_fieldEEs">This field is required.</div>
-
-              <div class="tsc-label">Average # of PW Field Employees <span class="tsc-req">*</span>
-                <span class="tsc-hint" id="pwEmpHint">Of your total field employees, how many perform PW work?</span>
-              </div>
-              <input id="pwFieldEEs" class="tsc-input" inputmode="numeric" placeholder="0">
-              <div class="tsc-errtxt tsc-hidden" id="err_pwFieldEEs">This field is required.</div>
-
-              <div class="tsc-label">PW Work % <span class="tsc-req">*</span>
-                <span class="tsc-hint">Example: 30% PW vs 70% Private</span>
-              </div>
-              <div class="tsc-wrapin">
-                <span class="tsc-suffix">%</span>
-                <input id="pwPercent" class="tsc-input pad-suffix" inputmode="numeric" placeholder="0">
-              </div>
-              <div class="tsc-errtxt tsc-hidden" id="err_pwPercent">PW Work % is required (0–100).</div>
-            </div>
-          </div>
-
-          <!-- BENEFITS -->
-          <div class="tsc-band" id="secBenefits">
-            <div class="tsc-bandHead">
-              <span class="tsc-bandDot"></span>
-              <div>
-                <p class="tsc-bandTitle">Benefits</p>
-                <p class="tsc-bandDesc">This helps determine how remaining fringe should be treated.</p>
-              </div>
-            </div>
-
-            <div class="tsc-grid">
-              <div class="tsc-label">Do you provide field employees a 401(k), PTO, or Health? <span class="tsc-req">*</span></div>
-              <div class="tsc-box" id="providesBenefitsBox">
-                <div class="tsc-btns">
-                  <label><input class="tsc-radio" type="radio" name="providesBenefits" value="Yes"><span class="tsc-seg">Yes</span></label>
-                  <label><input class="tsc-radio" type="radio" name="providesBenefits" value="No"><span class="tsc-seg">No</span></label>
-                </div>
-              </div>
-              <div class="tsc-errtxt tsc-hidden" id="err_providesBenefits">Please select Yes or No.</div>
-            </div>
-
-            <div id="benefitsMsgWrap" class="tsc-hidden">
-              <div class="tsc-instructions" id="benefitsMsg"></div>
-            </div>
-
-            <div id="creditsWrap" class="tsc-hidden" style="margin-top:12px;">
-              <div class="tsc-grid">
-                <div class="tsc-label">Are you taking any fringe credits for these benefits? <span class="tsc-req">*</span></div>
-                <div class="tsc-box" id="takesCreditsBox">
-                  <div class="tsc-btns">
-                    <label><input class="tsc-radio" type="radio" name="takesCredits" value="Yes"><span class="tsc-seg">Yes</span></label>
-                    <label><input class="tsc-radio" type="radio" name="takesCredits" value="No"><span class="tsc-seg">No</span></label>
-                  </div>
-                </div>
-                <div class="tsc-errtxt tsc-hidden" id="err_takesCredits">Please select Yes or No.</div>
-              </div>
-
-              <div id="creditsMsgWrap" class="tsc-hidden">
-                <div class="tsc-instructions" id="creditsMsg"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- FRINGE -->
-          <div class="tsc-band" id="secFringe">
-            <div class="tsc-bandHead">
-              <span class="tsc-bandDot"></span>
-              <div>
-                <p class="tsc-bandTitle">Rates</p>
-                <p class="tsc-bandDesc">Fringe is required. WC is optional and defaults to 5%.</p>
-              </div>
-            </div>
-
-            <div class="tsc-grid">
-              <div class="tsc-label">Average Remaining Fringes (Per Hour) <span class="tsc-req">*</span></div>
-              <div class="tsc-wrapin">
-                <span class="tsc-prefix">$</span><span class="tsc-suffix">/Hr.</span>
-                <input id="netFringe" class="tsc-input pad-prefix pad-suffix" inputmode="decimal" placeholder="0.00">
-              </div>
-              <div class="tsc-errtxt tsc-hidden" id="err_netFringe">This field is required.</div>
-
-              <div class="tsc-label">Average WC Rate (Laborers Only)
-                <span class="tsc-hint">If unknown, leave blank. A default rate of 5% will be used.</span>
-              </div>
-              <div class="tsc-wrapin">
-                <span class="tsc-suffix">%</span>
-                <input id="wcPercent" class="tsc-input pad-suffix" inputmode="numeric" placeholder="(default 5)">
-              </div>
-            </div>
-
-            <div class="tsc-cta">
-              <button class="tsc-btn" id="calcBtn" type="button">Calculate Trust Savings</button>
-            </div>
-
-            <div class="tsc-status" id="statusLine"></div>
-
-            <div class="tsc-total" id="resultsCard">
-              <div class="tsc-totalTop" id="results">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(11,31,30,.82)" stroke-width="2" stroke-linejoin="round"/>
-                </svg>
-                <span>Estimated Annual Trust Savings</span>
-              </div>
-              <div class="val" id="trustSavingsValue">$0</div>
-            </div>
-
-            <div class="tsc-footer" id="contactFooter">
-              <div class="tag">Please reach out with any questions you may have.</div>
-              <div class="nm">Brad Wells</div>
-              <a class="cal" id="calendarLink" href="https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16" target="_blank" rel="noopener">My-Calendar-Link</a>
-              <a href="tel:16193565288">(619) 356-5288</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="tsc-pageFooter" aria-label="Footer">
-      <div>© <span id="tscYear"></span> Trust Savings Estimator. All rights reserved.</div>
-      <div><a href="#calculator">Back to calculator</a></div>
-    </div>
-
   </div>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero banner">
+    <div class="heroInner">
+      <div class="heroCopy">
+        <h1 class="heroH">Estimate annual<br/>trust savings</h1>
+        <p class="heroP">
+          Provide key workforce inputs to generate a credible annual savings estimate, then submit to schedule a follow-up call.
+        </p>
+        <div class="heroCtas">
+          <button class="heroBtn primary" type="button" id="heroStartBtn">Open calculator</button>
+          <button class="heroBtn secondary" type="button" id="heroDemoBtn">Use example</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="howItWorks">
+    <h2 class="sectionTitle">Getting started</h2>
+    <p class="sectionSub">Use this estimator to generate a quick, credible savings range and book a follow-up call.</p>
+
+    <div class="tiles" aria-label="Feature tiles">
+      <div class="tile">
+        <div class="tileTop">
+          <div class="ico" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M7 7h10M7 12h10M7 17h7" stroke="rgba(8,27,26,.92)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="tileH">Simple inputs</p>
+        </div>
+        <p class="tileP">Only the essentials, validated and formatted to reduce errors.</p>
+      </div>
+
+      <div class="tile">
+        <div class="tileTop">
+          <div class="ico" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M4 19V5M4 19H20" stroke="rgba(8,27,26,.92)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M7 15l3-4 3 2 4-6" stroke="rgba(8,27,26,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="tileH">Clear output</p>
+        </div>
+        <p class="tileP">A professional result card suitable for executive conversations.</p>
+      </div>
+
+      <div class="tile">
+        <div class="tileTop">
+          <div class="ico" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(8,27,26,.92)" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="tileH">Consent-based email copy</p>
+        </div>
+        <p class="tileP">Ask if the user wants a copy sent to their email, then pass it to Flow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="section calcWrap" id="calcSection">
+    <div class="calcCard">
+      <div class="accentBar"></div>
+      <div class="calcInner">
+
+        <div class="calcHead">
+          <div class="calcHeadIcon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" stroke="rgba(8,27,26,.92)" stroke-width="2"/>
+              <path d="M8 7h8M8 11h8M8 15h6" stroke="rgba(8,27,26,.92)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="calcTitle">Estimated Annual Trust Savings</h3>
+            <p class="calcSub">Based on 2,080 hrs/year · (FICA 7.65% + GL + WC)</p>
+          </div>
+        </div>
+
+        <!-- SECTION 1: COMPANY -->
+        <div class="band" id="secCompany">
+          <div class="bandHead">
+            <span class="dot"></span>
+            <div>
+              <p class="bandTitle">Company</p>
+              <p class="bandDesc">Enter your organization name for the submission record.</p>
+            </div>
+          </div>
+
+          <div class="companyBlock">
+            <label class="companyLabel">Company Name <span class="req">*</span></label>
+            <input id="company" class="companyInput" autocomplete="organization" placeholder="Your company name">
+            <div class="errtxt hidden" id="err_company">Company name is required.</div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: COUNTS -->
+        <div class="band" id="secCounts">
+          <div class="bandHead">
+            <span class="dot"></span>
+            <div>
+              <p class="bandTitle">Workforce</p>
+              <p class="bandDesc">Provide totals and PW split to calculate the estimate.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="label">Total # of Employees (Company) <span class="req">*</span></div>
+            <input id="totalCompanyEEs" class="input" inputmode="numeric" placeholder="0">
+            <div class="errtxt hidden" id="err_totalCompanyEEs">This field is required.</div>
+
+            <div class="label">Total # of Field Employees <span class="req">*</span></div>
+            <input id="fieldEEs" class="input" inputmode="numeric" placeholder="0">
+            <div class="errtxt hidden" id="err_fieldEEs">This field is required.</div>
+
+            <div class="label">Average # of PW Field Employees <span class="req">*</span>
+              <span class="hint" id="pwEmpHint">Of your total field employees, how many perform PW work?</span>
+            </div>
+            <input id="pwFieldEEs" class="input" inputmode="numeric" placeholder="0">
+            <div class="errtxt hidden" id="err_pwFieldEEs">This field is required.</div>
+
+            <div class="label">PW Work % <span class="req">*</span>
+              <span class="hint">Example: 30% PW vs 70% Private</span>
+            </div>
+            <div class="wrap">
+              <span class="suffix">%</span>
+              <input id="pwPercent" class="input padSuffix" inputmode="numeric" placeholder="0">
+            </div>
+            <div class="errtxt hidden" id="err_pwPercent">PW Work % is required (0–100).</div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: BENEFITS -->
+        <div class="band" id="secBenefits">
+          <div class="bandHead">
+            <span class="dot"></span>
+            <div>
+              <p class="bandTitle">Benefits</p>
+              <p class="bandDesc">This helps determine how remaining fringe should be treated.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="label">Do you provide field employees a 401(k), PTO, or Health? <span class="req">*</span></div>
+            <div class="box" id="providesBenefitsBox">
+              <div class="btns">
+                <label><input class="radio" type="radio" name="providesBenefits" value="Yes"><span class="seg">Yes</span></label>
+                <label><input class="radio" type="radio" name="providesBenefits" value="No"><span class="seg">No</span></label>
+              </div>
+            </div>
+            <div class="errtxt hidden" id="err_providesBenefits">Please select Yes or No.</div>
+          </div>
+
+          <div id="benefitsMsgWrap" class="hidden">
+            <div class="instructions" id="benefitsMsg"></div>
+          </div>
+
+          <div id="creditsWrap" class="hidden" style="margin-top:12px;">
+            <div class="grid">
+              <div class="label">Are you taking any fringe credits for these benefits? <span class="req">*</span></div>
+              <div class="box" id="takesCreditsBox">
+                <div class="btns">
+                  <label><input class="radio" type="radio" name="takesCredits" value="Yes"><span class="seg">Yes</span></label>
+                  <label><input class="radio" type="radio" name="takesCredits" value="No"><span class="seg">No</span></label>
+                </div>
+              </div>
+              <div class="errtxt hidden" id="err_takesCredits">Please select Yes or No.</div>
+            </div>
+
+            <div id="creditsMsgWrap" class="hidden">
+              <div class="instructions" id="creditsMsg"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: RATES -->
+        <div class="band" id="secFringe">
+          <div class="bandHead">
+            <span class="dot"></span>
+            <div>
+              <p class="bandTitle">Rates</p>
+              <p class="bandDesc">Fringe is required. WC is optional and defaults to 5%.</p>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="label">Average Remaining Fringes (Per Hour) <span class="req">*</span></div>
+            <div class="wrap">
+              <span class="prefix">$</span><span class="suffix">/Hr.</span>
+              <input id="netFringe" class="input padPrefix padSuffix" inputmode="decimal" placeholder="0.00">
+            </div>
+            <div class="errtxt hidden" id="err_netFringe">This field is required.</div>
+
+            <div class="label">Average WC Rate (Laborers Only)
+              <span class="hint">If unknown, leave blank. A default rate of 5% will be used.</span>
+            </div>
+            <div class="wrap">
+              <span class="suffix">%</span>
+              <input id="wcPercent" class="input padSuffix" inputmode="numeric" placeholder="(default 5)">
+            </div>
+          </div>
+
+          <div class="cta">
+            <button class="btn" id="calcBtn" type="button">Calculate Trust Savings</button>
+          </div>
+
+          <div class="status" id="statusLine"></div>
+
+          <div class="total" id="resultsCard">
+            <div class="totalTop" id="resultsAnchor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(8,27,26,.82)" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span>Estimated Annual Trust Savings</span>
+            </div>
+            <div class="val" id="trustSavingsValue">$0</div>
+          </div>
+
+          <!-- CONTACT REVEAL -->
+          <div class="footer" id="contactFooter">
+            <div class="tag">Please reach out with any questions you may have.</div>
+            <div class="nm">Brad Wells</div>
+            <a class="cal" id="calendarLink" href="https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16" target="_blank" rel="noopener">My-Calendar-Link</a>
+            <a href="tel:16193565288">(619) 356-5288</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- EMAIL COPY MODAL -->
-  <div class="tsc-modalBackdrop" id="emailModalBackdrop" aria-hidden="true">
-    <div class="tsc-modal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
-      <div class="tsc-modalTop">
-        <h3 class="tsc-modalTitle" id="emailModalTitle">Would you like a copy by email?</h3>
-        <p class="tsc-modalSub">If you select “Yes”, we’ll include your email with this submission.</p>
+  <div class="modalBackdrop" id="emailModalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
+      <div class="modalTop">
+        <h3 class="modalTitle" id="emailModalTitle">Would you like a copy by email?</h3>
+        <p class="modalSub">If you select “Yes”, we’ll include your email with this submission.</p>
       </div>
-      <div class="tsc-modalBody">
-        <div class="tsc-modalRow">
-          <div class="tsc-modalLabel">Send a copy of your submission to your email?</div>
-          <div class="tsc-btns" style="justify-content:flex-start;">
-            <label><input class="tsc-radio" type="radio" name="sendCopyChoice" value="Yes"><span class="tsc-seg">Yes</span></label>
-            <label><input class="tsc-radio" type="radio" name="sendCopyChoice" value="No"><span class="tsc-seg">No</span></label>
+      <div class="modalBody">
+        <div class="modalRow">
+          <div class="modalLabel">Send a copy of your submission to your email?</div>
+          <div class="btns" style="justify-content:flex-start;">
+            <label><input class="radio" type="radio" name="sendCopyChoice" value="Yes"><span class="seg">Yes</span></label>
+            <label><input class="radio" type="radio" name="sendCopyChoice" value="No"><span class="seg">No</span></label>
           </div>
-          <div class="tsc-modalErr" id="err_sendCopyChoice">Please select Yes or No.</div>
+          <div class="modalErr" id="err_sendCopyChoice">Please select Yes or No.</div>
         </div>
 
-        <div class="tsc-modalRow tsc-hidden" id="emailRow">
-          <div class="tsc-modalLabel">Email address</div>
-          <input id="copyEmail" class="tsc-modalInput" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com">
-          <div class="tsc-modalErr" id="err_copyEmail">Please enter a valid email address.</div>
+        <div class="modalRow hidden" id="emailRow">
+          <div class="modalLabel">Email address</div>
+          <input id="copyEmail" class="modalInput" type="email" inputmode="email" autocomplete="email" placeholder="name@company.com">
+          <div class="modalErr" id="err_copyEmail">Please enter a valid email address.</div>
         </div>
 
-        <div class="tsc-modalBtns">
-          <button class="tsc-modalBtn" type="button" id="emailModalCancelBtn">Cancel</button>
-          <button class="tsc-modalBtn primary" type="button" id="emailModalContinueBtn">Submit</button>
+        <div class="modalBtns">
+          <button class="modalBtn" type="button" id="emailModalCancelBtn">Cancel</button>
+          <button class="modalBtn primary" type="button" id="emailModalContinueBtn">Submit</button>
         </div>
       </div>
     </div>
   </div>
-
-  <script>
-    (function(){
-      var y = document.getElementById("tscYear");
-      if (y) y.textContent = String(new Date().getFullYear());
-
-      function jumpToCalc(){
-        var el = document.getElementById("calculator");
-        if (!el) return;
-        try { el.scrollIntoView({behavior:"smooth", block:"start"}); } catch(e){}
-        setTimeout(function(){
-          var c = document.getElementById("company");
-          try { c && c.focus && c.focus(); } catch(e){}
-        }, 250);
-      }
-
-      var navBtn = document.getElementById("navJumpBtn");
-      var heroBtn = document.getElementById("heroStartBtn");
-      if (navBtn) navBtn.addEventListener("click", jumpToCalc);
-      if (heroBtn) heroBtn.addEventListener("click", jumpToCalc);
-
-      var demoBtn = document.getElementById("heroDemoBtn");
-      if (demoBtn){
-        demoBtn.addEventListener("click", function(){
-          jumpToCalc();
-          setTimeout(function(){
-            var set = function(id,val){
-              var el=document.getElementById(id);
-              if(el){ el.value=val; el.dispatchEvent(new Event("input",{bubbles:true})); }
-            };
-            set("company","Example Construction Co.");
-            set("totalCompanyEEs","120");
-            set("fieldEEs","80");
-            set("pwFieldEEs","40");
-            set("pwPercent","30");
-            set("netFringe","4.50");
-            set("wcPercent","");
-          }, 350);
-        });
-      }
-    })();
-  </script>
 
   <script>
   (function(){
+    // === CONFIG ===
     const FLOW_URL =
       "https://9e44ec6cf803e40cabf4a32bc17720.03.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2a2a236af9d741f89b24a90b9074460c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0QSrr9-Xy4BVcf-uJmeW8nFwHLlp65tJrHNbzPyEfIE";
 
@@ -1084,6 +1018,7 @@
 
     const $ = (id) => document.getElementById(id);
 
+    // === Helpers ===
     function cleanNum(raw){ return String(raw ?? "").replace(/[^0-9.]/g,""); }
     function toMoney2(raw){
       const cleaned = cleanNum(raw);
@@ -1111,91 +1046,52 @@
     function setStatus(text, spinning){
       const s = $("statusLine");
       if (!s) return;
-      if (spinning){ s.innerHTML = '<span class="tsc-spin"></span>' + text; }
+      if (spinning){ s.innerHTML = '<span class="spin"></span>' + text; }
       else { s.textContent = text || ""; }
     }
     function showErr(id, on){
       const e = $(id);
       if (!e) return;
-      e.classList.toggle("tsc-hidden", !on);
+      e.classList.toggle("hidden", !on);
     }
     function markField(el, bad){
       if (!el) return;
-      el.classList.toggle("tsc-error", !!bad);
+      el.classList.toggle("error", !!bad);
     }
-
-    /* ===== Email modal ===== */
-    const modalBackdrop = $("emailModalBackdrop");
-    const emailRow = $("emailRow");
-    const copyEmail = $("copyEmail");
-    const errChoice = $("err_sendCopyChoice");
-    const errEmail = $("err_copyEmail");
-    const btnCancel = $("emailModalCancelBtn");
-    const btnContinue = $("emailModalContinueBtn");
-
     function getRadioVal(name){
-      const el = document.querySelector(`#tscRoot input[name="${name}"]:checked`);
+      const el = document.querySelector(`#tscSite input[name="${name}"]:checked`);
       return el ? el.value : "";
     }
-    function setModalErr(el, on){
+
+    // === Nav / CTA scroll ===
+    function jumpToCalc(){
+      const el = $("calcSection");
       if (!el) return;
-      el.classList.toggle("show", !!on);
+      try { el.scrollIntoView({behavior:"smooth", block:"start"}); } catch(e){}
+      setTimeout(()=> { try{ $("company")?.focus?.(); }catch(e){} }, 250);
     }
-    function openModal(){
-      document.querySelectorAll('#tscRoot input[name="sendCopyChoice"]').forEach(x=>x.checked=false);
-      if (copyEmail) copyEmail.value = "";
-      if (emailRow) emailRow.classList.add("tsc-hidden");
-      setModalErr(errChoice, false);
-      setModalErr(errEmail, false);
+    $("navStartBtn").addEventListener("click", jumpToCalc);
+    $("heroStartBtn").addEventListener("click", jumpToCalc);
 
-      if (modalBackdrop){
-        modalBackdrop.classList.add("show");
-        modalBackdrop.setAttribute("aria-hidden","false");
-      }
-      setTimeout(()=> {
-        const first = document.querySelector('#tscRoot input[name="sendCopyChoice"]');
-        try { first && first.focus && first.focus(); } catch(e){}
-      }, 50);
-    }
-    function closeModal(){
-      if (modalBackdrop){
-        modalBackdrop.classList.remove("show");
-        modalBackdrop.setAttribute("aria-hidden","true");
-      }
-    }
-    function isValidEmail(v){
-      const s = String(v||"").trim();
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
-    }
-
-    document.querySelectorAll('#tscRoot input[name="sendCopyChoice"]').forEach(r=>{
-      r.addEventListener("change", ()=>{
-        setModalErr(errChoice, false);
-        const val = getRadioVal("sendCopyChoice");
-        if (val === "Yes"){
-          emailRow.classList.remove("tsc-hidden");
-          setTimeout(()=> { try{ copyEmail.focus(); }catch(e){} }, 50);
-        } else {
-          emailRow.classList.add("tsc-hidden");
-          setModalErr(errEmail, false);
-        }
-      });
+    // Example values
+    $("heroDemoBtn").addEventListener("click", ()=>{
+      jumpToCalc();
+      setTimeout(()=>{
+        const set = (id,val)=>{
+          const el = $(id);
+          if(el){ el.value=val; el.dispatchEvent(new Event("input",{bubbles:true})); }
+        };
+        set("company","Example Construction Co.");
+        set("totalCompanyEEs","120");
+        set("fieldEEs","80");
+        set("pwFieldEEs","40");
+        set("pwPercent","30");
+        set("netFringe","4.50");
+        set("wcPercent","");
+      }, 350);
     });
 
-    if (modalBackdrop){
-      modalBackdrop.addEventListener("click", (e)=>{
-        if (e.target === modalBackdrop) closeModal();
-      });
-    }
-    if (btnCancel){
-      btnCancel.addEventListener("click", ()=>{
-        closeModal();
-        $("calcBtn").disabled = false;
-        setStatus("", false);
-      });
-    }
-
-    /* ===== Dynamic hint ===== */
+    // Dynamic hint
     function updatePwHint(){
       const n = toInt($("fieldEEs").value);
       const hint = $("pwEmpHint");
@@ -1206,12 +1102,13 @@
     $("fieldEEs").addEventListener("input", updatePwHint);
     updatePwHint();
 
+    // Money formatting
     $("netFringe").addEventListener("blur", ()=>{
       const v = toMoney2($("netFringe").value);
       if (v !== "") $("netFringe").value = v;
     });
 
-    /* ===== Benefits logic ===== */
+    // Benefits logic
     const benefitsMsgWrap = $("benefitsMsgWrap");
     const benefitsMsg = $("benefitsMsg");
     const creditsWrap = $("creditsWrap");
@@ -1219,37 +1116,37 @@
     const creditsMsg = $("creditsMsg");
 
     function resetCredits(){
-      document.querySelectorAll('#tscRoot input[name="takesCredits"]').forEach(x=>x.checked=false);
-      creditsMsgWrap.classList.add("tsc-hidden");
+      document.querySelectorAll('#tscSite input[name="takesCredits"]').forEach(x=>x.checked=false);
+      creditsMsgWrap.classList.add("hidden");
       creditsMsg.textContent = "";
       showErr("err_takesCredits", false);
-      $("takesCreditsBox").classList.remove("tsc-error");
+      $("takesCreditsBox").classList.remove("error");
     }
     function onProvidesBenefitsChange(val){
-      benefitsMsgWrap.classList.remove("tsc-hidden");
+      benefitsMsgWrap.classList.remove("hidden");
       if (val === "No"){
         benefitsMsg.innerHTML = "Great. Please provide the <b>average fringe per hour</b> you pay field employees.";
-        creditsWrap.classList.add("tsc-hidden");
+        creditsWrap.classList.add("hidden");
         resetCredits();
         return;
       }
       benefitsMsg.innerHTML = "Thanks. One more question so we can guide your estimate correctly.";
-      creditsWrap.classList.remove("tsc-hidden");
+      creditsWrap.classList.remove("hidden");
     }
 
-    document.querySelectorAll('#tscRoot input[name="providesBenefits"]').forEach(r=>{
+    document.querySelectorAll('#tscSite input[name="providesBenefits"]').forEach(r=>{
       r.addEventListener("change", ()=>{
         showErr("err_providesBenefits", false);
-        $("providesBenefitsBox").classList.remove("tsc-error");
+        $("providesBenefitsBox").classList.remove("error");
         onProvidesBenefitsChange(r.value);
       });
     });
 
-    document.querySelectorAll('#tscRoot input[name="takesCredits"]').forEach(r=>{
+    document.querySelectorAll('#tscSite input[name="takesCredits"]').forEach(r=>{
       r.addEventListener("change", ()=>{
         showErr("err_takesCredits", false);
-        $("takesCreditsBox").classList.remove("tsc-error");
-        creditsMsgWrap.classList.remove("tsc-hidden");
+        $("takesCreditsBox").classList.remove("error");
+        creditsMsgWrap.classList.remove("hidden");
         creditsMsg.innerHTML =
           (r.value === "Yes")
             ? "Great. Please provide any <b>remaining</b> <i>average fringe $ per hour</i> you pay field employees."
@@ -1257,15 +1154,16 @@
       });
     });
 
+    // Validation
     function validateAll(){
       ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe"].forEach(id=>{
         markField($(id), false);
         showErr("err_"+id, false);
       });
       showErr("err_providesBenefits", false);
-      $("providesBenefitsBox").classList.remove("tsc-error");
+      $("providesBenefitsBox").classList.remove("error");
       showErr("err_takesCredits", false);
-      $("takesCreditsBox").classList.remove("tsc-error");
+      $("takesCreditsBox").classList.remove("error");
 
       const company = ($("company").value || "").trim();
       if (!company){ markField($("company"), true); showErr("err_company", true); scrollFocus($("company")); return false; }
@@ -1284,10 +1182,10 @@
       }
 
       const pb = getRadioVal("providesBenefits");
-      if (!pb){ $("providesBenefitsBox").classList.add("tsc-error"); showErr("err_providesBenefits", true); scrollFocus($("providesBenefitsBox")); return false; }
+      if (!pb){ $("providesBenefitsBox").classList.add("error"); showErr("err_providesBenefits", true); scrollFocus($("providesBenefitsBox")); return false; }
 
       const tc = getRadioVal("takesCredits");
-      if (pb === "Yes" && !tc){ $("takesCreditsBox").classList.add("tsc-error"); showErr("err_takesCredits", true); scrollFocus($("takesCreditsBox")); return false; }
+      if (pb === "Yes" && !tc){ $("takesCreditsBox").classList.add("error"); showErr("err_takesCredits", true); scrollFocus($("takesCreditsBox")); return false; }
 
       const fringe = toFloat($("netFringe").value);
       if (!Number.isFinite(fringe)){ markField($("netFringe"), true); showErr("err_netFringe", true); scrollFocus($("netFringe")); return false; }
@@ -1295,6 +1193,7 @@
       return true;
     }
 
+    // Flow
     async function postToFlow(payload){
       const res = await fetch(FLOW_URL, {
         method:"POST",
@@ -1308,6 +1207,57 @@
       return true;
     }
 
+    // Email modal
+    const modalBackdrop = $("emailModalBackdrop");
+    const emailRow = $("emailRow");
+    const copyEmail = $("copyEmail");
+    const errChoice = $("err_sendCopyChoice");
+    const errEmail = $("err_copyEmail");
+    const btnCancel = $("emailModalCancelBtn");
+    const btnContinue = $("emailModalContinueBtn");
+
+    function setModalErr(el, on){ if(!el) return; el.classList.toggle("show", !!on); }
+
+    function openModal(){
+      document.querySelectorAll('#tscSite input[name="sendCopyChoice"]').forEach(x=>x.checked=false);
+      copyEmail.value = "";
+      emailRow.classList.add("hidden");
+      setModalErr(errChoice, false);
+      setModalErr(errEmail, false);
+      modalBackdrop.classList.add("show");
+      modalBackdrop.setAttribute("aria-hidden","false");
+    }
+    function closeModal(){
+      modalBackdrop.classList.remove("show");
+      modalBackdrop.setAttribute("aria-hidden","true");
+    }
+    function isValidEmail(v){
+      const s = String(v||"").trim();
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+    }
+
+    document.querySelectorAll('#tscSite input[name="sendCopyChoice"]').forEach(r=>{
+      r.addEventListener("change", ()=>{
+        setModalErr(errChoice, false);
+        const val = getRadioVal("sendCopyChoice");
+        if (val === "Yes"){
+          emailRow.classList.remove("hidden");
+          setTimeout(()=> { try{ copyEmail.focus(); }catch(e){} }, 50);
+        } else {
+          emailRow.classList.add("hidden");
+          setModalErr(errEmail, false);
+        }
+      });
+    });
+
+    modalBackdrop.addEventListener("click", (e)=>{ if (e.target === modalBackdrop) closeModal(); });
+
+    btnCancel.addEventListener("click", ()=>{
+      closeModal();
+      $("calcBtn").disabled = false;
+      setStatus("", false);
+    });
+
     let pendingPayload = null;
 
     $("calcBtn").addEventListener("click", async ()=>{
@@ -1316,12 +1266,14 @@
       $("calcBtn").disabled = true;
       setStatus("Calculating…", true);
 
+      // WC: blank => default 5%, and auto-fill field with 5
       const wcField = $("wcPercent");
       const wcRaw = (wcField.value || "").trim();
       const wcPct = (wcRaw === "" ? 5 : toFloat(wcRaw));
       const wc = (Number.isFinite(wcPct) ? wcPct : 5);
       if (wcRaw === "") wcField.value = "5";
 
+      // Calculation
       const pwField = toInt($("pwFieldEEs").value);
       const pwPct = toFloat($("pwPercent").value) / 100;
       const fringe = toFloat($("netFringe").value);
@@ -1329,10 +1281,14 @@
 
       $("trustSavingsValue").textContent = fmtMoneyWhole(savings);
 
+      // Reveal contact card
       $("calendarLink").href = MEETING_URL;
       $("contactFooter").classList.add("show");
+
+      // Scroll to results
       $("resultsCard").scrollIntoView({behavior:"smooth", block:"center"});
 
+      // Build payload + NEW consent fields
       pendingPayload = {
         bw_CompanyName: ($("company").value || "").trim(),
         bw_TotalCompanyEmployees: toInt($("totalCompanyEEs").value),
@@ -1346,6 +1302,7 @@
         bw_WCRateUsed: wc,
         bw_EstimatedAnnualSavings: Math.round(savings),
 
+        // ✅ Add these to Flow schema
         bw_SendCopy: false,
         bw_Email: ""
       };
@@ -1354,53 +1311,55 @@
       openModal();
     });
 
-    if (btnContinue){
-      btnContinue.addEventListener("click", async ()=>{
-        if (!pendingPayload){
-          closeModal();
-          $("calcBtn").disabled = false;
-          return;
-        }
-
-        const choice = getRadioVal("sendCopyChoice");
-        if (!choice){ setModalErr(errChoice, true); return; }
-        setModalErr(errChoice, false);
-
-        if (choice === "Yes"){
-          const em = String(copyEmail.value || "").trim();
-          if (!isValidEmail(em)){ setModalErr(errEmail, true); return; }
-          setModalErr(errEmail, false);
-          pendingPayload.bw_SendCopy = true;
-          pendingPayload.bw_Email = em;
-        } else {
-          pendingPayload.bw_SendCopy = false;
-          pendingPayload.bw_Email = "";
-        }
-
+    btnContinue.addEventListener("click", async ()=>{
+      if (!pendingPayload){
         closeModal();
+        $("calcBtn").disabled = false;
+        return;
+      }
 
-        try{
-          setStatus("Submitting…", true);
-          await postToFlow(pendingPayload);
-          setStatus("Submitted. Redirecting to schedule your call…", false);
-          setTimeout(()=>{ window.location.href = MEETING_URL; }, 900);
-        } catch(e){
-          console.error(e);
-          setStatus("Something went wrong. Please try again.", false);
-          $("calcBtn").disabled = false;
-        } finally {
-          pendingPayload = null;
-        }
-      });
-    }
+      const choice = getRadioVal("sendCopyChoice");
+      if (!choice){ setModalErr(errChoice, true); return; }
+      setModalErr(errChoice, false);
 
+      if (choice === "Yes"){
+        const em = String(copyEmail.value || "").trim();
+        if (!isValidEmail(em)){ setModalErr(errEmail, true); return; }
+        setModalErr(errEmail, false);
+        pendingPayload.bw_SendCopy = true;
+        pendingPayload.bw_Email = em;
+      } else {
+        pendingPayload.bw_SendCopy = false;
+        pendingPayload.bw_Email = "";
+      }
+
+      closeModal();
+
+      try{
+        setStatus("Submitting…", true);
+        await postToFlow(pendingPayload);
+        setStatus("Submitted. Redirecting to schedule your call…", false);
+
+        // Redirect after submit
+        setTimeout(()=>{ window.location.href = MEETING_URL; }, 900);
+
+      } catch(e){
+        console.error(e);
+        setStatus("Something went wrong. Please try again.", false);
+        $("calcBtn").disabled = false;
+      } finally {
+        pendingPayload = null;
+      }
+    });
+
+    // Clear errors as user types
     ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe","wcPercent"].forEach(id=>{
       $(id).addEventListener("input", ()=>{
         markField($(id), false);
         showErr("err_"+id, false);
       });
     });
-    if (copyEmail){ copyEmail.addEventListener("input", ()=> setModalErr(errEmail, false)); }
+    copyEmail.addEventListener("input", ()=> setModalErr(errEmail, false));
 
   })();
   </script>
