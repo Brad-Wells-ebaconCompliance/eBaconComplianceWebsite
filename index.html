@@ -1,4 +1,5 @@
 <div id="tscSite">
+
   <style>
     /* =========================================================
        PREMIUM THEME (light background + strong contrast)
@@ -23,17 +24,14 @@
       --radiusMD: 16px;
 
       --max: 980px; /* keep it focused, calculator-first */
-
-      /* ✅ If you still want a banner image behind the header, set this */
-      --heroImg: none;
     }
 
-    /* Page background (light, premium) */
+    /* ✅ NEW: Premium background (Option 1 – Soft Teal Glass Gradient) */
     #tscSite{
       background:
-        radial-gradient(1000px 560px at 12% 8%, rgba(17,181,181,.10), rgba(17,181,181,0) 60%),
-        radial-gradient(900px 520px at 88% 14%, rgba(0,0,0,.07), rgba(0,0,0,0) 55%),
-        linear-gradient(180deg,#f8fafc,#f1f5f9 45%, #ffffff);
+        radial-gradient(1200px 700px at 15% 10%, rgba(17,181,181,.18), rgba(17,181,181,0) 60%),
+        radial-gradient(1000px 600px at 85% 15%, rgba(0,0,0,.08), rgba(0,0,0,0) 60%),
+        linear-gradient(180deg, #f4fbfb 0%, #eef6f6 45%, #ffffff 100%);
       padding-bottom: 44px;
     }
 
@@ -105,11 +103,10 @@
       justify-self:center;
     }
 
-    /* right column intentionally empty (keeps title truly centered) */
     .headerRight{ justify-self:end; }
 
     /* =========================================================
-       INTRO COPY (your exact language)
+       INTRO COPY
        ========================================================= */
     .section{
       max-width: var(--max);
@@ -298,9 +295,7 @@
     }
     .btns{ display:flex; justify-content:center; gap: 16px; flex-wrap:wrap; }
 
-    /* ✅ Fix “tab gets stuck in a weird spot”:
-       Use a proper visually-hidden radio (no 1px absolute focus weirdness),
-       and add focus styles to the pill itself. */
+    /* ✅ Fix tab/focus behavior on Yes/No */
     .radio{
       position:absolute !important;
       width:1px !important;
@@ -417,7 +412,7 @@
       letter-spacing: .2px;
     }
 
-    /* Post-submit actions (no auto-redirect) */
+    /* Post-submit UI */
     .afterSubmit{
       margin-top: 14px;
       padding: 14px;
@@ -477,7 +472,7 @@
     }
 
     /* =========================================================
-       EMAIL MODAL (clearer, no surprise redirect)
+       EMAIL MODAL
        ========================================================= */
     .modalBackdrop{
       position: fixed;
@@ -564,12 +559,10 @@
   <!-- MINIMAL HEADER -->
   <div class="tscHeaderWrap" aria-label="Header">
     <div class="tscHeader">
-      <!-- Only “distraction” allowed: logo link -->
       <a class="brandLink" href="https://ebaconcompliance.com/" target="_blank" rel="noopener" aria-label="eBacon Compliance (opens main website)">
         <div class="brandMark">
           <div class="brandText"><span class="e">e</span><span class="b">Bacon</span></div>
 
-          <!-- Original pig + helmet icon (unique SVG) -->
           <svg width="54" height="30" viewBox="0 0 54 30" aria-hidden="true">
             <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z"
                   fill="#F4C542" stroke="rgba(0,0,0,.35)" stroke-width="1"/>
@@ -594,14 +587,12 @@
         </div>
       </a>
 
-      <!-- Title in the top center -->
       <div class="pageTitle">Annual Trust Savings Calculator</div>
-
       <div class="headerRight"></div>
     </div>
   </div>
 
-  <!-- INTRO (your requested language) -->
+  <!-- INTRO -->
   <section class="section" aria-label="Intro">
     <div class="introCard">
       <h2 class="introH">Annual Trust Savings Calculator</h2>
@@ -634,7 +625,7 @@
           </div>
         </div>
 
-        <!-- SECTION 1: COMPANY -->
+        <!-- COMPANY -->
         <div class="band" id="secCompany">
           <div class="bandHead">
             <span class="dot"></span>
@@ -651,7 +642,7 @@
           </div>
         </div>
 
-        <!-- SECTION 2: COUNTS -->
+        <!-- WORKFORCE -->
         <div class="band" id="secCounts">
           <div class="bandHead">
             <span class="dot"></span>
@@ -687,7 +678,7 @@
           </div>
         </div>
 
-        <!-- SECTION 3: BENEFITS -->
+        <!-- BENEFITS -->
         <div class="band" id="secBenefits">
           <div class="bandHead">
             <span class="dot"></span>
@@ -701,14 +692,8 @@
             <div class="label">Do you provide field employees a 401(k), PTO, or Health? <span class="req">*</span></div>
             <div class="box" id="providesBenefitsBox" role="group" aria-label="Provides benefits">
               <div class="btns">
-                <label>
-                  <input class="radio" type="radio" name="providesBenefits" value="Yes">
-                  <span class="seg">Yes</span>
-                </label>
-                <label>
-                  <input class="radio" type="radio" name="providesBenefits" value="No">
-                  <span class="seg">No</span>
-                </label>
+                <label><input class="radio" type="radio" name="providesBenefits" value="Yes"><span class="seg">Yes</span></label>
+                <label><input class="radio" type="radio" name="providesBenefits" value="No"><span class="seg">No</span></label>
               </div>
             </div>
             <div class="errtxt hidden" id="err_providesBenefits">Please select Yes or No.</div>
@@ -723,14 +708,8 @@
               <div class="label">Are you taking any fringe credits for these benefits? <span class="req">*</span></div>
               <div class="box" id="takesCreditsBox" role="group" aria-label="Taking fringe credits">
                 <div class="btns">
-                  <label>
-                    <input class="radio" type="radio" name="takesCredits" value="Yes">
-                    <span class="seg">Yes</span>
-                  </label>
-                  <label>
-                    <input class="radio" type="radio" name="takesCredits" value="No">
-                    <span class="seg">No</span>
-                  </label>
+                  <label><input class="radio" type="radio" name="takesCredits" value="Yes"><span class="seg">Yes</span></label>
+                  <label><input class="radio" type="radio" name="takesCredits" value="No"><span class="seg">No</span></label>
                 </div>
               </div>
               <div class="errtxt hidden" id="err_takesCredits">Please select Yes or No.</div>
@@ -742,7 +721,7 @@
           </div>
         </div>
 
-        <!-- SECTION 4: RATES -->
+        <!-- RATES -->
         <div class="band" id="secFringe">
           <div class="bandHead">
             <span class="dot"></span>
@@ -770,7 +749,6 @@
           </div>
 
           <div class="cta">
-            <!-- ✅ Button text exactly as requested -->
             <button class="btn" id="calcBtn" type="button">Estimated Annual Trust Savings</button>
           </div>
 
@@ -786,7 +764,6 @@
             <div class="val" id="trustSavingsValue">$0</div>
           </div>
 
-          <!-- After submit: clear next steps, no surprise redirect -->
           <div class="afterSubmit" id="afterSubmit">
             <p class="msg" id="afterSubmitMsg">Thanks. Your results have been submitted.</p>
             <div class="actionBtns">
@@ -794,14 +771,13 @@
               <button class="actionBtn" type="button" id="editBtn">Edit inputs</button>
             </div>
           </div>
-
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- EMAIL COPY MODAL -->
+  <!-- EMAIL MODAL -->
   <div class="modalBackdrop" id="emailModalBackdrop" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
       <div class="modalTop">
@@ -846,7 +822,6 @@
 
     const $ = (id) => document.getElementById(id);
 
-    // === Helpers ===
     function cleanNum(raw){ return String(raw ?? "").replace(/[^0-9.]/g,""); }
     function toMoney2(raw){
       const cleaned = cleanNum(raw);
@@ -895,7 +870,6 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
     }
 
-    // Dynamic hint
     function updatePwHint(){
       const n = toInt($("fieldEEs").value);
       const hint = $("pwEmpHint");
@@ -906,13 +880,11 @@
     $("fieldEEs").addEventListener("input", updatePwHint);
     updatePwHint();
 
-    // Money formatting
     $("netFringe").addEventListener("blur", ()=>{
       const v = toMoney2($("netFringe").value);
       if (v !== "") $("netFringe").value = v;
     });
 
-    // Benefits logic
     const benefitsMsgWrap = $("benefitsMsgWrap");
     const benefitsMsg = $("benefitsMsg");
     const creditsWrap = $("creditsWrap");
@@ -958,7 +930,6 @@
       });
     });
 
-    // Validation
     function validateAll(){
       ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe"].forEach(id=>{
         markField($(id), false);
@@ -1012,7 +983,6 @@
       return true;
     }
 
-    // Flow
     async function postToFlow(payload){
       const res = await fetch(FLOW_URL, {
         method:"POST",
@@ -1026,7 +996,6 @@
       return true;
     }
 
-    // Email modal
     const modalBackdrop = $("emailModalBackdrop");
     const emailRow = $("emailRow");
     const copyEmail = $("copyEmail");
@@ -1073,7 +1042,6 @@
       setStatus("", false);
     });
 
-    // Post-submit UI
     const afterSubmit = $("afterSubmit");
     const afterSubmitMsg = $("afterSubmitMsg");
     $("scheduleBtn").addEventListener("click", ()=> window.open(MEETING_URL, "_blank", "noopener"));
@@ -1092,25 +1060,20 @@
       afterSubmit.classList.remove("show");
       setStatus("Calculating…", true);
 
-      // WC: blank => default 5%, and auto-fill field with 5
       const wcField = $("wcPercent");
       const wcRaw = (wcField.value || "").trim();
       const wcPct = (wcRaw === "" ? 5 : toFloat(wcRaw));
       const wc = (Number.isFinite(wcPct) ? wcPct : 5);
       if (wcRaw === "") wcField.value = "5";
 
-      // Calculation
       const pwField = toInt($("pwFieldEEs").value);
       const pwPct = toFloat($("pwPercent").value) / 100;
       const fringe = toFloat($("netFringe").value);
       const savings = pwField * 2080 * pwPct * fringe * (0.0965 + (wc/100));
 
       $("trustSavingsValue").textContent = fmtMoneyWhole(savings);
-
-      // Scroll to results (always visible, always stays)
       $("resultsCard").scrollIntoView({behavior:"smooth", block:"center"});
 
-      // Build payload + consent fields
       pendingPayload = {
         bw_CompanyName: ($("company").value || "").trim(),
         bw_TotalCompanyEmployees: toInt($("totalCompanyEEs").value),
@@ -1123,8 +1086,6 @@
         bw_WCPercent: wc,
         bw_WCRateUsed: wc,
         bw_EstimatedAnnualSavings: Math.round(savings),
-
-        // ✅ Add these to Flow schema
         bw_SendCopy: false,
         bw_Email: ""
       };
@@ -1151,7 +1112,6 @@
         pendingPayload.bw_SendCopy = true;
         pendingPayload.bw_Email = em;
       } else {
-        // ✅ No email: still submit, but DO NOT redirect
         pendingPayload.bw_SendCopy = false;
         pendingPayload.bw_Email = "";
       }
@@ -1176,12 +1136,10 @@
         $("calcBtn").disabled = false;
       } finally {
         pendingPayload = null;
-        // allow recalculation without refresh
         $("calcBtn").disabled = false;
       }
     });
 
-    // Clear errors as user types
     ["company","totalCompanyEEs","fieldEEs","pwFieldEEs","pwPercent","netFringe","wcPercent"].forEach(id=>{
       $(id).addEventListener("input", ()=>{
         markField($(id), false);
@@ -1192,4 +1150,5 @@
 
   })();
   </script>
+
 </div>
