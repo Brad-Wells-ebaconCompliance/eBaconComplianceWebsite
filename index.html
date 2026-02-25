@@ -1,4 +1,6 @@
-<!-- ✅ CLEAN “PRO” VERSION (same functionality, cleaner look, less busy) -->
+<!-- ✅ PRO VERSION (kept clean) + ✅ HERO IMAGE + ✅ LEFT/RIGHT LOGOS + ✅ HEADER + ✅ FOOTER
+     Copy-paste as one block (same JS logic as you had).
+-->
 <div id="tscSite">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +13,7 @@
     #tscSite{
       font-family:'Inter',system-ui,sans-serif;
 
-      /* ✅ Cleaner palette: slate + teal + subtle gold accent */
+      /* Clean palette */
       --bg0:#f6f8fb;
       --bg1:#eef2f7;
       --card:#ffffff;
@@ -40,109 +42,179 @@
       --ring:0 0 0 4px rgba(15,118,110,.16);
 
       --r8:8px;--r10:10px;--r12:12px;--r16:16px;
-      --max:980px;
+      --max:1040px;
 
       background:
         radial-gradient(1200px 520px at 50% -140px, rgba(20,184,166,.12), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height:100vh;
-      padding-bottom:72px;
+      padding-bottom:0;
       color:var(--ink);
     }
 
     @keyframes tscUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     @keyframes tscSpin{to{transform:rotate(360deg);}}
     @keyframes tscReveal{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes tscStripe{from{background-position:0 0;}to{background-position:48px 0;}}
 
     /* ══════════════════════════════════════════
-       HEADER (clean, minimal)
+       HEADER (top bar)
     ══════════════════════════════════════════ */
-    .banner{
-      background:linear-gradient(155deg,#0b1220 0%, #111c2f 55%, #0b1220 100%);
-      border-bottom:1px solid rgba(255,255,255,.08);
-      box-shadow:0 8px 28px rgba(2,6,23,.35);
-      position:relative;
-      overflow:hidden;
+    .topHeader{
+      background:rgba(255,255,255,.72);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
     }
-    .banner::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(700px 220px at 50% 30%, rgba(20,184,166,.22), transparent 70%);
-      opacity:.9;
-    }
-    .bannerInner{
+    .topHeaderInner{
       max-width:var(--max);
       margin:0 auto;
-      padding:22px 18px;
+      padding:10px 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:10px;
+    }
+    .topNav{
+      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+      color:var(--sub);
+      font-size:12px;
+      font-weight:600;
+    }
+    .topNav a{
+      color:var(--sub);
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:background .12s,color .12s;
+    }
+    .topNav a:hover{background:rgba(20,184,166,.10);color:var(--ink);}
+    .topCta{
+      display:flex;align-items:center;gap:8px;
+      font-size:12px;font-weight:700;color:var(--muted);
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:#fff;border:1px solid var(--border);
+      box-shadow:0 1px 0 rgba(15,23,42,.03);
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--teal2);display:inline-block;}
+
+    /* ══════════════════════════════════════════
+       HERO BANNER (image + logos + title)
+    ══════════════════════════════════════════ */
+    .heroBanner{
       position:relative;
-      z-index:1;
-    }
-    .brand{
-      display:flex;align-items:center;gap:10px;
-    }
-    .brandMark{
-      width:38px;height:38px;border-radius:12px;
-      display:flex;align-items:center;justify-content:center;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
-    }
-    .brandTxt{
-      display:flex;flex-direction:column;line-height:1.1;
-    }
-    .brandName{
-      font-family:'Outfit',sans-serif;
-      font-weight:800;
-      letter-spacing:.8px;
-      color:#fff;
-      font-size:16px;
-      text-transform:uppercase;
-    }
-    .brandName .e{color:rgba(154,123,63,.95);}
-    .brandTag{
-      font-size:11px;
-      color:rgba(255,255,255,.55);
-      letter-spacing:.3px;
-      margin-top:2px;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      box-shadow:0 10px 28px rgba(2,6,23,.22);
+      background:
+        linear-gradient(155deg,#0b1220 0%, #111c2f 55%, #0b1220 100%);
     }
 
-    .hero{
-      text-align:right;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
+    /* Background image layer */
+    .heroBanner::before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:
+        radial-gradient(900px 340px at 50% 35%, rgba(20,184,166,.28), transparent 70%),
+        url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2400&q=70");
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05) contrast(1.05);
+      opacity:.25; /* subtle */
+      transform:scale(1.03);
+      pointer-events:none;
     }
-    .heroBadge{
-      display:inline-flex;
-      gap:8px;
+
+    /* Soft overlay for readability */
+    .heroBanner::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(2,6,23,.70), rgba(2,6,23,.70));
+      pointer-events:none;
+    }
+
+    /* Stripe (optional, very subtle) */
+    .heroStripe{
+      height:4px;
+      background:repeating-linear-gradient(-55deg,
+        rgba(154,123,63,.55) 0,rgba(154,123,63,.55) 12px,
+        rgba(255,255,255,.06) 12px,rgba(255,255,255,.06) 24px
+      );
+      animation:tscStripe 4s linear infinite;
+      opacity:.55;
+    }
+
+    .heroInner{
+      position:relative;z-index:2;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:24px 16px 22px;
+      display:grid;
+      grid-template-columns:220px 1fr 220px;
       align-items:center;
-      justify-content:flex-end;
-      font-size:11px;
-      letter-spacing:1.6px;
+      gap:12px;
+    }
+
+    .logoWrap{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(6px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(2,6,23,.22);
+    }
+    .logoTxt{
+      font-family:'Outfit',sans-serif;
+      font-weight:900;
+      letter-spacing:1.3px;
       text-transform:uppercase;
-      color:rgba(255,255,255,.52);
+      font-size:18px;
+      color:#fff;
+      line-height:1;
+    }
+    .logoTxt .e{color:rgba(154,123,63,.95);}
+    .logoRight{display:flex;justify-content:flex-end;}
+
+    .heroCenter{text-align:center;}
+    .heroBadge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:999px;
+      background:rgba(20,184,166,.10);
+      border:1px solid rgba(20,184,166,.22);
+      color:rgba(255,255,255,.70);
+      font-size:10.5px;
+      font-weight:800;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+      backdrop-filter:blur(6px);
     }
     .heroTitle{
       font-family:'Outfit',sans-serif;
       color:#fff;
-      font-size:22px;
-      font-weight:800;
+      font-size:30px;
+      font-weight:900;
       letter-spacing:.2px;
+      line-height:1.1;
+      text-shadow:0 14px 40px rgba(0,0,0,.35);
     }
     .heroTitle span{color:rgba(20,184,166,.92);}
     .heroSub{
+      margin-top:8px;
       font-size:12px;
-      color:rgba(255,255,255,.48);
+      font-weight:600;
+      color:rgba(255,255,255,.62);
       letter-spacing:.2px;
     }
 
     /* ══════════════════════════════════════════
-       LAYOUT
+       CONTENT LAYOUT
     ══════════════════════════════════════════ */
-    .wrap{max-width:var(--max);margin:0 auto;padding:24px 14px 0;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px 14px 28px;}
     .card{
       background:var(--card);
       border-radius:var(--r16);
@@ -168,7 +240,7 @@
     }
     .cardTitle{
       font-family:'Outfit',sans-serif;
-      font-weight:800;
+      font-weight:900;
       font-size:18px;
       color:var(--ink);
     }
@@ -176,13 +248,11 @@
       margin-top:4px;
       font-size:12px;
       color:var(--sub);
-      font-weight:500;
+      font-weight:600;
     }
     .cardBody{padding:18px 20px 22px;}
 
-    /* ══════════════════════════════════════════
-       SECTIONS
-    ══════════════════════════════════════════ */
+    /* Sections */
     .fsec{
       border:1px solid var(--border);
       border-radius:var(--r12);
@@ -201,20 +271,18 @@
       width:24px;height:24px;border-radius:999px;
       display:flex;align-items:center;justify-content:center;
       background:#0b1220;color:#fff;
-      font-size:11px;font-weight:800;
+      font-size:11px;font-weight:900;
     }
     .fsecTitle{
       font-family:'Outfit',sans-serif;
-      font-size:12px;font-weight:800;
+      font-size:12px;font-weight:900;
       letter-spacing:1.2px;
       text-transform:uppercase;
       color:var(--muted);
     }
     .fsecBody{padding:16px 14px 18px;}
 
-    /* ══════════════════════════════════════════
-       FORM GRID
-    ══════════════════════════════════════════ */
+    /* Form grid */
     .fg{
       --r:320px;
       display:grid;
@@ -222,35 +290,35 @@
       gap:10px 14px;
       align-items:center;
     }
-    .fl{font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4;}
-    .fh{display:block;margin-top:3px;font-size:11.5px;font-weight:500;color:var(--sub);line-height:1.35;}
+    .fl{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4;}
+    .fh{display:block;margin-top:3px;font-size:11.5px;font-weight:600;color:var(--sub);line-height:1.35;}
     .req{color:var(--danger);}
 
     /* Company */
     .cRow{text-align:center;}
-    .cLbl{display:block;font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+    .cLbl{display:block;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:8px;}
     .cInput{
       width:min(620px,100%);height:48px;
       border-radius:12px;border:1.5px solid var(--border);
       padding:10px 14px;
-      font-size:15px;font-weight:600;color:var(--ink);
+      font-size:15px;font-weight:700;color:var(--ink);
       background:#fff;text-align:center;outline:none;
       transition:border-color .14s,box-shadow .14s;
     }
     .cInput:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .cInput::placeholder{color:#94a3b8;font-weight:500;}
+    .cInput::placeholder{color:#94a3b8;font-weight:600;}
 
     /* Inputs */
     .fi{
       width:var(--r);height:44px;
       border-radius:12px;border:1.5px solid var(--border);
       padding:9px 12px;
-      font-size:14px;font-weight:600;color:var(--ink);
+      font-size:14px;font-weight:700;color:var(--ink);
       background:#fff;text-align:center;outline:none;
       transition:border-color .14s,box-shadow .14s;
     }
     .fi:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .fi::placeholder{color:#94a3b8;font-weight:500;}
+    .fi::placeholder{color:#94a3b8;font-weight:600;}
 
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
@@ -259,7 +327,7 @@
     .fw{position:relative;width:var(--r);}
     .fpre,.fsuf{
       position:absolute;top:50%;transform:translateY(-50%);
-      font-size:12.5px;font-weight:800;color:#64748b;
+      font-size:12.5px;font-weight:900;color:#64748b;
       pointer-events:none;
     }
     .fpre{left:12px;}
@@ -267,7 +335,7 @@
     .pl{padding-left:32px!important;}
     .pr{padding-right:50px!important;}
 
-    /* Toggle buttons (Yes/No) */
+    /* Toggle buttons */
     .tBox{
       width:var(--r);
       border-radius:12px;
@@ -285,7 +353,7 @@
       height:36px;min-width:104px;border-radius:10px;
       border:1px solid var(--borderMid);
       background:#fff;
-      font-size:13px;font-weight:800;
+      font-size:13px;font-weight:900;
       display:flex;align-items:center;justify-content:center;
       cursor:pointer;color:#334155;user-select:none;
       transition:transform .12s,box-shadow .12s,border-color .12s,background .12s,color .12s;
@@ -307,21 +375,21 @@
       border-radius:12px;
       border:1px solid rgba(20,184,166,.22);
       background:rgba(20,184,166,.10);
-      font-size:13px;font-weight:600;color:#0f172a;
+      font-size:13px;font-weight:700;color:#0f172a;
       line-height:1.5;
     }
 
     /* Errors */
     .errtxt{
       grid-column:1/-1;
-      font-size:11.5px;font-weight:800;
+      font-size:11.5px;font-weight:900;
       color:var(--danger);
       margin-top:-4px;
       display:none;
     }
     .errtxt.vis{display:block;}
     .errblk{
-      font-size:11.5px;font-weight:800;
+      font-size:11.5px;font-weight:900;
       color:var(--danger);
       display:none;margin-top:6px;text-align:center;
     }
@@ -345,7 +413,7 @@
       border:1px solid rgba(255,255,255,.12);
       cursor:pointer;
       font-family:'Outfit',sans-serif;
-      font-weight:800;
+      font-weight:900;
       font-size:15px;
       letter-spacing:.5px;
       color:#fff;
@@ -370,7 +438,7 @@
 
     .statusTxt{
       margin-top:10px;text-align:center;
-      font-size:12.5px;font-weight:600;
+      font-size:12.5px;font-weight:700;
       min-height:18px;color:var(--sub);
     }
     .spin{
@@ -381,10 +449,9 @@
       vertical-align:-2px;margin-right:7px;
     }
 
-    /* RESULTS */
+    /* Results */
     .results{margin-top:18px;display:none;}
     .results.show{display:block;animation:tscReveal .35s cubic-bezier(.25,.8,.3,1) both;}
-
     .savBox{
       border-radius:var(--r16);
       overflow:hidden;
@@ -403,15 +470,15 @@
     }
     .savLbl{
       position:relative;z-index:1;
-      font-size:10px;font-weight:800;letter-spacing:2.1px;
-      text-transform:uppercase;color:rgba(255,255,255,.55);
+      font-size:10px;font-weight:900;letter-spacing:2.1px;
+      text-transform:uppercase;color:rgba(255,255,255,.60);
       display:flex;align-items:center;justify-content:center;gap:8px;
       margin-bottom:8px;
     }
     .savAmt{
       position:relative;z-index:1;
       font-family:'Outfit',sans-serif;
-      font-weight:900;
+      font-weight:950;
       font-size:56px;
       letter-spacing:-.8px;
       color:#fff;
@@ -419,8 +486,8 @@
     }
     .savNote{
       position:relative;z-index:1;
-      font-size:11.5px;font-weight:600;
-      color:rgba(255,255,255,.50);
+      font-size:11.5px;font-weight:700;
+      color:rgba(255,255,255,.52);
       margin-top:6px;
     }
     .savBot{
@@ -431,12 +498,12 @@
     }
     .savBotItem{
       display:flex;align-items:center;gap:8px;
-      font-size:12px;font-weight:700;color:var(--sub);
+      font-size:12px;font-weight:800;color:var(--sub);
     }
     .savDot{width:8px;height:8px;border-radius:999px;background:var(--teal2);}
 
     .savTimer{
-      font-family:'Outfit',sans-serif;font-size:13px;font-weight:800;
+      font-family:'Outfit',sans-serif;font-size:13px;font-weight:900;
       color:var(--gold);
       letter-spacing:.4px;
     }
@@ -448,11 +515,11 @@
       border:1px solid rgba(154,123,63,.22);
       background:rgba(154,123,63,.10);
       display:flex;align-items:center;justify-content:center;gap:9px;
-      font-size:13px;font-weight:700;color:var(--muted);
+      font-size:13px;font-weight:800;color:var(--muted);
     }
     .timerVal{
       font-family:'Outfit',sans-serif;
-      font-size:16px;font-weight:900;
+      font-size:16px;font-weight:950;
       color:var(--gold);
     }
     .timerRow.urgent{
@@ -472,7 +539,7 @@
     }
     .emailQ{
       font-family:'Outfit',sans-serif;
-      font-weight:900;
+      font-weight:950;
       font-size:16px;
       color:var(--ink);
       text-align:center;
@@ -485,19 +552,19 @@
       width:100%;height:46px;border-radius:12px;
       border:1.5px solid var(--border);
       padding:9px 12px;
-      font-size:14px;font-weight:650;
+      font-size:14px;font-weight:700;
       color:var(--ink);
       background:#fff;outline:none;text-align:center;
       transition:border-color .14s,box-shadow .14s;
     }
     .emailField:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .emailField::placeholder{color:#94a3b8;font-weight:600;}
-    .emailErr{font-size:11.5px;font-weight:850;color:var(--danger);margin-top:6px;text-align:center;display:none;}
+    .emailField::placeholder{color:#94a3b8;font-weight:700;}
+    .emailErr{font-size:11.5px;font-weight:900;color:var(--danger);margin-top:6px;text-align:center;display:none;}
     .emailErr.show{display:block;}
     .emailSubRow{margin-top:12px;text-align:center;}
     .emailSubBtn{
       height:48px;padding:0 34px;border-radius:14px;border:none;cursor:pointer;
-      font-family:'Outfit',sans-serif;font-weight:900;font-size:14.5px;
+      font-family:'Outfit',sans-serif;font-weight:950;font-size:14.5px;
       letter-spacing:.4px;
       background:linear-gradient(135deg,var(--teal) 0%, #0a5b55 60%, var(--teal) 100%);
       color:#fff;
@@ -517,48 +584,125 @@
     .emailSubBtn:hover::after{transform:translateX(35%) rotate(8deg);}
     .emailSubBtn:active{transform:translateY(1px);box-shadow:0 12px 22px rgba(15,118,110,.22);}
 
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .footer{
+      margin-top:26px;
+      border-top:1px solid var(--border);
+      background:rgba(255,255,255,.70);
+      backdrop-filter:blur(10px);
+    }
+    .footerInner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:16px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--sub);
+      font-size:12px;
+      font-weight:700;
+    }
+    .footerLinks{display:flex;gap:10px;flex-wrap:wrap;}
+    .footerLinks a{
+      color:var(--sub);
+      text-decoration:none;
+      padding:6px 10px;
+      border-radius:10px;
+      border:1px solid transparent;
+      transition:background .12s,border-color .12s,color .12s;
+    }
+    .footerLinks a:hover{
+      background:rgba(20,184,166,.10);
+      border-color:rgba(20,184,166,.18);
+      color:var(--ink);
+    }
+
     /* Responsive */
-    @media(max-width:760px){
-      .bannerInner{flex-direction:column;align-items:flex-start;}
-      .hero{text-align:left;align-items:flex-start;}
-      .heroBadge{justify-content:flex-start;}
+    @media(max-width:860px){
+      .heroInner{grid-template-columns:1fr;gap:10px;}
+      .logoRight{display:none;}
+      .heroCenter{text-align:left;}
+      .heroTitle{font-size:26px;}
       .fg{grid-template-columns:1fr;--r:100%;}
       .fi,.fw,.tBox{width:100%!important;}
       .cardBody,.fsecBody{padding:14px 12px 16px;}
       .savAmt{font-size:46px;}
     }
+    @media(max-width:520px){
+      .topNav{display:none;}
+    }
   </style>
 
-  <!-- ═══════ BANNER ═══════ -->
-  <div class="banner">
-    <div class="bannerInner">
-      <div class="brand" aria-label="eBacon">
-        <div class="brandMark" aria-hidden="true">
-          <!-- small simple mark -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(255,255,255,.75)" stroke-width="1.8" fill="rgba(20,184,166,.12)" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="rgba(255,255,255,.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="brandTxt">
-          <div class="brandName"><span class="e">e</span>Bacon</div>
-          <div class="brandTag">Compliance • Prevailing Wage</div>
-        </div>
+  <!-- ✅ HEADER -->
+  <div class="topHeader">
+    <div class="topHeaderInner">
+      <div class="topCta">
+        <span class="pill"><span class="dot"></span> Secure calculator</span>
+        <span class="pill">2–3 min</span>
       </div>
-
-      <div class="hero">
-        <div class="heroBadge">
-          <span style="width:8px;height:8px;border-radius:999px;background:rgba(20,184,166,.9);display:inline-block"></span>
-          Prevailing Wage Compliance
-        </div>
-        <div class="heroTitle">Trust <span>Savings</span> Calculator</div>
-        <div class="heroSub">Fast estimate • clean output • optional email copy</div>
+      <div class="topNav" aria-label="Header links">
+        <a href="#calculator">Calculator</a>
+        <a href="#resultsPanel">Results</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
   </div>
 
+  <!-- ✅ HERO (image + both logos) -->
+  <div class="heroBanner">
+    <div class="heroStripe"></div>
+    <div class="heroInner">
+
+      <!-- Left logo -->
+      <div>
+        <div class="logoWrap">
+          <svg width="38" height="21" viewBox="0 0 54 30" aria-hidden="true">
+            <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z" fill="#d4a84b" stroke="rgba(255,255,255,.20)" stroke-width="1"/>
+            <path d="M33.4 12.5h10.9" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M32.9 10.4c.7-2.9 3.4-5 6.7-5 3.3 0 6.1 2.1 6.7 5" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M18 8c-6.6 0-12 4.3-12 9.6S11.4 27.2 18 27.2c6.7 0 12-4.3 12-9.6S24.7 8 18 8z" fill="#e8b4c0" stroke="rgba(255,255,255,.20)" stroke-width="1.1"/>
+            <circle cx="14.2" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
+            <circle cx="21.8" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
+            <path d="M18 18.1c-3.1 0-5.6 1.5-5.6 3.4s2.5 3.4 5.6 3.4 5.6-1.5 5.6-3.4-2.5-3.4-5.6-3.4z" fill="#f0c0cc" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          </svg>
+          <span class="logoTxt"><span class="e">e</span>Bacon</span>
+        </div>
+      </div>
+
+      <!-- Center title -->
+      <div class="heroCenter">
+        <div class="heroBadge">
+          <span class="dot"></span> Prevailing Wage Compliance
+        </div>
+        <div class="heroTitle">Trust <span>Savings</span> Calculator</div>
+        <div class="heroSub">Estimate annual trust savings and optionally email yourself a copy.</div>
+      </div>
+
+      <!-- Right logo -->
+      <div class="logoRight">
+        <div class="logoWrap">
+          <svg width="38" height="21" viewBox="0 0 54 30" aria-hidden="true">
+            <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z" fill="#d4a84b" stroke="rgba(255,255,255,.20)" stroke-width="1"/>
+            <path d="M33.4 12.5h10.9" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M32.9 10.4c.7-2.9 3.4-5 6.7-5 3.3 0 6.1 2.1 6.7 5" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
+            <path d="M18 8c-6.6 0-12 4.3-12 9.6S11.4 27.2 18 27.2c6.7 0 12-4.3 12-9.6S24.7 8 18 8z" fill="#e8b4c0" stroke="rgba(255,255,255,.20)" stroke-width="1.1"/>
+            <circle cx="14.2" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
+            <circle cx="21.8" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
+            <path d="M18 18.1c-3.1 0-5.6 1.5-5.6 3.4s2.5 3.4 5.6 3.4 5.6-1.5 5.6-3.4-2.5-3.4-5.6-3.4z" fill="#f0c0cc" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+          </svg>
+          <span class="logoTxt"><span class="e">e</span>Bacon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ═══════ CALCULATOR ═══════ -->
-  <div class="wrap">
+  <div class="wrap" id="calculator">
     <div class="card">
 
       <div class="cardTop">
@@ -722,7 +866,7 @@
             This calculator will reset in <span class="timerVal" id="timerVal">3:00</span>
           </div>
 
-          <div class="emailCard">
+          <div class="emailCard" id="contact">
             <div class="emailQ">Would you like these results emailed to you?</div>
             <div class="emailToggleRow">
               <label><input class="tr" type="radio" name="emailChoice" value="Yes" tabindex="0"><span class="tb" style="min-width:120px;">Yes, please</span></label>
@@ -745,8 +889,23 @@
     </div><!-- /card -->
   </div><!-- /wrap -->
 
+  <!-- ✅ FOOTER -->
+  <div class="footer">
+    <div class="footerInner">
+      <div>© <span id="yr"></span> eBacon Compliance • Trust Savings Calculator</div>
+      <div class="footerLinks" aria-label="Footer links">
+        <a href="#calculator">Calculator</a>
+        <a href="#contact">Schedule</a>
+        <a href="javascript:void(0)" onclick="document.getElementById('company')?.focus()">Start</a>
+      </div>
+    </div>
+  </div>
+
   <script>
   (function(){
+    // footer year
+    try{ document.getElementById('yr').textContent = new Date().getFullYear(); }catch(e){}
+
     const FLOW_URL    = "https://9e44ec6cf803e40cabf4a32bc17720.03.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2a2a236af9d741f89b24a90b9074460c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0QSrr9-Xy4BVcf-uJmeW8nFwHLlp65tJrHNbzPyEfIE";
     const MEETING_URL = "https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16";
     const RESET_SECS  = 180;
