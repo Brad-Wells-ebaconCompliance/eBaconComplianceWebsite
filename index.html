@@ -1,11 +1,8 @@
-<!-- ✅ PRO VERSION (kept clean) + ✅ HERO IMAGE + ✅ LEFT/RIGHT LOGOS + ✅ HEADER + ✅ FOOTER
-     Copy-paste as one block (same JS logic as you had).
--->
 <div id="tscSite">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     #tscSite,#tscSite*{box-sizing:border-box;margin:0;padding:0;}
@@ -13,7 +10,6 @@
     #tscSite{
       font-family:'Inter',system-ui,sans-serif;
 
-      /* Clean palette */
       --bg0:#f6f8fb;
       --bg1:#eef2f7;
       --card:#ffffff;
@@ -25,27 +21,28 @@
 
       --border:#e2e8f0;
       --borderMid:#cbd5e1;
-      --focus:#0f766e;
 
-      --teal:#0f766e;
-      --teal2:#14b8a6;
-      --tealPale:#e6fffb;
+      /* Green palette */
+      --green:     #1a7a4a;
+      --greenMid:  #22a05e;
+      --greenLight:#27c070;
+      --greenPale: #edfaf3;
+      --greenBorder:rgba(34,160,94,.28);
+      --focus:     #1a7a4a;
 
       --gold:#9a7b3f;
-      --goldPale:#fff7e6;
-
       --danger:#b42318;
       --dangerRing:rgba(180,35,24,.12);
 
       --shadow:0 1px 2px rgba(15,23,42,.05),0 12px 28px rgba(15,23,42,.08);
       --shadowMd:0 10px 22px rgba(15,23,42,.10);
-      --ring:0 0 0 4px rgba(15,118,110,.16);
+      --ring:0 0 0 4px rgba(26,122,74,.16);
 
       --r8:8px;--r10:10px;--r12:12px;--r16:16px;
       --max:1040px;
 
       background:
-        radial-gradient(1200px 520px at 50% -140px, rgba(20,184,166,.12), transparent 55%),
+        radial-gradient(1200px 520px at 50% -140px, rgba(34,160,94,.09), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
       min-height:100vh;
       padding-bottom:0;
@@ -58,157 +55,49 @@
     @keyframes tscStripe{from{background-position:0 0;}to{background-position:48px 0;}}
 
     /* ══════════════════════════════════════════
-       HEADER (top bar)
-    ══════════════════════════════════════════ */
-    .topHeader{
-      background:rgba(255,255,255,.72);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
-    }
-    .topHeaderInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:10px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .topNav{
-      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-      color:var(--sub);
-      font-size:12px;
-      font-weight:600;
-    }
-    .topNav a{
-      color:var(--sub);
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:10px;
-      transition:background .12s,color .12s;
-    }
-    .topNav a:hover{background:rgba(20,184,166,.10);color:var(--ink);}
-    .topCta{
-      display:flex;align-items:center;gap:8px;
-      font-size:12px;font-weight:700;color:var(--muted);
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      background:#fff;border:1px solid var(--border);
-      box-shadow:0 1px 0 rgba(15,23,42,.03);
-      white-space:nowrap;
-    }
-    .dot{width:8px;height:8px;border-radius:999px;background:var(--teal2);display:inline-block;}
-
-    /* ══════════════════════════════════════════
-       HERO BANNER (image + logos + title)
+       HERO BANNER — simplified, title only
     ══════════════════════════════════════════ */
     .heroBanner{
-      position:relative;
-      overflow:hidden;
-      border-bottom:1px solid rgba(255,255,255,.08);
+      position:relative;overflow:hidden;
       box-shadow:0 10px 28px rgba(2,6,23,.22);
-      background:
-        linear-gradient(155deg,#0b1220 0%, #111c2f 55%, #0b1220 100%);
+      background:linear-gradient(155deg,#0b1220 0%, #111c2f 55%, #0b1220 100%);
     }
-
-    /* Background image layer */
     .heroBanner::before{
-      content:"";
-      position:absolute;inset:0;
+      content:"";position:absolute;inset:0;
       background-image:
-        radial-gradient(900px 340px at 50% 35%, rgba(20,184,166,.28), transparent 70%),
+        radial-gradient(900px 340px at 50% 35%, rgba(34,160,94,.22), transparent 70%),
         url("https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=2400&q=70");
-      background-size:cover;
-      background-position:center;
+      background-size:cover;background-position:center;
       filter:saturate(1.05) contrast(1.05);
-      opacity:.25; /* subtle */
-      transform:scale(1.03);
-      pointer-events:none;
+      opacity:.25;transform:scale(1.03);pointer-events:none;
     }
-
-    /* Soft overlay for readability */
     .heroBanner::after{
-      content:"";
-      position:absolute;inset:0;
-      background:linear-gradient(180deg, rgba(2,6,23,.70), rgba(2,6,23,.70));
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(2,6,23,.70),rgba(2,6,23,.70));
       pointer-events:none;
     }
-
-    /* Stripe (optional, very subtle) */
     .heroStripe{
       height:4px;
       background:repeating-linear-gradient(-55deg,
-        rgba(154,123,63,.55) 0,rgba(154,123,63,.55) 12px,
+        rgba(26,122,74,.65) 0,rgba(26,122,74,.65) 12px,
         rgba(255,255,255,.06) 12px,rgba(255,255,255,.06) 24px
       );
-      animation:tscStripe 4s linear infinite;
-      opacity:.55;
+      animation:tscStripe 4s linear infinite;opacity:.65;
     }
-
     .heroInner{
       position:relative;z-index:2;
-      max-width:var(--max);
-      margin:0 auto;
-      padding:24px 16px 22px;
-      display:grid;
-      grid-template-columns:220px 1fr 220px;
-      align-items:center;
-      gap:12px;
-    }
-
-    .logoWrap{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 14px;
-      border-radius:14px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter:blur(6px);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 10px 22px rgba(2,6,23,.22);
-    }
-    .logoTxt{
-      font-family:'Outfit',sans-serif;
-      font-weight:900;
-      letter-spacing:1.3px;
-      text-transform:uppercase;
-      font-size:18px;
-      color:#fff;
-      line-height:1;
-    }
-    .logoTxt .e{color:rgba(154,123,63,.95);}
-    .logoRight{display:flex;justify-content:flex-end;}
-
-    .heroCenter{text-align:center;}
-    .heroBadge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 12px;border-radius:999px;
-      background:rgba(20,184,166,.10);
-      border:1px solid rgba(20,184,166,.22);
-      color:rgba(255,255,255,.70);
-      font-size:10.5px;
-      font-weight:800;
-      letter-spacing:2px;
-      text-transform:uppercase;
-      margin-bottom:10px;
-      backdrop-filter:blur(6px);
+      max-width:var(--max);margin:0 auto;
+      padding:32px 16px 28px;
+      text-align:center;
     }
     .heroTitle{
       font-family:'Outfit',sans-serif;
-      color:#fff;
-      font-size:30px;
+      color:var(--greenLight);
+      font-size:46px;
       font-weight:900;
-      letter-spacing:.2px;
-      line-height:1.1;
-      text-shadow:0 14px 40px rgba(0,0,0,.35);
-    }
-    .heroTitle span{color:rgba(20,184,166,.92);}
-    .heroSub{
-      margin-top:8px;
-      font-size:12px;
-      font-weight:600;
-      color:rgba(255,255,255,.62);
-      letter-spacing:.2px;
+      letter-spacing:.5px;
+      line-height:1.08;
+      text-shadow:0 0 60px rgba(39,192,112,.35), 0 2px 20px rgba(0,0,0,.5);
     }
 
     /* ══════════════════════════════════════════
@@ -223,102 +112,82 @@
       overflow:hidden;
       animation:tscUp .45s cubic-bezier(.25,.8,.3,1) both;
     }
-    .cardTop{
-      padding:18px 20px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      background:linear-gradient(180deg,var(--cardAlt),#fff);
-      border-bottom:1px solid var(--border);
+
+    /* Thin green accent top bar */
+    .cardAccent{
+      height:4px;
+      background:linear-gradient(90deg, var(--green), var(--greenMid), var(--greenLight), var(--greenMid), var(--green));
     }
-    .cardIcon{
-      width:44px;height:44px;border-radius:14px;
-      display:flex;align-items:center;justify-content:center;
-      background:var(--tealPale);
-      border:1px solid rgba(20,184,166,.25);
-      flex:0 0 auto;
+
+    .cardBody{padding:22px 22px 26px;}
+
+    /* Company name block — no section header, just the field */
+    .cRow{text-align:center;margin-bottom:18px;}
+    .cLbl{display:block;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+    .cInput{
+      width:min(620px,100%);height:52px;
+      border-radius:12px;border:1.5px solid var(--border);
+      padding:10px 14px;
+      font-size:16px;font-weight:600;color:var(--ink);
+      background:#fff;text-align:center;outline:none;
+      transition:border-color .14s,box-shadow .14s;
     }
-    .cardTitle{
-      font-family:'Outfit',sans-serif;
-      font-weight:900;
-      font-size:18px;
-      color:var(--ink);
-    }
-    .cardSub{
-      margin-top:4px;
-      font-size:12px;
-      color:var(--sub);
-      font-weight:600;
-    }
-    .cardBody{padding:18px 20px 22px;}
+    .cInput:focus{border-color:var(--focus);box-shadow:var(--ring);}
+    .cInput::placeholder{color:#94a3b8;font-weight:400;}
 
     /* Sections */
     .fsec{
       border:1px solid var(--border);
       border-radius:var(--r12);
-      margin-bottom:12px;
+      margin-bottom:14px;
       overflow:hidden;
       background:#fff;
     }
     .fsec:last-child{margin-bottom:0;}
     .fsecHead{
       display:flex;align-items:center;gap:10px;
-      padding:11px 14px;
+      padding:13px 16px;
       background:linear-gradient(180deg,var(--bg0),#fff);
       border-bottom:1px solid var(--border);
     }
     .fsecNum{
-      width:24px;height:24px;border-radius:999px;
+      width:26px;height:26px;border-radius:999px;flex:0 0 auto;
       display:flex;align-items:center;justify-content:center;
-      background:#0b1220;color:#fff;
-      font-size:11px;font-weight:900;
+      background:var(--green);color:#fff;
+      font-size:12px;font-weight:800;
     }
     .fsecTitle{
       font-family:'Outfit',sans-serif;
-      font-size:12px;font-weight:900;
-      letter-spacing:1.2px;
+      font-size:13px;font-weight:800;
+      letter-spacing:1.4px;
       text-transform:uppercase;
       color:var(--muted);
     }
-    .fsecBody{padding:16px 14px 18px;}
+    .fsecBody{padding:18px 16px 20px;}
 
     /* Form grid */
     .fg{
       --r:320px;
       display:grid;
       grid-template-columns:1fr var(--r);
-      gap:10px 14px;
+      gap:12px 16px;
       align-items:center;
     }
-    .fl{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.4;}
-    .fh{display:block;margin-top:3px;font-size:11.5px;font-weight:600;color:var(--sub);line-height:1.35;}
+    .fl{font-size:15px;font-weight:600;color:var(--ink);line-height:1.45;}
+    .fh{display:block;margin-top:4px;font-size:13px;font-weight:500;color:var(--sub);line-height:1.35;}
     .req{color:var(--danger);}
-
-    /* Company */
-    .cRow{text-align:center;}
-    .cLbl{display:block;font-size:13.5px;font-weight:800;color:var(--ink);margin-bottom:8px;}
-    .cInput{
-      width:min(620px,100%);height:48px;
-      border-radius:12px;border:1.5px solid var(--border);
-      padding:10px 14px;
-      font-size:15px;font-weight:700;color:var(--ink);
-      background:#fff;text-align:center;outline:none;
-      transition:border-color .14s,box-shadow .14s;
-    }
-    .cInput:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .cInput::placeholder{color:#94a3b8;font-weight:600;}
 
     /* Inputs */
     .fi{
-      width:var(--r);height:44px;
+      width:var(--r);height:46px;
       border-radius:12px;border:1.5px solid var(--border);
       padding:9px 12px;
-      font-size:14px;font-weight:700;color:var(--ink);
+      font-size:15px;font-weight:600;color:var(--ink);
       background:#fff;text-align:center;outline:none;
       transition:border-color .14s,box-shadow .14s;
     }
     .fi:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .fi::placeholder{color:#94a3b8;font-weight:600;}
+    .fi::placeholder{color:#94a3b8;font-weight:400;}
 
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
@@ -327,7 +196,7 @@
     .fw{position:relative;width:var(--r);}
     .fpre,.fsuf{
       position:absolute;top:50%;transform:translateY(-50%);
-      font-size:12.5px;font-weight:900;color:#64748b;
+      font-size:13px;font-weight:700;color:#64748b;
       pointer-events:none;
     }
     .fpre{left:12px;}
@@ -339,7 +208,7 @@
     .tBox{
       width:var(--r);
       border-radius:12px;
-      padding:6px;
+      padding:7px;
       border:1.5px solid var(--border);
       background:linear-gradient(180deg,#fff,var(--cardAlt));
     }
@@ -350,46 +219,55 @@
       clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
     }
     .tb{
-      height:36px;min-width:104px;border-radius:10px;
-      border:1px solid var(--borderMid);
+      height:38px;min-width:108px;border-radius:10px;
+      border:1.5px solid var(--borderMid);
       background:#fff;
-      font-size:13px;font-weight:900;
+      font-size:14px;font-weight:700;
       display:flex;align-items:center;justify-content:center;
       cursor:pointer;color:#334155;user-select:none;
       transition:transform .12s,box-shadow .12s,border-color .12s,background .12s,color .12s;
       letter-spacing:.2px;
     }
-    .tb:hover{border-color:rgba(20,184,166,.55);box-shadow:0 8px 18px rgba(15,23,42,.08);transform:translateY(-1px);}
+    .tb:hover{border-color:var(--greenBorder);box-shadow:0 8px 18px rgba(15,23,42,.08);transform:translateY(-1px);}
     .tr:checked+.tb{
-      background:#0b1220;
-      border-color:#0b1220;
+      background:var(--green);
+      border-color:var(--green);
       color:#fff;
-      box-shadow:0 10px 22px rgba(2,6,23,.22);
+      box-shadow:0 8px 20px rgba(26,122,74,.25);
       transform:translateY(-1px);
     }
     .tr:focus-visible+.tb{box-shadow:var(--ring);}
 
     /* Callout */
     .callout{
-      margin-top:12px;padding:11px 12px;
+      margin-top:14px;padding:13px 14px;
       border-radius:12px;
-      border:1px solid rgba(20,184,166,.22);
-      background:rgba(20,184,166,.10);
-      font-size:13px;font-weight:700;color:#0f172a;
-      line-height:1.5;
+      border:1px solid var(--greenBorder);
+      background:var(--greenPale);
+      font-size:14px;font-weight:600;color:var(--ink);
+      line-height:1.55;
     }
+    .calloutRed{
+      margin-top:14px;padding:13px 14px;
+      border-radius:12px;
+      border:1px solid rgba(180,35,24,.22);
+      background:rgba(180,35,24,.05);
+      font-size:14px;font-weight:600;color:var(--ink);
+      line-height:1.55;
+    }
+    .redTxt{color:var(--danger);font-weight:700;}
 
     /* Errors */
     .errtxt{
       grid-column:1/-1;
-      font-size:11.5px;font-weight:900;
+      font-size:13px;font-weight:700;
       color:var(--danger);
       margin-top:-4px;
       display:none;
     }
     .errtxt.vis{display:block;}
     .errblk{
-      font-size:11.5px;font-weight:900;
+      font-size:13px;font-weight:700;
       color:var(--danger);
       display:none;margin-top:6px;text-align:center;
     }
@@ -405,344 +283,209 @@
     .hidden{display:none!important;}
 
     /* CTA */
-    .ctaRow{margin-top:18px;text-align:center;}
+    .ctaRow{margin-top:22px;text-align:center;}
     .mainBtn{
-      height:52px;
-      padding:0 38px;
+      height:56px;
+      padding:0 44px;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
+      border:none;
       cursor:pointer;
       font-family:'Outfit',sans-serif;
-      font-weight:900;
-      font-size:15px;
-      letter-spacing:.5px;
+      font-weight:800;
+      font-size:17px;
+      letter-spacing:.4px;
       color:#fff;
-      background:linear-gradient(135deg,#0b1220 0%, #0f1a2e 60%, #0b1220 100%);
-      box-shadow:0 14px 26px rgba(2,6,23,.22);
-      position:relative;
-      overflow:hidden;
-      transition:transform .14s, box-shadow .14s, filter .14s;
+      background:linear-gradient(135deg, var(--green) 0%, var(--greenMid) 60%, var(--green) 100%);
+      box-shadow:0 6px 0 rgba(15,80,42,.35), 0 14px 28px rgba(26,122,74,.28);
+      position:relative;overflow:hidden;
+      transition:transform .14s,box-shadow .14s,filter .14s;
       user-select:none;
     }
     .mainBtn::after{
       content:"";position:absolute;inset:-40% -60%;
-      background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.12) 52%,transparent 64%);
+      background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.14) 52%,transparent 64%);
       transform:translateX(-35%) rotate(8deg);
-      transition:transform .55s ease;
-      pointer-events:none;
+      transition:transform .55s ease;pointer-events:none;
     }
-    .mainBtn:hover{transform:translateY(-1px);box-shadow:0 18px 34px rgba(2,6,23,.26);filter:saturate(1.05);}
+    .mainBtn:hover{transform:translateY(-2px);box-shadow:0 8px 0 rgba(15,80,42,.30),0 20px 36px rgba(26,122,74,.32);filter:saturate(1.05);}
     .mainBtn:hover::after{transform:translateX(35%) rotate(8deg);}
-    .mainBtn:active{transform:translateY(1px);box-shadow:0 12px 22px rgba(2,6,23,.22);}
+    .mainBtn:active{transform:translateY(1px);box-shadow:0 2px 0 rgba(15,80,42,.40),0 8px 18px rgba(26,122,74,.22);}
     .mainBtn[disabled]{opacity:.55;cursor:not-allowed;transform:none;filter:none;}
 
     .statusTxt{
       margin-top:10px;text-align:center;
-      font-size:12.5px;font-weight:700;
+      font-size:13px;font-weight:600;
       min-height:18px;color:var(--sub);
     }
     .spin{
-      display:inline-block;width:12px;height:12px;border-radius:50%;
+      display:inline-block;width:13px;height:13px;border-radius:50%;
       border:2px solid rgba(148,163,184,.45);
-      border-top-color:var(--teal2);
+      border-top-color:var(--greenMid);
       animation:tscSpin .75s linear infinite;
       vertical-align:-2px;margin-right:7px;
     }
 
     /* Results */
-    .results{margin-top:18px;display:none;}
+    .results{margin-top:20px;display:none;}
     .results.show{display:block;animation:tscReveal .35s cubic-bezier(.25,.8,.3,1) both;}
+
     .savBox{
-      border-radius:var(--r16);
-      overflow:hidden;
-      border:1px solid var(--border);
-      box-shadow:var(--shadowMd);
+      border-radius:var(--r16);overflow:hidden;
+      border:1px solid var(--border);box-shadow:var(--shadowMd);
     }
     .savTop{
-      padding:22px 18px 18px;
-      text-align:center;
+      padding:26px 18px 22px;text-align:center;
       background:linear-gradient(155deg,#0b1220 0%, #111c2f 55%, #0b1220 100%);
       position:relative;overflow:hidden;
     }
     .savTop::before{
       content:"";position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(540px 180px at 50% 35%, rgba(20,184,166,.25), transparent 72%);
+      background:radial-gradient(540px 180px at 50% 35%, rgba(34,160,94,.28), transparent 72%);
     }
     .savLbl{
       position:relative;z-index:1;
-      font-size:10px;font-weight:900;letter-spacing:2.1px;
-      text-transform:uppercase;color:rgba(255,255,255,.60);
-      display:flex;align-items:center;justify-content:center;gap:8px;
-      margin-bottom:8px;
+      font-size:11px;font-weight:800;letter-spacing:2.5px;
+      text-transform:uppercase;color:rgba(255,255,255,.55);
+      display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;
     }
     .savAmt{
       position:relative;z-index:1;
-      font-family:'Outfit',sans-serif;
-      font-weight:950;
-      font-size:56px;
-      letter-spacing:-.8px;
-      color:#fff;
+      font-family:'Outfit',sans-serif;font-weight:900;
+      font-size:62px;letter-spacing:-.5px;
+      color:var(--greenLight);
+      text-shadow:0 0 50px rgba(39,192,112,.45);
       line-height:1;
     }
     .savNote{
       position:relative;z-index:1;
-      font-size:11.5px;font-weight:700;
-      color:rgba(255,255,255,.52);
-      margin-top:6px;
+      font-size:12px;font-weight:600;
+      color:rgba(255,255,255,.45);margin-top:7px;
     }
     .savBot{
-      padding:12px 14px;
-      background:#fff;
+      padding:12px 16px;background:#fff;
       border-top:1px solid var(--border);
       display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
     }
-    .savBotItem{
-      display:flex;align-items:center;gap:8px;
-      font-size:12px;font-weight:800;color:var(--sub);
-    }
-    .savDot{width:8px;height:8px;border-radius:999px;background:var(--teal2);}
-
+    .savBotItem{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--sub);}
+    .savDot{width:8px;height:8px;border-radius:999px;background:var(--greenMid);}
     .savTimer{
-      font-family:'Outfit',sans-serif;font-size:13px;font-weight:900;
-      color:var(--gold);
-      letter-spacing:.4px;
+      font-family:'Outfit',sans-serif;font-size:14px;font-weight:800;
+      color:var(--gold);letter-spacing:.4px;
     }
 
     .timerRow{
-      margin-top:12px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(154,123,63,.22);
-      background:rgba(154,123,63,.10);
+      margin-top:12px;padding:12px 14px;border-radius:14px;
+      border:1px solid rgba(154,123,63,.22);background:rgba(154,123,63,.08);
       display:flex;align-items:center;justify-content:center;gap:9px;
-      font-size:13px;font-weight:800;color:var(--muted);
+      font-size:14px;font-weight:700;color:var(--muted);
     }
     .timerVal{
-      font-family:'Outfit',sans-serif;
-      font-size:16px;font-weight:950;
+      font-family:'Outfit',sans-serif;font-size:17px;font-weight:900;
       color:var(--gold);
     }
-    .timerRow.urgent{
-      border-color:rgba(180,35,24,.18);
-      background:rgba(180,35,24,.06);
-    }
+    .timerRow.urgent{border-color:rgba(180,35,24,.18);background:rgba(180,35,24,.06);}
     .timerRow.urgent .timerVal{color:var(--danger);}
 
     /* Email card */
     .emailCard{
-      margin-top:12px;
-      padding:18px 16px;
-      border-radius:var(--r16);
-      background:#fff;
-      border:1px solid var(--border);
-      box-shadow:var(--shadow);
+      margin-top:12px;padding:20px 18px;
+      border-radius:var(--r16);background:#fff;
+      border:1px solid var(--border);box-shadow:var(--shadow);
     }
     .emailQ{
-      font-family:'Outfit',sans-serif;
-      font-weight:950;
-      font-size:16px;
-      color:var(--ink);
-      text-align:center;
-      margin-bottom:12px;
+      font-family:'Outfit',sans-serif;font-weight:800;
+      font-size:18px;color:var(--ink);text-align:center;margin-bottom:14px;
     }
     .emailToggleRow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
-    .emailFieldWrap{display:none;margin-top:14px;}
+    .emailFieldWrap{display:none;margin-top:16px;}
     .emailFieldWrap.show{display:block;animation:tscReveal .25s ease both;}
     .emailField{
-      width:100%;height:46px;border-radius:12px;
-      border:1.5px solid var(--border);
-      padding:9px 12px;
-      font-size:14px;font-weight:700;
-      color:var(--ink);
+      width:100%;height:48px;border-radius:12px;
+      border:1.5px solid var(--border);padding:9px 12px;
+      font-size:15px;font-weight:600;color:var(--ink);
       background:#fff;outline:none;text-align:center;
       transition:border-color .14s,box-shadow .14s;
     }
     .emailField:focus{border-color:var(--focus);box-shadow:var(--ring);}
-    .emailField::placeholder{color:#94a3b8;font-weight:700;}
-    .emailErr{font-size:11.5px;font-weight:900;color:var(--danger);margin-top:6px;text-align:center;display:none;}
+    .emailField::placeholder{color:#94a3b8;font-weight:400;}
+    .emailErr{font-size:13px;font-weight:700;color:var(--danger);margin-top:6px;text-align:center;display:none;}
     .emailErr.show{display:block;}
-    .emailSubRow{margin-top:12px;text-align:center;}
+    .emailSubRow{margin-top:14px;text-align:center;}
     .emailSubBtn{
-      height:48px;padding:0 34px;border-radius:14px;border:none;cursor:pointer;
-      font-family:'Outfit',sans-serif;font-weight:950;font-size:14.5px;
+      height:52px;padding:0 40px;border-radius:14px;border:none;cursor:pointer;
+      font-family:'Outfit',sans-serif;font-weight:800;font-size:16px;
       letter-spacing:.4px;
-      background:linear-gradient(135deg,var(--teal) 0%, #0a5b55 60%, var(--teal) 100%);
+      background:linear-gradient(135deg, var(--green) 0%, var(--greenMid) 60%, var(--green) 100%);
       color:#fff;
-      box-shadow:0 14px 26px rgba(15,118,110,.22);
+      box-shadow:0 5px 0 rgba(15,80,42,.35),0 12px 24px rgba(26,122,74,.26);
       position:relative;overflow:hidden;
-      transition:transform .14s,box-shadow .14s,filter .14s;
-      user-select:none;
+      transition:transform .14s,box-shadow .14s,filter .14s;user-select:none;
     }
     .emailSubBtn::after{
       content:"";position:absolute;inset:-40% -60%;
       background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.14) 52%,transparent 64%);
-      transform:translateX(-35%) rotate(8deg);
-      transition:transform .55s ease;
-      pointer-events:none;
+      transform:translateX(-35%) rotate(8deg);transition:transform .55s ease;pointer-events:none;
     }
-    .emailSubBtn:hover{transform:translateY(-1px);box-shadow:0 18px 34px rgba(15,118,110,.26);filter:saturate(1.05);}
+    .emailSubBtn:hover{transform:translateY(-1px);box-shadow:0 7px 0 rgba(15,80,42,.30),0 16px 30px rgba(26,122,74,.30);filter:saturate(1.05);}
     .emailSubBtn:hover::after{transform:translateX(35%) rotate(8deg);}
-    .emailSubBtn:active{transform:translateY(1px);box-shadow:0 12px 22px rgba(15,118,110,.22);}
+    .emailSubBtn:active{transform:translateY(1px);box-shadow:0 2px 0 rgba(15,80,42,.40),0 6px 14px rgba(26,122,74,.22);}
 
-    /* ══════════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════════ */
+    /* Footer */
     .footer{
-      margin-top:26px;
-      border-top:1px solid var(--border);
-      background:rgba(255,255,255,.70);
-      backdrop-filter:blur(10px);
+      margin-top:26px;border-top:1px solid var(--border);
+      background:rgba(255,255,255,.70);backdrop-filter:blur(10px);
     }
     .footerInner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:16px 16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      color:var(--sub);
-      font-size:12px;
-      font-weight:700;
-    }
-    .footerLinks{display:flex;gap:10px;flex-wrap:wrap;}
-    .footerLinks a{
-      color:var(--sub);
-      text-decoration:none;
-      padding:6px 10px;
-      border-radius:10px;
-      border:1px solid transparent;
-      transition:background .12s,border-color .12s,color .12s;
-    }
-    .footerLinks a:hover{
-      background:rgba(20,184,166,.10);
-      border-color:rgba(20,184,166,.18);
-      color:var(--ink);
+      max-width:var(--max);margin:0 auto;
+      padding:16px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--sub);font-size:13px;font-weight:600;
     }
 
     /* Responsive */
     @media(max-width:860px){
-      .heroInner{grid-template-columns:1fr;gap:10px;}
-      .logoRight{display:none;}
-      .heroCenter{text-align:left;}
-      .heroTitle{font-size:26px;}
+      .heroTitle{font-size:34px;}
       .fg{grid-template-columns:1fr;--r:100%;}
       .fi,.fw,.tBox{width:100%!important;}
       .cardBody,.fsecBody{padding:14px 12px 16px;}
-      .savAmt{font-size:46px;}
+      .savAmt{font-size:48px;}
     }
     @media(max-width:520px){
-      .topNav{display:none;}
+      .heroTitle{font-size:28px;}
+      .mainBtn{padding:0 28px;font-size:15px;}
     }
   </style>
 
-  <!-- ✅ HEADER -->
-  <div class="topHeader">
-    <div class="topHeaderInner">
-      <div class="topCta">
-        <span class="pill"><span class="dot"></span> Secure calculator</span>
-        <span class="pill">2–3 min</span>
-      </div>
-      <div class="topNav" aria-label="Header links">
-        <a href="#calculator">Calculator</a>
-        <a href="#resultsPanel">Results</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ✅ HERO (image + both logos) -->
+  <!-- HERO — title only, no logos, no badge -->
   <div class="heroBanner">
     <div class="heroStripe"></div>
     <div class="heroInner">
-
-      <!-- Left logo -->
-      <div>
-        <div class="logoWrap">
-          <svg width="38" height="21" viewBox="0 0 54 30" aria-hidden="true">
-            <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z" fill="#d4a84b" stroke="rgba(255,255,255,.20)" stroke-width="1"/>
-            <path d="M33.4 12.5h10.9" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
-            <path d="M32.9 10.4c.7-2.9 3.4-5 6.7-5 3.3 0 6.1 2.1 6.7 5" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
-            <path d="M18 8c-6.6 0-12 4.3-12 9.6S11.4 27.2 18 27.2c6.7 0 12-4.3 12-9.6S24.7 8 18 8z" fill="#e8b4c0" stroke="rgba(255,255,255,.20)" stroke-width="1.1"/>
-            <circle cx="14.2" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
-            <circle cx="21.8" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
-            <path d="M18 18.1c-3.1 0-5.6 1.5-5.6 3.4s2.5 3.4 5.6 3.4 5.6-1.5 5.6-3.4-2.5-3.4-5.6-3.4z" fill="#f0c0cc" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-          </svg>
-          <span class="logoTxt"><span class="e">e</span>Bacon</span>
-        </div>
-      </div>
-
-      <!-- Center title -->
-      <div class="heroCenter">
-        <div class="heroBadge">
-          <span class="dot"></span> Prevailing Wage Compliance
-        </div>
-        <div class="heroTitle">Trust <span>Savings</span> Calculator</div>
-        <div class="heroSub">Estimate annual trust savings and optionally email yourself a copy.</div>
-      </div>
-
-      <!-- Right logo -->
-      <div class="logoRight">
-        <div class="logoWrap">
-          <svg width="38" height="21" viewBox="0 0 54 30" aria-hidden="true">
-            <path d="M38 5c3.5 0 6.5 2.2 6.5 5.1v2.3c0 .8-.6 1.4-1.4 1.4H33.9c-.8 0-1.4-.6-1.4-1.4V10.1C32.5 7.2 35 5 38 5z" fill="#d4a84b" stroke="rgba(255,255,255,.20)" stroke-width="1"/>
-            <path d="M33.4 12.5h10.9" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
-            <path d="M32.9 10.4c.7-2.9 3.4-5 6.7-5 3.3 0 6.1 2.1 6.7 5" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="1.1" stroke-linecap="round"/>
-            <path d="M18 8c-6.6 0-12 4.3-12 9.6S11.4 27.2 18 27.2c6.7 0 12-4.3 12-9.6S24.7 8 18 8z" fill="#e8b4c0" stroke="rgba(255,255,255,.20)" stroke-width="1.1"/>
-            <circle cx="14.2" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
-            <circle cx="21.8" cy="16.4" r="1.1" fill="rgba(255,255,255,.88)"/>
-            <path d="M18 18.1c-3.1 0-5.6 1.5-5.6 3.4s2.5 3.4 5.6 3.4 5.6-1.5 5.6-3.4-2.5-3.4-5.6-3.4z" fill="#f0c0cc" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-          </svg>
-          <span class="logoTxt"><span class="e">e</span>Bacon</span>
-        </div>
-      </div>
-
+      <div class="heroTitle">Trust Savings Calculator</div>
     </div>
   </div>
 
-  <!-- ═══════ CALCULATOR ═══════ -->
+  <!-- CALCULATOR -->
   <div class="wrap" id="calculator">
     <div class="card">
-
-      <div class="cardTop">
-        <div class="cardIcon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="#0f766e" stroke-width="1.8" fill="rgba(20,184,166,.10)" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="#0f766e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div>
-          <div class="cardTitle">Estimated Annual Trust Savings</div>
-          <div class="cardSub">Based on 2,080 hrs/year • FICA 7.65% + GL + WC</div>
-        </div>
-      </div>
-
+      <div class="cardAccent"></div>
       <div class="cardBody">
 
-        <!-- 1 Company -->
+        <!-- Company Name — no section header -->
+        <div class="cRow">
+          <label class="cLbl" for="company">Company Name <span class="req">*</span></label>
+          <input id="company" class="cInput" autocomplete="organization" placeholder="Your company name">
+          <div class="errblk" id="err_company">Company name is required.</div>
+        </div>
+
+        <!-- 1. WORKFORCE BREAKDOWN -->
         <div class="fsec">
           <div class="fsecHead">
             <div class="fsecNum">1</div>
-            <div class="fsecTitle">Company Information</div>
-          </div>
-          <div class="fsecBody">
-            <div class="cRow">
-              <label class="cLbl" for="company">Company Name <span class="req">*</span></label>
-              <input id="company" class="cInput" autocomplete="organization" placeholder="Your company name">
-              <div class="errblk" id="err_company">Company name is required.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2 Workforce -->
-        <div class="fsec">
-          <div class="fsecHead">
-            <div class="fsecNum">2</div>
             <div class="fsecTitle">Workforce Breakdown</div>
           </div>
           <div class="fsecBody">
             <div class="fg">
+
               <div class="fl">Total # of Employees (Company) <span class="req">*</span></div>
               <input id="totalCompanyEEs" class="fi" inputmode="numeric" placeholder="0">
               <div class="errtxt" id="err_totalCompanyEEs">This field is required.</div>
@@ -751,8 +494,8 @@
               <input id="fieldEEs" class="fi" inputmode="numeric" placeholder="0">
               <div class="errtxt" id="err_fieldEEs">This field is required.</div>
 
-              <div class="fl">Avg. # of Field Employees that Perform on PW <span class="req">*</span>
-                <span class="fh" id="pwHint">Do all of your field employees perform on PW, or just some?</span>
+              <div class="fl">
+                Of your <strong id="pwHintNum">field</strong> employees, how many typically work on prevailing wage projects? <span class="req">*</span>
               </div>
               <input id="pwFieldEEs" class="fi" inputmode="numeric" placeholder="0">
               <div class="errtxt" id="err_pwFieldEEs">This field is required.</div>
@@ -760,19 +503,22 @@
               <div class="fl">PW Work % <span class="req">*</span>
                 <span class="fh">Example: 30% PW vs 70% Private</span>
               </div>
-              <div class="fw">
-                <span class="fsuf">%</span>
-                <input id="pwPercent" class="fi pr" inputmode="numeric" placeholder="0">
+              <div class="fw" style="display:flex;justify-content:center;">
+                <div style="position:relative;width:var(--r);">
+                  <span class="fsuf">%</span>
+                  <input id="pwPercent" class="fi pr" style="width:100%;" inputmode="numeric" placeholder="0">
+                </div>
               </div>
               <div class="errtxt" id="err_pwPercent">Required — enter a value between 0 and 100.</div>
+
             </div>
           </div>
         </div>
 
-        <!-- 3 Benefits -->
+        <!-- 2. EMPLOYEE BENEFITS -->
         <div class="fsec">
           <div class="fsecHead">
-            <div class="fsecNum">3</div>
+            <div class="fsecNum">2</div>
             <div class="fsecTitle">Employee Benefits</div>
           </div>
           <div class="fsecBody">
@@ -787,6 +533,7 @@
               <div class="errtxt" id="err_providesBenefits">Please select Yes or No.</div>
             </div>
 
+            <!-- No message on benefits Yes — credits question appears directly -->
             <div id="benefitsMsgWrap" class="hidden"><div class="callout" id="benefitsMsg"></div></div>
 
             <div id="creditsWrap" class="hidden" style="margin-top:14px;">
@@ -800,21 +547,22 @@
                 </div>
                 <div class="errtxt" id="err_takesCredits">Please select Yes or No.</div>
               </div>
-              <div id="creditsMsgWrap" class="hidden"><div class="callout" id="creditsMsg"></div></div>
+              <div id="creditsMsgWrap" class="hidden"><div id="creditsMsg"></div></div>
             </div>
           </div>
         </div>
 
-        <!-- 4 Rates -->
+        <!-- 3. RATE INFORMATION -->
         <div class="fsec">
           <div class="fsecHead">
-            <div class="fsecNum">4</div>
+            <div class="fsecNum">3</div>
             <div class="fsecTitle">Rate Information</div>
           </div>
           <div class="fsecBody">
             <div class="fg">
-              <div class="fl">Average Remaining Fringes (Per Hour) <span class="req">*</span>
-                <span class="fh">Estimations welcome</span>
+
+              <div class="fl">Average Remaining Fringe $ (Per Hour) <span class="req">*</span>
+                <span class="fh">Estimations Welcome</span>
               </div>
               <div class="fw">
                 <span class="fpre">$</span><span class="fsuf">/Hr.</span>
@@ -823,19 +571,20 @@
               <div class="errtxt" id="err_netFringe">This field is required.</div>
 
               <div class="fl">Average WC Rate — Laborers Only
-                <span class="fh">Leave blank to use the 5% default.</span>
+                <span class="fh">If left blank, 5% will be the default</span>
               </div>
               <div class="fw">
                 <span class="fsuf">%</span>
                 <input id="wcPercent" class="fi pr" inputmode="numeric" placeholder="(default 5%)">
               </div>
+
             </div>
           </div>
         </div>
 
-        <!-- CTA -->
+        <!-- CTA — green, "Estimated Annual Trust Savings" -->
         <div class="ctaRow">
-          <button class="mainBtn" id="calcBtn" type="button">Calculate My Trust Savings</button>
+          <button class="mainBtn" id="calcBtn" type="button">Estimated Annual Trust Savings</button>
         </div>
         <div class="statusTxt" id="statusLine"></div>
 
@@ -846,64 +595,57 @@
             <div class="savTop">
               <div class="savLbl">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(255,255,255,.50)" stroke-width="1.8" fill="rgba(255,255,255,.06)" stroke-linejoin="round"/>
+                  <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" stroke="rgba(255,255,255,.45)" stroke-width="1.8" fill="rgba(255,255,255,.06)" stroke-linejoin="round"/>
                 </svg>
                 Estimated Annual Trust Savings
               </div>
               <div class="savAmt" id="savingsVal">$0</div>
-              <div class="savNote">Based on 2,080 hrs/yr • FICA 7.65% + GL + WC</div>
+              <div class="savNote">Based on 2,080 hrs/yr · FICA 7.65% + GL + WC</div>
             </div>
             <div class="savBot">
               <div class="savBotItem"><span class="savDot"></span> Calculation complete</div>
               <div class="savBotItem">
-                <span>Resets in</span><span class="savTimer" id="timerDisplay">3:00</span>
+                <span>For Security, This Form Will Reset in</span>&nbsp;<span class="savTimer" id="timerDisplay">3:00</span>
               </div>
             </div>
           </div>
 
+          <!-- Timer row -->
           <div class="timerRow" id="timerRow">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-            This calculator will reset in <span class="timerVal" id="timerVal">3:00</span>
+            For Security, This Form Will Reset in&nbsp;<span class="timerVal" id="timerVal">3:00</span>
           </div>
 
+          <!-- Email prompt -->
           <div class="emailCard" id="contact">
             <div class="emailQ">Would you like these results emailed to you?</div>
             <div class="emailToggleRow">
               <label><input class="tr" type="radio" name="emailChoice" value="Yes" tabindex="0"><span class="tb" style="min-width:120px;">Yes, please</span></label>
               <label><input class="tr" type="radio" name="emailChoice" value="No" tabindex="0"><span class="tb" style="min-width:120px;">No thanks</span></label>
             </div>
-
             <div class="emailFieldWrap" id="emailFieldWrap">
               <input id="resultEmail" class="emailField" type="email" inputmode="email" autocomplete="email" placeholder="yourname@company.com" aria-label="Email address">
               <div class="emailErr" id="err_resultEmail">Please enter a valid email address.</div>
-
               <div class="emailSubRow">
-                <button class="emailSubBtn" id="emailSubBtn" type="button">Submit &amp; Schedule a Call →</button>
+                <button class="emailSubBtn" id="emailSubBtn" type="button">Submit</button>
               </div>
             </div>
           </div>
 
         </div><!-- /results -->
-
       </div><!-- /cardBody -->
     </div><!-- /card -->
   </div><!-- /wrap -->
 
-  <!-- ✅ FOOTER -->
+  <!-- FOOTER -->
   <div class="footer">
     <div class="footerInner">
-      <div>© <span id="yr"></span> eBacon Compliance • Trust Savings Calculator</div>
-      <div class="footerLinks" aria-label="Footer links">
-        <a href="#calculator">Calculator</a>
-        <a href="#contact">Schedule</a>
-        <a href="javascript:void(0)" onclick="document.getElementById('company')?.focus()">Start</a>
-      </div>
+      © <span id="yr"></span> eBacon Compliance · Trust Savings Calculator
     </div>
   </div>
 
   <script>
   (function(){
-    // footer year
     try{ document.getElementById('yr').textContent = new Date().getFullYear(); }catch(e){}
 
     const FLOW_URL    = "https://9e44ec6cf803e40cabf4a32bc17720.03.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2a2a236af9d741f89b24a90b9074460c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0QSrr9-Xy4BVcf-uJmeW8nFwHLlp65tJrHNbzPyEfIE";
@@ -929,42 +671,54 @@
     function markB(el,on){ if(el) el.classList.toggle('errorBox',!!on); }
     function scrollTo(el){ try{el.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>el.focus?.(),180);}catch(e){} }
 
+    // Update PW hint — "Of your X field employees..."
     function updateHint(){
-      const n=toInt($('fieldEEs').value);
-      $('pwHint').textContent = (Number.isFinite(n)&&n>0)
-        ? `Do all ${n} field employees perform on PW, or just some?`
-        : 'Do all of your field employees perform on PW, or just some?';
+      const n = toInt($('fieldEEs').value);
+      const num = $('pwHintNum');
+      if(num) num.textContent = (Number.isFinite(n) && n > 0) ? n : 'field';
     }
-    $('fieldEEs').addEventListener('input',updateHint);
+    $('fieldEEs').addEventListener('input', updateHint);
     updateHint();
 
     $('netFringe').addEventListener('blur',()=>{ const v=toMoney2($('netFringe').value); if(v)$('netFringe').value=v; });
 
-    const bMW=$('benefitsMsgWrap'),bMsg=$('benefitsMsg'),cW=$('creditsWrap'),cMW=$('creditsMsgWrap'),cMsg=$('creditsMsg');
+    const bMW=$('benefitsMsgWrap'), bMsg=$('benefitsMsg'),
+          cW=$('creditsWrap'), cMW=$('creditsMsgWrap'), cMsg=$('creditsMsg');
+
     function resetCredits(){
       document.querySelectorAll('#tscSite input[name="takesCredits"]').forEach(x=>x.checked=false);
-      cMW.classList.add('hidden'); cMsg.textContent='';
+      cMW.classList.add('hidden'); cMsg.innerHTML='';
       showE('err_takesCredits',false); markB($('takesCreditsBox'),false);
     }
+
     function onBenefits(val){
-      bMW.classList.remove('hidden');
       if(val==='No'){
-        bMsg.innerHTML='Great. Please provide the <strong>Average Remaining Fringe (Per Hour)</strong> after deducting training fees.';
+        // Show callout: No benefits
+        bMW.classList.remove('hidden');
+        bMsg.className='callout';
+        bMsg.innerHTML='Great. Please provide the <strong>Average Remaining Fringe $ (Per Hour)</strong> after deducting training fees.';
         cW.classList.add('hidden'); resetCredits(); return;
       }
-      bMsg.innerHTML='Thanks. One more question before we calculate your Trust savings.';
+      // Yes: just show the credits question directly — no intermediate message
+      bMW.classList.add('hidden');
       cW.classList.remove('hidden');
     }
+
     document.querySelectorAll('#tscSite input[name="providesBenefits"]').forEach(r=>{
       r.addEventListener('change',()=>{ showE('err_providesBenefits',false); markB($('providesBenefitsBox'),false); onBenefits(r.value); });
     });
+
     document.querySelectorAll('#tscSite input[name="takesCredits"]').forEach(r=>{
       r.addEventListener('change',()=>{
         showE('err_takesCredits',false); markB($('takesCreditsBox'),false);
         cMW.classList.remove('hidden');
-        cMsg.innerHTML = r.value==='Yes'
-          ? 'Great. Please provide the <strong>Average Remaining Fringe (Per Hour)</strong> after deducting fringe credits and training fees.'
-          : 'You may be eligible for fringe credits! Please provide the <strong>Average Remaining Fringe (Per Hour)</strong> after deducting training fees.';
+        if(r.value==='Yes'){
+          cMsg.className='callout';
+          cMsg.innerHTML='Great. Please provide the <strong>Average Remaining Fringe $ (Per Hour)</strong> after deducting fringe credits and training fees.';
+        } else {
+          cMsg.className='calloutRed';
+          cMsg.innerHTML='<span class="redTxt">You may be eligible for fringe credits!</span> Please provide the <strong>Average Remaining Fringe $ (Per Hour)</strong> after deducting training fees.';
+        }
       });
     });
 
@@ -1011,7 +765,8 @@
     function resetForm(){
       ['company','totalCompanyEEs','fieldEEs','pwFieldEEs','pwPercent','netFringe','wcPercent'].forEach(id=>{ const e=$(id); if(e)e.value=''; });
       document.querySelectorAll('#tscSite input[type="radio"]').forEach(r=>r.checked=false);
-      bMW.classList.add('hidden'); bMsg.textContent=''; cW.classList.add('hidden'); resetCredits();
+      bMW.classList.add('hidden'); if(bMsg)bMsg.innerHTML='';
+      cW.classList.add('hidden'); resetCredits();
       $('resultsPanel').classList.remove('show'); $('savingsVal').textContent='$0';
       updateHint(); setStatus('',false); $('calcBtn').disabled=false; clearTimer(); scrollTo($('company'));
     }
@@ -1052,15 +807,12 @@
         bw_BenefitsProvided:(getRadio('providesBenefits')==='Yes'),
         bw_TakingFringeCredits:(getRadio('takesCredits')==='Yes'),
         bw_AverageRemainingFringe:fr,
-        bw_WCPercent:wc,
-        bw_WCRateUsed:wc,
+        bw_WCPercent:wc, bw_WCRateUsed:wc,
         bw_EstimatedAnnualSavings:Math.round(savings),
-        bw_SendCopy:false,
-        bw_Email:''
+        bw_SendCopy:false, bw_Email:''
       };
 
       setStatus('',false);
-
       document.querySelectorAll('#tscSite input[name="emailChoice"]').forEach(r=>r.checked=false);
       $('emailFieldWrap').classList.remove('show');
       $('err_resultEmail').classList.remove('show');
