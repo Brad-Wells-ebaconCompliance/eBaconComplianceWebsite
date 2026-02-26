@@ -399,6 +399,8 @@
     .emailToggleRow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
     .emailFieldWrap{display:none;margin-top:16px;}
     .emailFieldWrap.show{display:block;animation:tscReveal .25s ease both;}
+    .emailInlineRow{display:flex;align-items:center;gap:10px;}
+    .emailInlineRow .emailField{flex:1;}
     .emailField{
       width:100%;height:48px;border-radius:12px;
       border:1.5px solid var(--border);padding:9px 12px;
@@ -410,7 +412,7 @@
     .emailField::placeholder{color:#94a3b8;font-weight:400;}
     .emailErr{font-size:13px;font-weight:700;color:var(--danger);margin-top:6px;text-align:center;display:none;}
     .emailErr.show{display:block;}
-    .emailSubRow{margin-top:14px;text-align:center;}
+    .emailSubRow{margin-top:0;}
     .emailSubBtn{
       height:52px;padding:0 40px;border-radius:14px;border:none;cursor:pointer;
       font-family:'Outfit',sans-serif;font-weight:800;font-size:16px;
@@ -617,11 +619,13 @@
               <label><input class="tr" type="radio" name="emailChoice" value="No" tabindex="0"><span class="tb" style="min-width:120px;">No thanks</span></label>
             </div>
             <div class="emailFieldWrap" id="emailFieldWrap">
-              <input id="resultEmail" class="emailField" type="email" inputmode="email" autocomplete="email" placeholder="yourname@company.com" aria-label="Email address">
-              <div class="emailErr" id="err_resultEmail">Please enter a valid email address.</div>
-              <div class="emailSubRow">
-                <button class="emailSubBtn" id="emailSubBtn" type="button">Submit</button>
+              <div class="emailInlineRow">
+                <input id="resultEmail" class="emailField" type="email" inputmode="email" autocomplete="email" placeholder="yourname@company.com" aria-label="Email address">
+                <div class="emailSubRow">
+                  <button class="emailSubBtn" id="emailSubBtn" type="button">Submit</button>
+                </div>
               </div>
+              <div class="emailErr" id="err_resultEmail">Please enter a valid email address.</div>
             </div>
           </div>
 
