@@ -495,7 +495,7 @@
               <div class="errtxt" id="err_fieldEEs">This field is required.</div>
 
               <div class="fl">
-                Of your <strong id="pwHintNum">field</strong> employees, how many typically work on prevailing wage projects? <span class="req">*</span>
+                Of these <strong id="pwHintNum">field</strong> employees, how many typically work on prevailing wage projects? <span class="req">*</span>
               </div>
               <input id="pwFieldEEs" class="fi" inputmode="numeric" placeholder="0">
               <div class="errtxt" id="err_pwFieldEEs">This field is required.</div>
@@ -673,7 +673,7 @@
     function updateHint(){
       const n = toInt($('fieldEEs').value);
       const num = $('pwHintNum');
-      if(num) num.textContent = (Number.isFinite(n) && n > 0) ? n : 'field';
+      if(num) num.textContent = (Number.isFinite(n) && n > 0) ? n : "field";
     }
     $('fieldEEs').addEventListener('input', updateHint);
     updateHint();
