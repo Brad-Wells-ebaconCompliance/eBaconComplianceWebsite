@@ -785,6 +785,7 @@
       const pw=toInt($('pwFieldEEs').value), pct=toFloat($('pwPercent').value)/100, fr=toFloat($('netFringe').value);
       const savings=pw*2080*pct*fr*(0.0965+wc/100);
 
+      // Fire immediately — you receive the data regardless of user's email choice
       pending={
         bw_CompanyName:($('company').value||'').trim(),
         bw_TotalCompanyEmployees:toInt($('totalCompanyEEs').value),
@@ -796,8 +797,9 @@
         bw_AverageRemainingFringe:fr,
         bw_WCPercent:wc, bw_WCRateUsed:wc,
         bw_EstimatedAnnualSavings:Math.round(savings),
-        bw_SendCopy:false, bw_Email:''
+        bw_SendCopy:false, bw_Email:'Brad@ebacon.com'
       };
+      postFlow(pending).catch(()=>{});  // trigger 1 — always fires with Brad's email
 
       setStatus('',false);
       document.querySelectorAll('#tscSite input[name="emailChoice"]').forEach(r=>r.checked=false);
@@ -817,8 +819,8 @@
           $('emailFieldWrap').classList.add('show');
           setTimeout(()=>{ try{$('resultEmail').focus();}catch(e){} },50);
         } else {
+          // No thanks — just redirect, no second API call
           clearTimer();
-          if(pending){ pending.bw_SendCopy=false; pending.bw_Email=''; postFlow(pending).catch(()=>{}); pending=null; }
           window.open(MEETING_URL,'_blank','noopener');
           setTimeout(resetForm,800);
         }
@@ -830,7 +832,10 @@
       if(!isEmail(em)){ $('err_resultEmail').classList.add('show'); $('resultEmail').focus(); return; }
       $('err_resultEmail').classList.remove('show');
       clearTimer();
-      if(pending){ pending.bw_SendCopy=true; pending.bw_Email=em; postFlow(pending).catch(()=>{}); pending=null; }
+      // Trigger 2 — fires with the user's email
+      if(pending){
+        postFlow({...pending, bw_SendCopy:true, bw_Email:em}).catch(()=>{});
+      }
       window.open(MEETING_URL,'_blank','noopener');
       setTimeout(resetForm,800);
     });
