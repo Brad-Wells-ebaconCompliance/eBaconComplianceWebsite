@@ -430,11 +430,6 @@
     .emailSubBtn:hover::after{transform:translateX(35%) rotate(8deg);}
     .emailSubBtn:active{transform:translateY(1px);box-shadow:0 2px 0 rgba(15,80,42,.40),0 6px 14px rgba(26,122,74,.22);}
 
-    /* Footer */
-    .footer{
-      margin-top:26px;border-top:1px solid var(--border);
-      background:rgba(255,255,255,.70);backdrop-filter:blur(10px);
-    }
     .footerInner{
       max-width:var(--max);margin:0 auto;
       padding:16px;
@@ -635,16 +630,10 @@
     </div><!-- /card -->
   </div><!-- /wrap -->
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footerInner">
-      © <span id="yr"></span> eBacon Compliance · Trust Savings Calculator
-    </div>
-  </div>
+
 
   <script>
   (function(){
-    try{ document.getElementById('yr').textContent = new Date().getFullYear(); }catch(e){}
 
     const FLOW_URL    = "https://9e44ec6cf803e40cabf4a32bc17720.03.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2a2a236af9d741f89b24a90b9074460c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=0QSrr9-Xy4BVcf-uJmeW8nFwHLlp65tJrHNbzPyEfIE";
     const MEETING_URL = "https://meetings-na2.hubspot.com/brad659/15-min?uuid=b3caa5c1-901b-442b-a6e6-4be9d30aac16";
